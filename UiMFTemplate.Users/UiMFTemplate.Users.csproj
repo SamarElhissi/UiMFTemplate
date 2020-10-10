@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.8" />
+    <PackageReference Include="UiMetadataFramework.Basic" Version="0.0.16-beta" />
+    <PackageReference Include="UiMetadataFramework.Core" Version="0.0.15-beta" />
+    <PackageReference Include="UiMetadataFramework.MediatR" Version="0.0.12-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.Help\UiMFTemplate.Help.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

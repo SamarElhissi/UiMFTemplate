@@ -1,0 +1,44 @@
+{#if field.metadata.required}
+<input type="checkbox"
+	id="{id}"
+	class="checkbox form-control"
+	bind:checked="field.value"
+	on:change="onChange()"
+	tabindex="{tabindex}">
+{:else}
+<select bind:value="field.value"
+	on:change="onChange()"
+	id="{id}"
+	class="form-control">
+	<option></option>
+	<option value="{true}">Yes</option>
+	<option value="{false}">No</option>
+</select>
+{/if}
+
+<script>
+	export default {
+		methods: {
+			onChange() {
+				this.get().form.fireAndBubbleUp("input:changed", {
+					app: this.get().app,
+					form: this.get().form,
+					input: this
+				});
+			}
+		}
+	};
+</script>
+<style>
+	.checkbox {
+		height: 20px;
+		width: 20px;
+		margin: 0.6rem 0.5rem 1.1rem 0.5rem;
+		overflow: initial;
+		position: relative;
+		clip: initial;
+		-webkit-clip-path: initial;
+		clip-path: initial;
+		top: 3px;
+	}
+</style>

@@ -1,0 +1,52 @@
+.choices__inner {
+	min-width: 100%;
+	min-height: 32px;
+    background-color: #fff !important;
+    border: 1px solid #ced4da;
+	border-radius: .25rem !important;
+}
+
+.choices__input {
+	min-width: 100px;
+	background-color: transparent !important;
+	margin-bottom: 5px !important;
+    padding: 4px !important; 
+    height: 32px !important;   
+}
+
+.choices__list--dropdown {
+	z-index: 100;
+}
+
+// .choices__item {
+//     padding-left: 0 !important;
+// }
+
+.choices[data-type*=select-multiple] .choices__button, .choices[data-type*=text] .choices__button {
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    margin-right: 4px;
+    margin-bottom: 0;
+    margin-left: 8px;
+    padding-left: 14px;
+    border-left: 1px solid #008fa1;
+    background-image: url(../assets/cross.svg);
+    background-size: 8px;
+    width: 8px;
+    line-height: 1;
+    opacity: .75;
+}
+
+.choices__list--multiple .choices__item {
+    font-size: 14px !important;
+}
+
+.choices__input {
+    min-width: 80px !important;
+    width: 80% !important;
+}
+
+.choices__item {
+    font-size: 14px !important;
+}

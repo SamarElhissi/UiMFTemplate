@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UiMFTemplate App</title>
+		<!-- inject:css -->
+		<!-- endinject -->
+	<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/font-awesome/css/fontawesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Changa" rel="stylesheet">
+
+	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+	<script>
+	const firebaseConfig = {
+		apiKey: "AIzaSyC0cn78wexhyhY6-UtLPKO48FhI7tzNZH4",
+		authDomain: "sandoog-warehouse.firebaseapp.com",
+		databaseURL: "https://sandoog-warehouse.firebaseio.com",
+		projectId: "sandoog-warehouse",
+		storageBucket: "sandoog-warehouse.appspot.com",
+		messagingSenderId: "413300748381",
+		appId: "1:413300748381:web:5696edbc30019beac15db4",
+		measurementId: "G-92B6S07HV9"
+	};
+	// eslint-disable-next-line import/prefer-default-export
+	// eslint-disable-next-line no-undef
+	firebase.initializeApp(firebaseConfig);
+	</script>
+
+	<script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth__en.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+
+
+	<script type="text/javascript">
+	function initApp() {
+		// eslint-disable-next-line no-undef
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				// User is signed in.
+				const { email } = user;
+				localStorage.setItem("email", email);
+			}
+		}, error => {
+			// eslint-disable-next-line no-console
+			console.log(error);
+		});
+	}
+
+	window.addEventListener("load", () => {
+		// eslint-disable-next-line no-undef
+		initApp();
+	});
+	</script>
+
+</head>
+
+<body>
+	<div id="container" class="container">
+		<header class="top navbar yamm navbar-default">
+			<div class="container">
+				<a href="#/form/dashboard" class="logo" tabindex="-1">
+				UiMFTemplate app
+				</a>
+				<div class="xmenu" id="topmenu"></div>
+			</div>
+		</header>
+
+		<div class='loaderContainer'>
+			<div id='loader'>
+				<div id='progress'></div>
+				<div class="loader">
+				</div>
+			</div>
+		</div>
+		<div id="main" class="container container-body"></div>
+	</div>
+	<!-- inject:js -->
+	<!-- endinject -->
+	<script src="https://ckeditor.com/apps/ckfinder/3.4.5/ckfinder.js"></script>
+</body>
+
+</html>

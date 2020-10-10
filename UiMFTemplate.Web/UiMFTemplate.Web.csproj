@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <UserSecretsId>76e8395c-d699-4fb3-be03-b65aed1bfbd0</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="svelte-client\**" />
+    <Content Remove="svelte-client\**" />
+    <EmbeddedResource Remove="svelte-client\**" />
+    <None Remove="svelte-client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    <PackageReference Include="SendGrid" Version="9.20.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.App.EventNotification\UiMFTemplate.App.EventNotification.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.DependencyInjection\UiMFTemplate.DependencyInjection.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Excel\UiMFTemplate.Excel.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Users\UiMFTemplate.Users.csproj" />
+  </ItemGroup>
+
+</Project>

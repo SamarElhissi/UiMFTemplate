@@ -1,0 +1,77 @@
+<p>Welcome to <strong>UiMFTemplate app</strong></p>
+<!-- <div id="firebaseui-auth-container" ref:container></div> -->
+
+<script>
+	export default {
+		oncreate() {
+			// Your web app's Firebase configuration
+			const { app } = this.get();
+
+			// Initialize Firebase
+
+			// FirebaseUI config.
+			// const uiConfig = {
+			// 	signInSuccessUrl: "https://localhost:44349/#/form/dashboard",
+			// 	callbacks: {
+			// 		signInSuccessWithAuthResult(authResult, redirectUrl) {
+			// 		// User successfully signed in.
+			// 		// Return type determines whether we continue the redirect automatically
+			// 		// or whether we leave that to developer to handle.
+			// 			// eslint-disable-next-line no-console
+			// 			console.log(authResult);
+			// 			app.loadMenu().then(t => {
+			// 				buildMenu(app);
+			// 			});
+			// 			return true;
+			// 		}
+			// 	},
+			// 	signInOptions: [
+			// 		// eslint-disable-next-line no-undef
+			// 		firebase.auth.EmailAuthProvider.PROVIDER_ID
+			// 	]
+			// };
+
+			// eslint-disable-next-line no-undef
+
+			// eslint-disable-next-line no-undef
+			// const storedEmail = localStorage.email;
+			// if (storedEmail == null || storedEmail === undefined) {
+			// 	// eslint-disable-next-line no-undef
+			// 	if (firebaseui.auth.AuthUI.getInstance()) {
+			// 		// eslint-disable-next-line no-undef
+			// 		const ui = firebaseui.auth.AuthUI.getInstance();
+			// 		ui.start(this.refs.container, uiConfig);
+			// 	}
+			// 	else {
+			// 		// eslint-disable-next-line no-undef
+			// 		const ui = new firebaseui.auth.AuthUI(firebase.auth());
+			// 		ui.start(this.refs.container, uiConfig);
+			// 	}
+			// }
+		},
+		data() {
+			return {
+				canViewHelpFiles: false
+			};
+		}
+	};
+</script>
+
+<style>
+	p,strong {
+		margin-top: 20px;
+		text-align: center;
+		font-size: 2rem;
+	}
+	.logo-big{
+		letter-spacing: 2px;
+		text-decoration: none;
+		color: #8d0c18;
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.logo-big p{
+		font-size: 5em;
+	}
+</style>

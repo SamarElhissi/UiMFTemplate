@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  warehouse.web:
+    image: ${DOCKER_REGISTRY-}warehouseweb
+    build:
+      context: .
+      dockerfile: Warehouse.Web/Dockerfile

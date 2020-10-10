@@ -1,0 +1,53 @@
+<div class="date-special">{relativeFormat(field)}
+	<span class='date-inner'>
+		{format(field)}
+	</span>
+</div>
+
+<script>
+	import moment from "moment/min/moment-with-locales";
+
+	export default {
+		helpers: {
+			relativeFormat(field) {
+				if (field.data != null &&
+				field.metadata.getCustomProperty("dateTimeStyle") === "relativeTime") {
+					return moment.utc(field.data).local().fromNow();
+				}
+				return "";
+			},
+			format(field) {
+				if (field.data != null) {
+					const dateTimeStyle = field.metadata.getCustomProperty("dateTimeStyle");
+					let format = "D-MM-YYYY hh:mm A";
+					if (dateTimeStyle === "dateTime") {
+						format = "D-MM-YYYY hh:mm A";
+					}
+					else if (dateTimeStyle === "time") {
+						format = "HH:mm";
+					}
+					else if (dateTimeStyle === "relativeTime") {
+						return moment.utc(field.data).local().fromNow();
+					}
+					else if (dateTimeStyle === "date") {
+						format = "D-M-YYYY";
+						return moment.utc(field.data).local().format(format);
+					}
+					return moment.utc(field.data).local().format(format);
+				}
+				return "";
+			}
+		}
+	};
+</script>
+
+<style>
+	.date-special {
+		text-align: center;
+	}
+	.date-inner {
+		direction: ltr !important;
+		font-size: 14px;
+		display: block;
+	}
+</style>

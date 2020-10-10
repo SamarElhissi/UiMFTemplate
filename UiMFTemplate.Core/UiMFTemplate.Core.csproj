@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>UiMFTemplate.Core</AssemblyName>
+    <RootNamespace>UiMFTemplate.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\Center\**" />
+    <Compile Remove="Commands\DropdownSources\**" />
+    <Compile Remove="Commands\Exam\**" />
+    <Compile Remove="Commands\FixData\**" />
+    <Compile Remove="Commands\Group\**" />
+    <Compile Remove="Commands\Language\**" />
+    <Compile Remove="Commands\Measurements\**" />
+    <Compile Remove="Commands\Percentile\**" />
+    <Compile Remove="Commands\PushNotifications\**" />
+    <Compile Remove="Commands\Student\**" />
+    <Compile Remove="Commands\Task\**" />
+    <Compile Remove="Commands\WorkItems\**" />
+    <Compile Remove="EventHandlers\**" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="Excel\**" />
+    <Compile Remove="Filing\**" />
+    <Compile Remove="Forms\**" />
+    <Compile Remove="NotificationManagers\**" />
+    <Compile Remove="Security\Student\**" />
+    <EmbeddedResource Remove="Commands\Center\**" />
+    <EmbeddedResource Remove="Commands\DropdownSources\**" />
+    <EmbeddedResource Remove="Commands\Exam\**" />
+    <EmbeddedResource Remove="Commands\FixData\**" />
+    <EmbeddedResource Remove="Commands\Group\**" />
+    <EmbeddedResource Remove="Commands\Language\**" />
+    <EmbeddedResource Remove="Commands\Measurements\**" />
+    <EmbeddedResource Remove="Commands\Percentile\**" />
+    <EmbeddedResource Remove="Commands\PushNotifications\**" />
+    <EmbeddedResource Remove="Commands\Student\**" />
+    <EmbeddedResource Remove="Commands\Task\**" />
+    <EmbeddedResource Remove="Commands\WorkItems\**" />
+    <EmbeddedResource Remove="EventHandlers\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Excel\**" />
+    <EmbeddedResource Remove="Filing\**" />
+    <EmbeddedResource Remove="Forms\**" />
+    <EmbeddedResource Remove="NotificationManagers\**" />
+    <EmbeddedResource Remove="Security\Student\**" />
+    <None Remove="Commands\Center\**" />
+    <None Remove="Commands\DropdownSources\**" />
+    <None Remove="Commands\Exam\**" />
+    <None Remove="Commands\FixData\**" />
+    <None Remove="Commands\Group\**" />
+    <None Remove="Commands\Language\**" />
+    <None Remove="Commands\Measurements\**" />
+    <None Remove="Commands\Percentile\**" />
+    <None Remove="Commands\PushNotifications\**" />
+    <None Remove="Commands\Student\**" />
+    <None Remove="Commands\Task\**" />
+    <None Remove="Commands\WorkItems\**" />
+    <None Remove="EventHandlers\**" />
+    <None Remove="Events\**" />
+    <None Remove="Excel\**" />
+    <None Remove="Filing\**" />
+    <None Remove="Forms\**" />
+    <None Remove="NotificationManagers\**" />
+    <None Remove="Security\Student\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\Pickers\CareerPicker.cs" />
+    <Compile Remove="Commands\Pickers\StudentPicker.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CPermissions" Version="1.1.0" />
+    <PackageReference Include="filer.core" Version="0.0.8-beta" />
+    <PackageReference Include="Filer.EntityFrameworkCore" Version="0.0.8-beta2" />
+    <PackageReference Include="FluentValidation" Version="7.5.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="UiMetadataFramework.Basic" Version="0.0.16-beta" />
+    <PackageReference Include="UiMetadataFramework.Core" Version="0.0.15-beta" />
+    <PackageReference Include="UiMetadataFramework.MediatR" Version="0.0.12-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.Excel\UiMFTemplate.Excel.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Filing\UiMFTemplate.Filing.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Help\UiMFTemplate.Help.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Notifications\UiMFTemplate.Notifications.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Users\UiMFTemplate.Users.csproj" />
+  </ItemGroup>
+
+</Project>

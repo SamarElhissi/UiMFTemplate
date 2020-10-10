@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Emails\Templates\ReceiptCreatedTemplate.cs" />
+    <Compile Remove="EventHandlers\OnCaseCreated.cs" />
+    <Compile Remove="EventHandlers\OnEquipmentCreated.cs" />
+    <Compile Remove="EventHandlers\OnReceiptCompleted.cs" />
+    <Compile Remove="EventHandlers\OnReceiptCreated.cs" />
+    <Compile Remove="EventHandlers\OnReceiptSemiCompleted.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Emails\Templates\EquipmentCreatedTemplate.cshtml" />
+    <None Remove="Emails\Templates\ReceiptCreatedTemplate.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Emails\Templates\" />
+    <Folder Include="EventHandlers\" />
+  </ItemGroup>
+
+</Project>
