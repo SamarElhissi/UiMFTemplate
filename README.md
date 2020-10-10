@@ -13,9 +13,9 @@ This project is a starter template for buildings apps with UI Metadata Framework
 
 ## To run project
 
-1. Inside *UimfApp.Web/svelte-client* run `npm install`, then `npm run dev`.
-2. Run *UimfApp.DataSeed.App*. This is a console application which will add some sample data to the database.
-3. Run *UimfApp.Web*
+1. Inside *UiMFTemplate.Web/svelte-client* run `npm install`, then `npm run dev`.
+2. Run *UiMFTemplate.DataSeed.App*. This is a console application which will add some sample data to the database.
+3. Run *UiMFTemplate.Web*
 4. You can now login with username `admin@example.com` and password `Password1`.
 
 ## How to rename project and all its files?
