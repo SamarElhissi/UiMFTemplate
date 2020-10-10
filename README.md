@@ -9,7 +9,7 @@ This project is a starter template for buildings apps with UI Metadata Framework
 
 ## To setup the project
 
-1. Publish *UimfApp.Database* to an Sql Server instance.
+1. Publish *UiMFTemplate.Database* to an Sql Server instance.
 
 ## To run project
 
