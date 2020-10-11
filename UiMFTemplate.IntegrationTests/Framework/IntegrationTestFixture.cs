@@ -11,7 +11,7 @@ namespace UiMFTemplate.IntegrationTests.Framework
 
 		public IntegrationTestFixture()
 		{
-			var dbContextOptions = ConfigurationReader.GetConfig().DbContextOptions();
+			var dbContextOptions = ConfigurationReader.GetConfigurations().DbContextOptions();
 
 			using (var connection = dbContextOptions.GetConnection())
 			{

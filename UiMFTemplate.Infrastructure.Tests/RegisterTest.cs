@@ -3,7 +3,7 @@ namespace UiMFTemplate.Infrastructure.Tests
 	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 	using FluentAssertions;
-	using StructureMap;
+	using Lamar;
 	using UiMFTemplate.DependencyInjection;
 	using Xunit;
 
@@ -57,8 +57,9 @@ namespace UiMFTemplate.Infrastructure.Tests
 		[Fact]
 		public void InstancesAndTheirDependenciesAreAlwaysUnique()
 		{
-			var container = new Container();
-			container.ConfigureRegisters();
+			var registry = new ServiceRegistry();
+			var container = new Container(registry);
+			registry.ConfigureRegisters(container);
 
 			var register = container.GetInstance<Register>();
 			var item = register.GetInstance("item");

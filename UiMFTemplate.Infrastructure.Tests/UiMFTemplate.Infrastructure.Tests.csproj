@@ -21,6 +21,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\UiMFTemplate.App.EventNotification\UiMFTemplate.App.EventNotification.csproj" />
+	  <ProjectReference Include="..\UiMFTemplate.DataSeed\UiMFTemplate.DataSeed.csproj" />
 	  <ProjectReference Include="..\UiMFTemplate.DependencyInjection\UiMFTemplate.DependencyInjection.csproj" />
 	  <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
 	  <ProjectReference Include="..\UiMFTemplate.Users\UiMFTemplate.Users.csproj" />
