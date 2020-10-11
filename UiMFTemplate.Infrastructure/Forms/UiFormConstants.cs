@@ -9,7 +9,7 @@ namespace UiMFTemplate.Infrastructure.Forms
 		public const string CheckIcon = "<i style='color:#32c5d2;' class='fa fa-check-circle'></i>";
 		public const string QuestionIcon = "<i style='color:#c49f47;' class='fa fa-question-circle'></i>";
 		public const string TimesIcon = "<i style='color:#e7505a;' class='fa fa-times-circle'></i>";
-		public const string EditSubmitLabel = "Delete";
+		public const string EditSubmitLabel = "Save changes";
 		public const string EditLabel = "<i class='fa fa-edit'></i>";
 		public const string DeleteLabel = "<i class='fa fa-times'></i>";
 		public const string EditIconLabel = "<i class='far fa-edit'></i>";

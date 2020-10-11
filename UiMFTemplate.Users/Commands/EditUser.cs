@@ -91,7 +91,7 @@ namespace UiMFTemplate.Users.Commands
             [TypeaheadInputField(typeof(RoleTypeaheadInlineSource), OrderIndex = 10)]
             public MultiSelect<string> Roles { get; set; }
 
-            [InputField(OrderIndex = 1)]
+            [InputField(OrderIndex = 1, Label = "User name")]
             [BindToOutput(nameof(Response.Name))]
             public string UserName { get; set; }
         }

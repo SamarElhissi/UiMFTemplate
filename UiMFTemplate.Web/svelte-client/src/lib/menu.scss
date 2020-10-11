@@ -1,201 +1,163 @@
-$mainColor: #c0c0c0;
-$secondColor:#e7505a !default;
-
-@font-face {
-	font-family: Trocchi;
-	src: url("./fonts/Trocchi.otf") format("opentype");
-}
-
+$mainColor: #3fcae0 !default;
+$secondColor:#f3818c !default;
 header.top {
-	min-height: 60px;
+	min-height: 75px;
 	overflow-x: visible;
 	overflow-y: visible;
-	padding: 0 1rem;
-
+	padding: 0rem 1rem;
 }
 
-@media (max-width: 765px) {
-	header.top {
-		min-height: 186px;
+@media (max-width: 765px)
+{
+	header.top  {
+    min-height: 186px;
 	}
 }
 
 header.top .logo {
-	float: left;
-	font-size: 26px;
-	color: $mainColor;
-	font-family: 'JF-Flat-regular';
-	text-transform: uppercase;
-	padding-top: 5px;
-	img{
-		width: 100px;
-		padding-bottom: 10px;
-	}
-	i{
-		font-size: 40px;
-	}
+	float:left;
+	padding-top: 15px;
+	font-family: Trocchi;
+    font-size: 26px;
+    color: $mainColor;
 }
-
-header {
+header{
 	height: inherit !important;
 	position: relative;
-	z-index: 5;
-	background: #333 !important;
-	border-bottom: 5px solid $mainColor;
 }
-
 header.top .logo:hover {
 	color: $secondColor;
 	text-decoration: none;
 }
 
-.sub-nav-check {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
+header {
+	z-index: 5;
+	background: rgba(41,51,63,.95) !important;
 }
 
-.sub-nav {
-	width:180px;
-}
+.sub-nav-check { position:absolute; top:-9999px; left:-9999px }
 
-.xmenu {
+.xmenu
+{
 	position: relative;
 	float: right;
-	padding: 1px;
-	margin: 0;
-	border: none;
-	height: 55px;
-}
-
-.xmenu ul {
-	list-style: none;
-	position: relative;
-	float: left;
-	margin: 0;
-	padding: 0;
-	padding-left: 12px;
-}
-.xmenu ul  li  label {
-	margin: 0 !important;
-}
-.xmenu ul > li > a,
-.xmenu ul > li > label,
-.xmenu ul > li > div.top-menu-div {
-	display: block;
-    position: relative;
+    padding: 1px;
     margin: 0;
-    border: 0px;
-    padding: 18px 15px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 300;
+    border: none;
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+.xmenu ul
+{
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0;
+	padding-right: 15px;
+}
+
+.xmenu ul>li>a,
+.xmenu ul>li>label,
+.xmenu ul>li>div.top-menu-div
+{
+	display:block;
 	color: $mainColor;
-	text-transform: uppercase;
+	text-decoration:none;
+	line-height:44px;
+	padding:2px 15px;
+	margin:0;
 }
 
-ul ul li div.top-menu-div {
-    padding: 0 !important;
-}
-
-.xmenu ul ul a,
-.xmenu ul ul label {
+.xmenu ul>li>div.top-menu-div>a
+{
 	color: $mainColor;
-	line-height: 120%;
-	padding: 10px 15px;
-	border: 1px solid #404040;
-	border-width: 1px 1px 0 0;
-	text-transform: uppercase;
+	text-decoration:none;
 }
 
-.xmenu ul > li > a:hover,
-.xmenu ul > li:hover,
-.xmenu ul > li > div.top-menu-div:hover,
-.xmenu ul > li > label:hover {
-	color: $secondColor;
-	background-color: rgb(52, 61, 73);
+.xmenu ul>li>a:hover,
+.xmenu ul>li>div.top-menu-div:hover,
+.xmenu ul>li>label:hover,
+.xmenu ul > li > div.top-menu-div > a:hover
+{
+	color:$secondColor;
 }
 
 .xmenu ul ul a:hover,
-.xmenu ul ul label:hover {
-	color: $secondColor;
+.xmenu ul ul label:hover
+{
+	color:$secondColor;
 	background-color: rgb(52, 61, 73);
 }
 
-.xmenu ul li.current-menu-item > a {
-	background: #ddd;
+.xmenu ul ul a,
+.xmenu ul ul label
+{
+	color: #ccc;
 }
 
-.xmenu ul > li > div.top-menu-div > a {
-	color: $mainColor;
-	text-decoration: none;
-	text-transform: uppercase;
-	display: block;
-    position: relative;
-    margin: 0;
-    border: 0px;
-    font-size: 14px;
-    font-weight: 300;
-}
-
-.xmenu ul > li > div.top-menu-div > a:hover {
-	color: $secondColor;
-}
-
-.xmenu ul > li > div.top-menu-div::before {
+.xmenu ul>li> div.top-menu-div::before {
     content: '';
+    border-left: 2px solid #555;
     position: absolute;
-    height: 45px;
+    height: 50%;
     left: 0;
+    top: 25%;
 }
 
-.xmenu ul li {
-	position: relative;
-	float: right;
-	margin: 0;
-	padding: 0;
-	display: block;
+.xmenu ul li
+{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
 }
 
-.xmenu ul ul {
-	display: none;
-	position: absolute;
-	right: 0;
-	background: #333;
-	padding: 0;
+.xmenu ul li.current-menu-item>a
+{
+	background:#ddd
+}
+
+.xmenu ul ul
+{
+	display:none;
+	position:absolute;
+	left:0;
+	background:#2a3038;
+	padding:0;
 	z-index: 10;
 	top: 100%;
-	border-bottom: 5px solid $mainColor;
+	border-bottom: 5px solid $secondColor;
 	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
-.xmenu ul ul li {
-	float: none;
-	min-width: 110px;
-	text-align: right;
+.xmenu ul ul li
+{
+	float:none;
+	min-width:140px
 }
 
-.xmenu ul ul ul {
-	top: 0;
-	right: 100%;
+.xmenu ul ul a,
+.xmenu ul ul label
+{
+	line-height:120%;
+	padding:10px 15px;
+	border: 1px solid #404040;
+    border-width: 1px 1px 0 0;
 }
 
-.xmenu ul li:hover > ul {
-	display: block;
+.xmenu ul ul ul
+{
+	top:0;
+	left:100%
 }
 
-.menu > li .count {
-	font-size: 12px;
-    background: #f53a3a;
-    color: #fff;
-    border-radius: 12px;
-    padding: 0 7px;
-    margin: 0 0 0 12px;
-    position: absolute;
-    top: -10px;
-    font-weight: 700;
-    line-height: 20px;
-	left: -3px;
-	font-family: sans-serif;
+.xmenu ul li:hover > ul
+{
+	display:block
+}
+.sub-nav .top-menu-div {
+	padding: 0;
 }

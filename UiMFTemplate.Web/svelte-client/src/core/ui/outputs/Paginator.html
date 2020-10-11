@@ -18,7 +18,7 @@
 		{/each}
 	</ul>
 </div>
-<div class="paginator-summary">عرض {field.data.results.length} من {field.data.totalCount} عنصر</div>
+<div class="paginator-summary">Showing {field.data.results.length} out of {field.data.totalCount} items</div>
 {/if}
 
 <div ref:container></div>
@@ -117,7 +117,7 @@
 					firstParams[paginatorInput.metadata.id].pageIndex = 1;
 
 					const first = {
-						text: "الأول",
+						text: "First",
 						params: firstParams,
 						cssClass: paginatorInput.value.pageIndex === 1 ? "btn disabled" : ""
 					};
@@ -126,7 +126,7 @@
 					prevParams[paginatorInput.metadata.id].pageIndex = paginatorInput.value.pageIndex - 1;
 
 					const previous = {
-						text: "السابق",
+						text: "Previous",
 						params: prevParams,
 						cssClass: paginatorInput.value.pageIndex === 1 ? "btn disabled" : ""
 					};
@@ -136,7 +136,7 @@
 					nextParams[paginatorInput.metadata.id].pageIndex = paginatorInput.value.pageIndex + 1;
 
 					const next = {
-						text: "التالي",
+						text: "Next",
 						params: nextParams,
 						cssClass: paginatorInput.value.pageIndex === pageCount ? "btn disabled" : ""
 					};
@@ -146,7 +146,7 @@
 					lastParams[paginatorInput.metadata.id].pageIndex = pageCount;
 
 					const last = {
-						text: "الأخير",
+						text: "Last",
 						params: lastParams,
 						cssClass: paginatorInput.value.pageIndex === pageCount ? "btn disabled" : ""
 					};
