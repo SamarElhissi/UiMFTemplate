@@ -14,7 +14,6 @@ namespace UiMFTemplate.DataSeed
 	using UiMFTemplate.DependencyInjection;
 	using UiMFTemplate.Filing;
 	using UiMFTemplate.Infrastructure;
-	using UiMFTemplate.Infrastructure.Configuration;
 	using UiMFTemplate.Infrastructure.DataAccess;
 	using UiMFTemplate.Infrastructure.User;
 	using UiMFTemplate.Notifications;
@@ -101,11 +100,10 @@ namespace UiMFTemplate.DataSeed
 
 		private static void ConfigureIdentity(ServiceRegistry registry)
 		{
-			registry.For<ILogger<SignInManager<ApplicationUser>>>().Use<NullLogger<SignInManager<ApplicationUser>>>();
+			//registry.For<ILogger<SignInManager<ApplicationUser>>>().Use<NullLogger<SignInManager<ApplicationUser>>>();
 			registry.For<ILogger<UserManager<ApplicationUser>>>().Use<NullLogger<UserManager<ApplicationUser>>>();
 			registry.For<ILogger<RoleManager<ApplicationRole>>>().Use<NullLogger<RoleManager<ApplicationRole>>>();
-			registry
-				.AddIdentity<ApplicationUser, ApplicationRole>(
+			registry.AddIdentityCore<ApplicationUser>(
 					options =>
 					{
 						// Password settings
@@ -122,31 +120,10 @@ namespace UiMFTemplate.DataSeed
 						// User settings
 						options.User.RequireUniqueEmail = true;
 
-						// Tokens.
-						options.Tokens.EmailConfirmationTokenProvider = nameof(DataProtectorTokenProvider<ApplicationUser>);
 					})
 				.AddRoles<ApplicationRole>()
 				.AddRoleManager<RoleManager<ApplicationRole>>()
-				.AddEntityFrameworkStores<ApplicationDbContext>()
-				.AddDefaultTokenProviders()
-				.AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(
-					nameof(DataProtectorTokenProvider<ApplicationUser>));
-
-			registry.ConfigureApplicationCookie(
-				options =>
-				{
-					// Cookie settings
-					options.ExpireTimeSpan = TimeSpan.FromDays(150);
-					options.LoginPath = "/Account/LogIn";
-					options.LogoutPath = "/Account/LogOut";
-				});
-
-			registry.Configure<DataProtectionTokenProviderOptions>(
-				options =>
-				{
-					// Email confirmation link will have a lifespan of 30 days.
-					options.TokenLifespan = TimeSpan.FromDays(30);
-				});
+				.AddEntityFrameworkStores<ApplicationDbContext>();
 
 			registry.Configure<IdentityOptions>(options =>
 			{

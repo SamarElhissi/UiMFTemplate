@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UiMFTemplate.DataSeed\UiMFTemplate.DataSeed.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Core\" />
   </ItemGroup>
 

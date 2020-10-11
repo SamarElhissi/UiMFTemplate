@@ -1,9 +1,9 @@
-namespace UiMFTemplate.DataSeed.App
+namespace UiMFTemplate.DataSeed
 {
 	using System;
-	using UiMFTemplate.DataSeed.Seeds;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Configuration;
+	using UiMFTemplate.DataSeed.Seeds;
 
 	internal class Program
 	{
