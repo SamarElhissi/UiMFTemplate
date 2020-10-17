@@ -1,5 +1,6 @@
 namespace UiMFTemplate.Web
 {
+	using System.Collections.Generic;
 	using System.Security.Claims;
 	using Microsoft.AspNetCore.Identity;
 	using UiMFTemplate.Infrastructure;
@@ -81,6 +82,13 @@ namespace UiMFTemplate.Web
 			return new UserContextData(
 				user.UserName,
 				userId.ToString());
+		}
+
+		protected override IList<string> GetUserRoles(int userId)
+		{
+			var user = this.signInManager.UserManager.Users.SingleOrException(t => t.Id == userId);
+
+			return this.signInManager.UserManager.GetRolesAsync(user).Result;
 		}
 	}
 }

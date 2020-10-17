@@ -15,6 +15,7 @@ namespace UiMFTemplate.DependencyInjection
 	using UiMetadataFramework.Basic.Input;
 	using UiMetadataFramework.Core.Binding;
 	using UiMetadataFramework.MediatR;
+	using UiMFTemplate.Conversations;
 	using UiMFTemplate.Core.DataAccess;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Configuration;
@@ -67,6 +68,10 @@ namespace UiMFTemplate.DependencyInjection
 			// Filer
 			registry.For<IFileManager>().Use<FileManager>();
 			registry.For<DataContext>().Use(t => new DataContext(coreDbContextOptions));
+
+			// Unops.Gms.Conversations
+			registry.For<ConversationsDbContext<int>>().Use(ctx => new ConversationsDbContext<int>(coreDbContextOptions, "cnv"));
+
 		}
 
 		public static void ConfigureDomainEvents(this ServiceRegistry registry, Assembly callingAssembly, Container container)
@@ -99,7 +104,7 @@ namespace UiMFTemplate.DependencyInjection
 		public static void ConfigureEmailTemplates(this ServiceRegistry registry)
 		{
 			registry.For<IViewRenderService>().Use<ViewRenderService>();
-			registry.AddSingleton<EmailTemplateRegister>();
+			registry.For<EmailTemplateRegister>().Use(ctx => new EmailTemplateRegister(ctx.GetInstance<IEmailSender>(), ctx.GetInstance<AppDependencyInjectionContainer>())).Singleton();
 			registry.SetLifecycleForImplementationsOfInterface(typeof(IEmailTemplate<>), AssembliesWithBootstrapper.Value);
 		}
 
@@ -109,12 +114,11 @@ namespace UiMFTemplate.DependencyInjection
 			registry.For<FormRegister>().Use(ctx => new FormRegister(ctx.GetInstance<MetadataBinder>())).Singleton();
 
 			registry.AddSingleton<MenuRegister>();
-			//registry.AddSingleton<ActionRegister>();
 			registry.For<ActionRegister>().Use(ctx => ActionRegister.Default).Singleton();
 
-			registry.AddSingleton<EntitySecurityConfigurationRegister>();
 			registry.AddTransient<IEntityRepository>();
-			registry.AddSingleton<ObjectSecurityConfigurationRegister>();
+			registry.For<EntitySecurityConfigurationRegister>().Use(ctx => new EntitySecurityConfigurationRegister(new AppDependencyInjectionContainer(ctx.GetInstance))).Singleton();
+			registry.For<ObjectSecurityConfigurationRegister>().Use(ctx => new ObjectSecurityConfigurationRegister()).Singleton();
 
 			registry.For<AppDependencyInjectionContainer>().Use(ctx => new AppDependencyInjectionContainer(ctx.GetInstance));
 			registry.For<UimfDependencyInjectionContainer>().Use(t => new UimfDependencyInjectionContainer(t.GetInstance));
@@ -221,7 +225,8 @@ namespace UiMFTemplate.DependencyInjection
 				typeof(Filing.Bootstrap).Assembly,
 				typeof(Help.Bootstrap).Assembly,
 				typeof(Users.Bootstrap).Assembly,
-				typeof(Infrastructure.Bootstrap).Assembly
+				typeof(Infrastructure.Bootstrap).Assembly,
+				typeof(Conversations.Bootstrap).Assembly
 			};
 
 			// Load all referenced assemblies that belong to the solution.
@@ -259,7 +264,8 @@ namespace UiMFTemplate.DependencyInjection
 				typeof(Filing.Bootstrap).Assembly,
 				typeof(Help.Bootstrap).Assembly,
 				typeof(Users.Bootstrap).Assembly,
-				typeof(Infrastructure.Bootstrap).Assembly
+				typeof(Infrastructure.Bootstrap).Assembly,
+				typeof(Conversations.Bootstrap).Assembly
 			};
 
 			// Load all referenced assemblies that belong to the solution.

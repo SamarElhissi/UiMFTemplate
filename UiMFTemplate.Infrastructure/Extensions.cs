@@ -38,6 +38,7 @@ namespace UiMFTemplate.Infrastructure
 	using UiMetadataFramework.Core;
 	using UiMetadataFramework.Core.Binding;
 	using UiMetadataFramework.MediatR;
+	using UiMFTemplate.Infrastructure.Configuration;
 
 	public static class Extensions
 	{
@@ -65,6 +66,14 @@ namespace UiMFTemplate.Infrastructure
 			};
 		}
 
+		public static HtmlString AsHtmlString(this string value)
+		{
+			return new HtmlString
+			{
+				Value = value
+			};
+		}
+
 		public static InlineForm AsInlineForm(this FormLink formLink)
 		{
 			return new InlineForm
@@ -72,6 +81,17 @@ namespace UiMFTemplate.Infrastructure
 				Form = formLink.Form,
 				InputFieldValues = formLink.InputFieldValues
 			};
+		}
+
+		public static string AsUrl(this FormLink link, AppConfig appConfig)
+		{
+			var param = "";
+			foreach (var inputValue in link.InputFieldValues)
+			{
+				param += $"{inputValue.Key}={inputValue.Value}";
+			}
+
+			return $"{appConfig.SiteRoot}/#/form/{link.Form}?" + param;
 		}
 
 		public static MenuItem AsMenuItem(this FormLink formLink, string menuGroup, int orderIndex = 0)

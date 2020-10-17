@@ -8,9 +8,7 @@ namespace UiMFTemplate.Infrastructure.Configuration
 		public string Version { get; set; }
 		public string EmailDeliveryMethod { get; set; }
 		public string SendGridApiKey { get; set; }
-		public string OneSignalApi { get; set; }
-		public string OneSignalRestKey { get; set; }
-		public string OneSignalAppId { get; set; }
-		public string SandoogApi { get; set; }
+		public string MailJetApiSecret { get; set; }
+		public string MailJetApiKey { get; set; }
 	}
 }

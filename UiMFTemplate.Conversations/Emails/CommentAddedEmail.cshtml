@@ -1,0 +1,11 @@
+@model dynamic
+
+<p>Dear @Model.Username,</p>
+
+<p>
+    A new comment was posted <a href="@Model.Url">here</a>.
+</p>
+
+<blockquote>
+    @Model.Message
+</blockquote>

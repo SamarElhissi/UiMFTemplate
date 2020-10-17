@@ -495,7 +495,6 @@ footer {
   text-align: center;
   line-height: 1.2;
   width: 150px;
-  overflow: auto;
   font-size: 9pt;
 }
 
@@ -1203,4 +1202,8 @@ form .form-group {
 }
 .full-width{
 	width:100%;
+}
+
+.btn:hover{
+  cursor: pointer;
 }

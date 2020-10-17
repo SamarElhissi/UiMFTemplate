@@ -7,5 +7,6 @@ namespace UiMFTemplate.Core.Security
 		public static readonly SystemRole AuthenticatedUser = new SystemRole(nameof(AuthenticatedUser), true);
 		public static readonly SystemRole SysAdmin = new SystemRole(nameof(SysAdmin));
         public static readonly SystemRole Supervisor = new SystemRole(nameof(Supervisor));
+        public static readonly SystemRole User = new SystemRole(nameof(User));
     }
 }

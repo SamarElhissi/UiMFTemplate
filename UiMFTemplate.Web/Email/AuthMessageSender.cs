@@ -1,10 +1,13 @@
 namespace UiMFTemplate.Web.Email
 {
+	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Net.Mail;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using Mailjet.Client;
+	using Mailjet.Client.Resources;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.Extensions.Options;
 	using SendGrid;
@@ -16,9 +19,9 @@ namespace UiMFTemplate.Web.Email
 	public class AuthMessageSender : IEmailSender, ISmsSender
 	{
 		private readonly AppConfig appConfig;
-		private readonly IHostingEnvironment hostingEnvironment;
+		private readonly IWebHostEnvironment hostingEnvironment;
 
-		public AuthMessageSender(IOptions<AppConfig> appConfig, IHostingEnvironment hostingEnvironment)
+		public AuthMessageSender(IOptions<AppConfig> appConfig, IWebHostEnvironment hostingEnvironment)
 		{
 			this.hostingEnvironment = hostingEnvironment;
 			this.appConfig = appConfig.Value;
@@ -56,6 +59,33 @@ namespace UiMFTemplate.Web.Email
 				};
 				await client.SendMailAsync(mailMessage);
 			}
+			else if (this.appConfig.EmailDeliveryMethod == "Mailjet")
+			{
+				var mailjetClient = new MailjetClient(
+					this.appConfig.MailJetApiKey,
+					this.appConfig.MailJetApiSecret)
+				{
+					Version = ApiVersion.V3
+				};
+
+				var mailJetRequest = new MailjetRequest
+					{
+						Resource = Send.Resource
+					}
+					.Property(Send.FromEmail, this.appConfig.NoReplyEmail)
+					.Property(Send.Subject, subject)
+					.Property(Send.HtmlPart, message)
+					.Property(Send.To, email);
+
+				try
+				{
+					await mailjetClient.PostAsync(mailJetRequest);
+				}
+				catch (Exception e)
+				{
+					//Todo log error 
+				}
+			}
 			else
 			{
 				throw new ApplicationException("Email delivery method is invalid.");
@@ -64,33 +94,7 @@ namespace UiMFTemplate.Web.Email
 
 		public async Task SendEmailAsync(MailMessage message)
 		{
-			if (this.appConfig.EmailDeliveryMethod == "SendGrid")
-			{
-				var apiKey = this.appConfig.SendGridApiKey;
-				var client = new SendGridClient(apiKey);
-				var from = new EmailAddress(this.appConfig.NoReplyEmail);
-				var to = new EmailAddress(message.To.First().Address);
-				var plainTextContent = Regex.Replace(message.Body, "<[^>]*>", "");
-				var msg = MailHelper.CreateSingleEmail(from, to, message.Subject, plainTextContent, message.Body);
-				await client.SendEmailAsync(msg);
-			}
-			else if (this.appConfig.EmailDeliveryMethod == "LocalFolder")
-			{
-				string path = Path.Combine(this.hostingEnvironment.ContentRootPath, "Temp", "Emails");
-				Directory.CreateDirectory(path);
-
-				var client = new SmtpClient("smtp.example.com")
-				{
-					DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-					PickupDirectoryLocation = path
-				};
-				
-				await client.SendMailAsync(message);
-			}
-			else
-			{
-				throw new ApplicationException("Email delivery method is invalid.");
-			}
+			await this.SendEmailAsync(message.To.First().Address, message.Subject, message.Body);
 		}
 
 		public Task SendSmsAsync(string number, string message)

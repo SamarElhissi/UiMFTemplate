@@ -36,7 +36,7 @@
 			{#each visibleInputFields as inputField}
 			<FormInput field="{inputField}" app="{app}" tabindex="{tabindex * 100 + inputField.metadata.orderIndex}" form="{self}" />
 			{/each}
-			<div class="full-width">
+			<div class="full-width" style="margin-bottom: 10px;">
 				<button type="submit" disabled="{disabled}" tabindex="-1" class="btn btn-default">{@html submitButtonLabel}</button>
 			</div>
 		</form>
@@ -143,17 +143,19 @@
 			},
 			enableForm() {
 				const formInstance = this.get().form;
+				if(formInstance != null){
+					// Hide all inputs, to re-render them. This is needed due to the way that
+					// Svelte *seems* to work - it doesn't re-render nested components, unless they are recreated.
+					this.set({ visibleInputFields: [] });
 
-				// Hide all inputs, to re-render them. This is needed due to the way that
-				// Svelte *seems* to work - it doesn't re-render nested components, unless they are recreated.
-				this.set({ visibleInputFields: [] });
+					this.set({
+						// Show inputs again.
+						visibleInputFields: formInstance.inputs.filter(t => t.metadata.hidden === false),
 
-				this.set({
-				// Show inputs again.
-					visibleInputFields: formInstance.inputs.filter(t => t.metadata.hidden === false),
-
-					disabled: false
-				});
+						disabled: false
+					});
+				}
+				
 			},
 			renderResponse(response) {
 				const formInstance = this.get().form;

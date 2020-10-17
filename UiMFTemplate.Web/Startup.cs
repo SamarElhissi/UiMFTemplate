@@ -12,6 +12,7 @@ namespace UiMFTemplate.Web
 	using Microsoft.Extensions.Hosting;
 	using Microsoft.Extensions.Logging;
 	using Microsoft.Extensions.Logging.Abstractions;
+	using UiMFTemplate.Conversations;
 	using UiMFTemplate.Core.DataAccess;
 	using UiMFTemplate.DependencyInjection;
 	using UiMFTemplate.Filing;
@@ -102,6 +103,7 @@ namespace UiMFTemplate.Web
 				_.AssemblyContainingType<INotificationManager>();
 				_.AssemblyContainingType<ApplicationDbContext>();
 				_.AssemblyContainingType<UserRoleChecker>();
+				_.AssemblyContainingType<ConversationManagerCollection>();
 
 				_.AddAllTypesOf<IAssemblyBootstrapper>();
 				_.AddAllTypesOf(typeof(Register<>));

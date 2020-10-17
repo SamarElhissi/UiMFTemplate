@@ -25,5 +25,15 @@ namespace UiMFTemplate.Users
 
         public bool Active => this.DateActivated.HasValue;
 		public DateTime? DateActivated { get; set; }
+
+		public void Activate()
+		{
+			this.DateActivated = DateTime.UtcNow;
+		}
+
+		public void Deactivate()
+		{
+			this.DateActivated = null;
+		}
 	}
 }

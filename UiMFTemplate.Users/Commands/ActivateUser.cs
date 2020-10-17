@@ -55,7 +55,7 @@ namespace UiMFTemplate.Users.Commands
                 throw new BusinessException("The user is already activated");
             }
 
-            user.DateActivated = DateTime.Now;
+            user.Activate();
             this.applicationDbContext.SaveChanges();
 
             return new Response()

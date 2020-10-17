@@ -54,7 +54,7 @@ namespace UiMFTemplate.Web.Users.Commands
             /// Gets or sets new password for the account.
             /// </summary>
             [InputField(Required = true)]
-            [UiMFTemplatePasswordInputConfig(true)]
+            [MagicPasswordInputConfig(true)]
             public Password Password { get; set; }
 
             /// <summary>

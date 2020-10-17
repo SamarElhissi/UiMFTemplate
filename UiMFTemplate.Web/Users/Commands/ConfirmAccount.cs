@@ -1,6 +1,8 @@
 namespace UiMFTemplate.Web.Users.Commands
 {
-    using System.Linq;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
@@ -20,13 +22,15 @@ namespace UiMFTemplate.Web.Users.Commands
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserContext userContext;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public ConfirmAccount(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, UserContext userContext)
+        public ConfirmAccount(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, UserContext userContext, ApplicationDbContext applicationDbContext)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.userContext = userContext;
-        }
+			this.applicationDbContext = applicationDbContext;
+		}
 
         public override async Task<ReloadResponse> Handle(Request message, CancellationToken cancellationToken)
         {
@@ -42,14 +46,18 @@ namespace UiMFTemplate.Web.Users.Commands
             {
                 return new ReloadResponse
                 {
-                    Form = typeof(MyAccount).GetFormId()
+                    Form = typeof(Login).GetFormId()
                 };
             }
 
             if (!user.EmailConfirmed)
             {
                 var result = await this.userManager.ConfirmEmailAsync(user, message.Token);
-                result.EnforceSuccess("Account was not confirmed.");
+				var applicationUser = this.applicationDbContext.Users.SingleOrException(a => a.Id == user.Id);
+				applicationUser.Activate();
+				await this.applicationDbContext.SaveChangesAsync(cancellationToken);
+
+				result.EnforceSuccess("Account was not confirmed.");
             }
 
             if (!this.userContext.IsAuthenticated)
@@ -59,7 +67,11 @@ namespace UiMFTemplate.Web.Users.Commands
 
             return new ReloadResponse
             {
-                Form = typeof(SetPassword).GetFormId()
+                Form = typeof(SetPassword).GetFormId(),
+                InputFieldValues = new Dictionary<string, object>
+				{
+					{ nameof(SetPassword.Request.UserId), user.Id}
+				}
             };
         }
 

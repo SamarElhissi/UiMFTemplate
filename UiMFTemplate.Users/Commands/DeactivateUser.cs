@@ -53,7 +53,7 @@ namespace UiMFTemplate.Users.Commands
                 throw new BusinessException("The user is already deactivated");
             }
 
-            user.DateActivated = null;
+            user.Deactivate();
             this.applicationDbContext.SaveChanges();
 
             return new Response()

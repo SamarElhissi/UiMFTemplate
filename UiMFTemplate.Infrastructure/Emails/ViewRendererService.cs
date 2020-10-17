@@ -7,10 +7,6 @@ namespace UiMFTemplate.Infrastructure.Emails
 
 	public class ViewRenderService : IViewRenderService
 	{
-		private readonly RazorLightEngine engine = new RazorLightEngineBuilder()
-			.UseMemoryCachingProvider()
-			.Build();
-
 		public async Task<string> RenderToString<TModel>(TModel model)
 		{
 			var type = model.GetType();
@@ -38,16 +34,13 @@ namespace UiMFTemplate.Infrastructure.Emails
 		private async Task<string> RenderPartialView<T>(Assembly assembly, string embeddedResourceName, T model)
 		{
 			var modelType = typeof(T);
+			var engine = new RazorLightEngineBuilder()
+				.UseEmbeddedResourcesProject(typeof(T))
+				.UseMemoryCachingProvider()
+				.Build();
 
-			var cache = this.engine.TemplateCache.RetrieveTemplate(modelType.FullName);
-
-			if (!cache.Success)
-			{
-				var source = assembly.GetEmbeddedResourceText(embeddedResourceName);
-				return await this.engine.CompileRenderAsync(modelType.FullName, source, model);
-			}
-
-			return await this.engine.RenderTemplateAsync(cache.Template.TemplatePageFactory(), model);
+			var source = assembly.GetEmbeddedResourceText(embeddedResourceName);
+			return await engine.CompileRenderStringAsync(modelType.FullName, source, model);
 		}
 	}
 }

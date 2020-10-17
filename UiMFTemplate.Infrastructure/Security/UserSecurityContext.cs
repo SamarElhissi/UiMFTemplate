@@ -51,7 +51,7 @@ namespace UiMFTemplate.Infrastructure.Security
 
 			if (secureForm == null)
 			{
-				return true;
+				return false;
 			}
 
 			EnforceContextlessSecurity(secureForm);

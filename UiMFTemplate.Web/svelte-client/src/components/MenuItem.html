@@ -1,6 +1,6 @@
 {#if item.children.length === 0}
 	{#if item.form != null}
-	<MyFormLink field={field} app={app}/>
+	<FormLink field={field} app={app}/>
 	{:else}
 	<span>{item.label}</span>
 	{/if}
@@ -9,7 +9,7 @@
 		{#if item.children.length > 1}
 		<label for="menu{id}" class="toggle-sub" onclick="">{item.label}</label>
 		{:else}
-		<MyFormLink field={nested} app={app}/>
+		<FormLink field={nested} app={app}/>
 		{/if}
 	</div>
 
@@ -50,7 +50,7 @@
 			};
 		},
 		components: {
-			MyFormLink: "../core/ui/outputs/MyFormLink"
+			FormLink: "../core/ui/outputs/FormLink"
 		}
 	};
 </script>

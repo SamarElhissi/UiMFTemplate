@@ -16,17 +16,18 @@ namespace UiMFTemplate.Core.DataAccess
 		{
 		}
 
-        public virtual DbSet<RegisteredUser> Users { get; set; }
+		public virtual DbSet<Magic> Magics { get; set; }
 
+		public virtual DbSet<RegisteredUser> Users { get; set; }
 
-
-        protected override void OnModelCreating(ModelBuilder builder)
+		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
 
 			builder.ApplyConfiguration(new RegisteredUserMap());
-            builder.ApplyConfiguration(new RegisteredRoleMap());
-            builder.ApplyConfiguration(new RegisteredUserRoleMap());
-        }
+			builder.ApplyConfiguration(new RegisteredRoleMap());
+			builder.ApplyConfiguration(new RegisteredUserRoleMap());
+			builder.ApplyConfiguration(new MagicMap());
+		}
 	}
 }

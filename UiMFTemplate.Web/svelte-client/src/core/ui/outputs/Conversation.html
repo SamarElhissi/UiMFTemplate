@@ -1,0 +1,220 @@
+{#if field.data != null }
+	{#if field.data.participants != null }
+	<div class="participants pull-right">
+		<span data-tooltip="All participants will be notified by email for each new comment in this conversation">
+		<i class="fa fa-info-circle"></i></span>
+		<ul>
+			{#each field.data.participants as participant} 
+			{#if participant.description != null}
+			<li data-tooltip="{participant.description}">{ participant.name }</li>
+			{:else }
+			<li>{ participant.name }</li>
+			{/if} 
+			{/each}
+		</ul>
+	</div>
+	{/if}
+	<div class="blog-comment">
+		{#if field.data.comments != null }
+		<ul class="comments">
+			{#each field.data.comments as comment}
+			<li class="clearfix">
+				<div class="post-comments">
+					<p class="meta">
+						<a href="/">{comment.author}</a>
+						<small>{ format(comment.postedOn) }</small>
+						{#if comment.canDelete }
+						<i class="pull-right fa fa-times" on:click="deleteComment(field.data.key,comment.id)"></i>
+						{/if}
+					</p>
+					<p>{ comment.text }</p>
+				</div>
+			</li>
+			{/each}
+		</ul>
+		{/if}
+	</div>
+	{#if field.data.canAddComments }
+	<div class="form">
+		<div class="form-group">
+			<textarea class="form-control" bind:value="commentText" />
+		</div>
+		<div class="form-group">
+			<button on:click="postComment(field.data.key, commentText)" class="btn btn-default">Post comment</button>
+		</div>
+	</div>
+	{/if}
+{/if}
+
+
+<script>
+	import moment from "moment";
+	import * as axiosLib from "axios";
+	var axios = axiosLib.default;
+
+	export default {
+		oncreate() {
+			this.set({commentText: ""});
+		},
+		helpers: {
+			format: function(date) {
+				return moment(date).format("D MMM YYYY HH:mm A");
+			}
+		},
+		methods: {
+			deleteComment: async function (key, id) {
+				var field = this.get().field;
+				if (confirm("Are you sure you want to delete the comment?")) {
+					axios.post("/api/form/run", JSON.stringify([
+						{
+							Form: "delete-comment",
+							RequestId: 1,
+							InputFieldValues: {
+								Key: key,
+								Id: id
+							}
+						}]),
+						{
+							headers: {
+								"Content-Type": "application/json"
+							}
+						})
+						.then((response) => {
+							var indexToRemove = field.data.comments.findIndex(function (e) { return e.id == id });
+							if (indexToRemove > -1) {
+								field.data.comments.splice(indexToRemove, 1);
+								this.set({ field });
+							}
+						})
+						.catch((error) => {
+							var app = this.get("app");
+							app.showError(error.response.data.error);
+						});
+				}
+			},
+			postComment: async function (key, commentText) {
+				var field = this.get().field;
+				commentText = commentText.replace(/\n/g, '<br />');
+				var userName = field.data.userName;
+				axios.post("/api/form/run", JSON.stringify([
+					{
+						Form: "add-comment",
+						RequestId: 1,
+						InputFieldValues: {
+							Key: key,
+							Text: commentText
+						}
+					}]),
+					{
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					.then((response) => {
+						field.data.comments.push(response.data[0].data.comment);
+						this.set({
+							field: field,
+							commentText: null
+						});
+					})
+					.catch((error) => {
+						var app = this.get("app");
+						app.showError(error.response.data.error);
+					});
+			}
+	}
+}
+</script>
+<style>
+	a {
+		color: #82b440;
+		text-decoration: none;
+	}
+
+	.blog-comment::before,
+	.blog-comment::after,
+	.blog-comment-form::before,
+	.blog-comment-form::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	.blog-comment ul {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	.blog-comment img {
+		opacity: 1;
+		filter: Alpha(opacity=100);
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+	}
+
+	.blog-comment .post-comments {
+		border: 1px solid #eee;
+		margin-bottom: 5px;
+		margin-right: 0px;
+		padding: 10px 20px;
+		position: relative;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		-o-border-radius: 4px;
+		border-radius: 4px;
+		background: #fff;
+		color: #6b6e80;
+		position: relative;
+	}
+
+	.blog-comment .meta {
+		font-size: 13px;
+		color: #aaaaaa;
+		padding-bottom: 8px;
+		margin-bottom: 10px !important;
+		border-bottom: 1px solid #eee;
+	}
+
+	.blog-comment ul.comments ul {
+		list-style-type: none;
+		padding: 0;
+		margin-left: 85px;
+	}
+
+	.blog-comment-form {
+		padding-left: 15%;
+		padding-right: 15%;
+		padding-top: 40px;
+	}
+
+	.blog-comment h3,
+	.blog-comment-form h3 {
+		margin-bottom: 40px;
+		font-size: 26px;
+		line-height: 30px;
+		font-weight: 800;
+	}
+
+	.participants ul{
+		list-style: none;
+		display: inline-block;
+		padding-left: 0px;
+		margin-left: 0px;
+	}
+
+	.participants ul li {
+		display: inline;
+		background-color: #dff0d8;
+		padding: 2px 5px;
+		margin: 0px 2px;
+		font-size: 9pt;
+		border-radius: 5px;
+	}
+
+	.form {
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+</style>

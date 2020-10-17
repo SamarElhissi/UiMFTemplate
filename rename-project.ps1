@@ -2,7 +2,7 @@
 $myappname = 'UiMFTemplate';
 
 # Don't change the below code
-$toreplace = 'UiMF.Template';
+$toreplace = 'Unops.Complaint';
 
 Get-ChildItem -Filter "*$toreplace.*" -Recurse `
     | ? { $_.FullName -notmatch 'node_modules' } `

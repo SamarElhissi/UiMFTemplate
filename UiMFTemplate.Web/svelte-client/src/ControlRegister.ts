@@ -23,7 +23,7 @@ import DateRangeInput from "core-ui/inputs/DateRange";
 import DropdownInput from "core-ui/inputs/Dropdown";
 import EmailInput from "core-ui/inputs/Email";
 import FileUploader from "core-ui/inputs/FileUploader";
-// import HtmlEditor from "core-ui/inputs/HtmlEditor";
+import HtmlEditor from "core-ui/inputs/HtmlEditor";
 import MultiSelectInput from "core-ui/inputs/MultiSelect";
 import NumberInput from "core-ui/inputs/Number";
 import NumberRangeInput from "core-ui/inputs/NumberRange";
@@ -53,6 +53,8 @@ import Tabstrip from "core-ui/outputs/Tabstrip";
 import TextOutput from "core-ui/outputs/Text";
 import TextValue from "core-ui/outputs/TextValue";
 import TextValueMultiline from "core-ui/outputs/TextValueMultiline";
+import Conversation from "core-ui/outputs/Conversation";
+import PreformattedText from "core-ui/outputs/PreformattedText";
 
 import {
 	BindToOutput,
@@ -85,7 +87,7 @@ controlRegister.registerInputFieldControl("password", Password, PasswordInputCon
 controlRegister.registerInputFieldControl("textarea", Textarea, TextareaInputController, new umf.OutputControlConfiguration(false, true));
 controlRegister.registerInputFieldControl("file-uploader", FileUploader, FileUploaderController, new umf.OutputControlConfiguration(false, true));
 controlRegister.registerInputFieldControl("number-range", NumberRangeInput, NumberRangeInputController);
-// controlRegister.registerInputFieldControl("html-editor", HtmlEditor, HtmlEditorInputController, new umf.OutputControlConfiguration(false, true));
+controlRegister.registerInputFieldControl("html-editor", HtmlEditor, HtmlEditorInputController, new umf.OutputControlConfiguration(false, true));
 controlRegister.registerInputFieldControl("receipt-list", ReceiptListInput, ReceiptListInputController);
 
 controlRegister.registerOutputFieldControl("text", TextOutput);
@@ -108,6 +110,8 @@ controlRegister.registerOutputFieldControl("object-list", ObjectList, new umf.Ou
 controlRegister.registerOutputFieldControl("html-string", HtmlString);
 controlRegister.registerOutputFieldControl("documentation", Documentation, new umf.OutputControlConfiguration(true, true));
 controlRegister.registerOutputFieldControl("pie-graph", PieGraph, new umf.OutputControlConfiguration(false, true));
+controlRegister.registerOutputFieldControl("conversation", Conversation, new umf.OutputControlConfiguration(false, true));
+controlRegister.registerOutputFieldControl("preformatted-text", PreformattedText, new umf.OutputControlConfiguration(false, true));
 
 // Form event handlers.
 controlRegister.registerFormEventHandler("log-to-console", new FormLogToConsole());

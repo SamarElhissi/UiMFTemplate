@@ -71,6 +71,8 @@
     <Folder Include="core\Views" />
     <Folder Include="core\Stored Procedures" />
     <Folder Include="script" />
+    <Folder Include="cnv" />
+    <Folder Include="cnv\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="nofy\ntf.sql" />
@@ -85,7 +87,11 @@
     <Build Include="users\Tables\AspNetUsers.sql" />
     <Build Include="users\Tables\AspNetUserTokens.sql" />
     <Build Include="nofy\Tables\Notification.sql" />
-    <Build Include="core\Tables\Article.sql" />
+    <Build Include="cnv\Tables\Comment.sql" />
+    <Build Include="cnv\Tables\Conversation.sql" />
+    <Build Include="cnv\Tables\ConversationDocument.sql" />
+    <Build Include="cnv\cnv.sql" />
+    <Build Include="core\Tables\Magic.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="create-db-login-and-user.sql" />

@@ -4,9 +4,7 @@ namespace UiMFTemplate.Core.Commands.Pickers
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using UiMFTemplate.Core.DataAccess;
-    using UiMFTemplate.Core.Security;
-    using UiMFTemplate.Infrastructure;
-    using UiMFTemplate.Infrastructure.Forms;
+	using UiMFTemplate.Infrastructure.Forms;
     using UiMFTemplate.Infrastructure.Forms.Typeahead;
     using UiMFTemplate.Infrastructure.Security;
     using UiMFTemplate.Users.Security;

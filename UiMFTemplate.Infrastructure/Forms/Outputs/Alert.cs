@@ -5,6 +5,10 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 	[OutputFieldType("alert")]
 	public class Alert
 	{
+		public Alert(string heading)
+		{
+			this.Heading = heading;
+		}
 		public Alert(string heading, string message, string style, string icon = null)
 		{
 			this.Heading = heading;
@@ -17,7 +21,6 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 		public string Message { get; set; }
 		public string Style { get; set; }
 		public string Icon { get; set; }
-
 
 		public static Alert Error(string heading, string message = null, string icon = null)
 		{
@@ -33,5 +36,13 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 		{
 			return new Alert(heading, message, "warning", icon);
 		}
+	}
+
+	public class AlertStyle
+	{
+		public const string Danger = "danger";
+		public const string Success = "success";
+		public const string Warning = "warning";
+		public const string Info = "info";
 	}
 }

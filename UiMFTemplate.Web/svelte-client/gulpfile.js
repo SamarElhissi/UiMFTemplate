@@ -51,9 +51,9 @@ gulp.task(
 			.src("node_modules/svelte/shared.js")
 			.pipe(gulp.dest(svelteComponentsDir));
 
-		// const copyckEditorJs = gulp
-		// 	.src("src/core/ckeditor/*.js")
-		// 	.pipe(gulp.dest(`${svelteComponentsDir}/core/ckeditor`));
+		const copyckEditorJs = gulp
+			.src("src/core/ckeditor/*.js")
+			.pipe(gulp.dest(`${svelteComponentsDir}/core/ckeditor`));
 
 		const copyOutputs = gulp
 			.src("src/core/ui/outputs/*.ts")
@@ -83,7 +83,7 @@ gulp.task(
 			}))
 			.pipe(gulp.dest(svelteComponentsDir));
 
-		return merge2([copySharedJs, copyOutputs], buildComponents);
+		return merge2([copySharedJs, copyckEditorJs, copyOutputs], buildComponents);
 	})
 );
 

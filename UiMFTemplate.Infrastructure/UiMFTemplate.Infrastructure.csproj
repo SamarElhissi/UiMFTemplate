@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="microsoft.extensions.configuration.json" Version="2.1.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.2" />
-    <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
+    <PackageReference Include="RazorLight.NetCore3" Version="3.0.2" />
     <PackageReference Include="UiMetadataFramework.Basic" Version="0.0.16-beta" />
     <PackageReference Include="UiMetadataFramework.Core" Version="0.0.15-beta" />
     <PackageReference Include="UiMetadataFramework.MediatR" Version="0.0.12-beta" />

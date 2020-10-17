@@ -105,6 +105,40 @@ namespace UiMFTemplate.Core.Extensions
             return query;
         }
 
+
+		/// <summary>
+		/// Find undeleted entity
+		/// </summary>
+		/// <param name="queryable">entity to search.</param>
+		/// <param name="predicate"></param>
+		/// /// <param name="exceptionMessage"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns>Matching request logs.</returns>
+		public static T SingleNotDeletedOrException<T>(this IQueryable<T> queryable,
+			Expression<Func<T, bool>> predicate,
+			string exceptionMessage = null)
+			where T : class, IDeletable
+		{
+			var query = queryable.SingleOrDefault(predicate);
+
+			if (query == null)
+			{
+				throw new BusinessException("Item not found");
+			}
+
+			if (query.IsDeleted)
+			{
+				if (exceptionMessage != null)
+				{
+					throw new BusinessException(exceptionMessage);
+				}
+
+				throw new BusinessException("Item not found");
+			}
+
+			return query;
+		}
+
         public static TypeaheadResponse<TKey> GetForTypeahead<TItem, TKey>(
             this IQueryable<TItem> queryable,
             TypeaheadRequest<TKey> request,

@@ -24,7 +24,6 @@
     <Compile Remove="Excel\**" />
     <Compile Remove="Filing\**" />
     <Compile Remove="Forms\**" />
-    <Compile Remove="NotificationManagers\**" />
     <Compile Remove="Security\Student\**" />
     <EmbeddedResource Remove="Commands\Center\**" />
     <EmbeddedResource Remove="Commands\DropdownSources\**" />
@@ -43,7 +42,6 @@
     <EmbeddedResource Remove="Excel\**" />
     <EmbeddedResource Remove="Filing\**" />
     <EmbeddedResource Remove="Forms\**" />
-    <EmbeddedResource Remove="NotificationManagers\**" />
     <EmbeddedResource Remove="Security\Student\**" />
     <None Remove="Commands\Center\**" />
     <None Remove="Commands\DropdownSources\**" />
@@ -62,7 +60,6 @@
     <None Remove="Excel\**" />
     <None Remove="Filing\**" />
     <None Remove="Forms\**" />
-    <None Remove="NotificationManagers\**" />
     <None Remove="Security\Student\**" />
   </ItemGroup>
 
@@ -85,6 +82,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.Conversations\UiMFTemplate.Conversations.csproj" />
     <ProjectReference Include="..\UiMFTemplate.Excel\UiMFTemplate.Excel.csproj" />
     <ProjectReference Include="..\UiMFTemplate.Filing\UiMFTemplate.Filing.csproj" />
     <ProjectReference Include="..\UiMFTemplate.Help\UiMFTemplate.Help.csproj" />

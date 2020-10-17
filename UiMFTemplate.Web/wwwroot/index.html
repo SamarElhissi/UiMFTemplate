@@ -7,59 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
     <title>
-		UiMFTemplate app
+		UiMF Template
 	</title>
 	<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="/font-awesome/css/fontawesome.min.css">
 	<!-- inject:css -->
-	<link rel="stylesheet" href="css/main.7a30fb2008f47dffc99e817d86028815.4962.css">
+	<link rel="stylesheet" href="css/main.5fd4527cd74a8028694364d33caa6c27.4962.css">
 	<!-- endinject -->
-	<link href="https://fonts.googleapis.com/css?family=Changa" rel="stylesheet">
-	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
-	<script>
-		const firebaseConfig = {
-			apiKey: "AIzaSyC0cn78wexhyhY6-UtLPKO48FhI7tzNZH4",
-			authDomain: "sandoog-warehouse.firebaseapp.com",
-			databaseURL: "https://sandoog-warehouse.firebaseio.com",
-			projectId: "sandoog-warehouse",
-			storageBucket: "sandoog-warehouse.appspot.com",
-			messagingSenderId: "413300748381",
-			appId: "1:413300748381:web:5696edbc30019beac15db4",
-			measurementId: "G-92B6S07HV9"
-		};
-		// eslint-disable-next-line import/prefer-default-export
-		// eslint-disable-next-line no-undef
-		firebase.initializeApp(firebaseConfig);
-	</script>
-
-	<script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth__en.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
-
-
-
-	<script type="text/javascript">
-		// eslint-disable-next-line func-names
-		// eslint-disable-next-line no-undef
-		// eslint-disable-next-line func-names
-		initApp = function () {
-			// eslint-disable-next-line no-undef
-			firebase.auth().onAuthStateChanged(user => {
-				if (user) {
-					// User is signed in.
-					const { email } = user;
-					localStorage.setItem("email", email);
-				}
-			}, error => {
-				console.log(error);
-			});
-		};
-
-		window.addEventListener("load", () => {
-			// eslint-disable-next-line no-undef
-			initApp();
-		});
-	</script>
 </head>
 
 <body>
@@ -67,7 +21,7 @@
 		<header class="top navbar yamm navbar-default">
 			<div class="container">
 				<a href="#/form/dashboard" class="logo" tabindex="-1">
-                    UiMFTemplate app
+                    UiMF Template
                 </a>
 				<div class="xmenu" id="topmenu"></div>
 			</div>
@@ -83,7 +37,7 @@
 		<div id="main" class="container container-body"></div>
 	</div>
 	<!-- inject:js -->
-	<script src="js/bundle.802296c28012e3e8bc4e35dfeb384201.2287314.js"></script>
+	<script src="js/bundle.e42f2e75e333400233f3b4de9f8126bc.2985105.js"></script>
 	<!-- endinject -->
 	<script src="https://ckeditor.com/apps/ckfinder/3.4.5/ckfinder.js"></script>
 </body>

@@ -65,7 +65,7 @@ namespace UiMFTemplate.Users.Commands
         public class Request : IRequest<Response>
         {
             [InputField(Required = true, OrderIndex = 10)]
-            [UiMFTemplatePasswordInputConfig(true)]
+            [MagicPasswordInputConfig(true)]
             public Password NewPassword { get; set; }
 
             [InputField(Required = true, OrderIndex = 0)]

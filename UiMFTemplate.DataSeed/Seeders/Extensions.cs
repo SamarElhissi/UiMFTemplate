@@ -6,9 +6,8 @@ namespace UiMFTemplate.DataSeed.Seeders
 	using System.Threading.Tasks;
 	using Lamar;
 	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.Win32;
-	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.User;
+	using UiMFTemplate.Infrastructure;
 
 	public static class Extensions
 	{

@@ -1,6 +1,7 @@
 namespace UiMFTemplate.DataSeed
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Security.Claims;
 	using Microsoft.AspNetCore.Identity;
@@ -53,6 +54,13 @@ namespace UiMFTemplate.DataSeed
 			return this.userSession != null
 				? this.GetUserContextDataFromDatabase(Convert.ToInt32(this.userSession.CurrentUserId))
 				: null;
+		}
+
+		protected override IList<string> GetUserRoles(int userId)
+		{
+			var user = this.userManager.Users.SingleOrException(t => t.Id == userId);
+
+			return this.userManager.GetRolesAsync(user).Result;
 		}
 
 		private UserContextData GetUserContextDataFromDatabase(int userId)

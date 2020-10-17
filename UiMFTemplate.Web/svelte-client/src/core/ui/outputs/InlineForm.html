@@ -9,7 +9,7 @@
 			const parentFormComponent = this.get().parent;
 
 			const formInstance = app.getFormInstance(field.data.form, true);
-
+			
 			formInstance.initializeInputFields(field.data.inputFieldValues).then(() => {
 				const f = new FormComponent({
 					target: this.refs.container,

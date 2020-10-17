@@ -20,8 +20,12 @@ namespace UiMFTemplate.Core.Notification
     using UiMetadataFramework.Basic.Output;
     using UiMetadataFramework.Core;
     using UiMetadataFramework.Core.Binding;
+	using UiMFTemplate.Core.Menus;
 
-    [MyForm(Id = "my-notifications", PostOnLoad = true, Label = "Notifications", SubmitButtonLabel = UiFormConstants.SearchLabel)]
+	[MyForm(Id = "my-notifications", PostOnLoad = true, 
+		SubmitButtonLabel = UiFormConstants.SearchLabel, 
+		Menu = CoreMenus.Notifications, Label = UiFormConstants.NotificationsLabel, MenuOrderIndex = 10)]
+
     [Secure(typeof(CoreActions), nameof(CoreActions.ViewNotifications))]
     [Documentation(DocumentationPlacement.Inline, DocumentationSourceType.String, "Display all notifications")]
     [CssClass(UiFormConstants.InputsVerticalMultipleColumn)]

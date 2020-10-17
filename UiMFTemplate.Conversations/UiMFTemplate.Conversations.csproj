@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Emails\CommentAddedEmail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Emails\CommentAddedEmail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RazorLight.NetCore3" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Notifications\UiMFTemplate.Notifications.csproj" />
+    <ProjectReference Include="..\UiMFTemplate.Users\UiMFTemplate.Users.csproj" />
+  </ItemGroup>
+
+</Project>

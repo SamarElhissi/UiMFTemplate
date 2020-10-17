@@ -2,9 +2,9 @@ namespace UiMFTemplate.Users.Forms
 {
 	using UiMFTemplate.Infrastructure.Forms.CustomProperties;
 
-	public class UiMFTemplatePasswordInputConfig : PasswordInputConfigAttribute
+	public class MagicPasswordInputConfig : PasswordInputConfigAttribute
 	{
-		public UiMFTemplatePasswordInputConfig(bool requireConfirmation = false)
+		public MagicPasswordInputConfig(bool requireConfirmation = false)
 		{
 			this.RegexDescription =
                 "The Password must be 8 characters  " +

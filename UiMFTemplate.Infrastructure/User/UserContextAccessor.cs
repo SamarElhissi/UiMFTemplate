@@ -1,6 +1,7 @@
 namespace UiMFTemplate.Infrastructure.User
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Security.Claims;
 
@@ -27,15 +28,12 @@ namespace UiMFTemplate.Infrastructure.User
 		/// <see cref="StackOverflowException"/>.</remarks>
 		public UserContext GetUserContext()
 		{
-			var claimsPrincipal = this.GetPrincipal() ?? new ClaimsPrincipal();
-
-			var systemRoles = claimsPrincipal.Claims
-				.Where(t => t.Type == ClaimTypes.Role)
-				.Select(t => t.Value)
-				.Distinct()
-				.ToArray();
-
 			var userContextData = this.GetUserContextData();
+			var systemRoles = new List<string>();
+			if (userContextData != null)
+			{
+				systemRoles = this.GetUserRoles(Convert.ToInt32(userContextData.UserId)).ToList();
+			}
 
 			var dynamicRoles = this.roleCheckerRegister
 				.GetDynamicRoles(userContextData)
@@ -59,5 +57,7 @@ namespace UiMFTemplate.Infrastructure.User
 		/// </summary>
 		/// <returns><see cref="UserContextData"/> instance.</returns>
 		protected abstract UserContextData GetUserContextData();
+
+		protected abstract IList<string> GetUserRoles(int userId);
 	}
 }

@@ -36,8 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UiMFTemplate.DataSeed\UiMFTemplate.DataSeed.csproj" />
-    <ProjectReference Include="..\UiMFTemplate.DependencyInjection\UiMFTemplate.DependencyInjection.csproj" />
-    <ProjectReference Include="..\UiMFTemplate.Infrastructure\UiMFTemplate.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
