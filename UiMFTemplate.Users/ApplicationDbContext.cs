@@ -47,7 +47,7 @@ namespace UiMFTemplate.Users
 			builder.Entity<ApplicationUser>()
 				.Ignore(t => t.HasLoggedIn);
 
-            builder.Entity<ApplicationUserRole>()
+			builder.Entity<ApplicationUserRole>()
 				.HasOne(e => e.Role)
 				.WithMany()
 				.HasForeignKey(e => e.RoleId)

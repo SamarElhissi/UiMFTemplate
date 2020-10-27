@@ -1,9 +1,8 @@
-
-namespace UiMFTemplate.Web.Models 
+namespace UiMFTemplate.Web.Models
 {
-    public class EmailConfirmationModel
+	public class EmailConfirmationModel
 	{
-        public string Token { get; set; }       
-        public int UserId { get; set; }       
-    }
+		public string Token { get; set; }
+		public int UserId { get; set; }
+	}
 }

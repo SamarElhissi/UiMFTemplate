@@ -9,6 +9,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 		{
 			this.Heading = heading;
 		}
+
 		public Alert(string heading, string message, string style, string icon = null)
 		{
 			this.Heading = heading;
@@ -18,9 +19,9 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 		}
 
 		public string Heading { get; set; }
+		public string Icon { get; set; }
 		public string Message { get; set; }
 		public string Style { get; set; }
-		public string Icon { get; set; }
 
 		public static Alert Error(string heading, string message = null, string icon = null)
 		{

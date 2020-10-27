@@ -83,10 +83,10 @@ namespace UiMFTemplate.Core.Commands
 			[PositiveIntInput]
 			public int? Id { get; set; }
 
+			public Paginator Paginator { get; set; }
+
 			[InputField(OrderIndex = 5)]
 			public string Title { get; set; }
-
-			public Paginator Paginator { get; set; }
 		}
 
 		public class Response : FormResponse
@@ -114,6 +114,9 @@ namespace UiMFTemplate.Core.Commands
 			[HiddenInExcel]
 			public ActionList Actions { get; set; }
 
+			[OutputField(OrderIndex = 3, Label = "Date created")]
+			public DateTime CreatedOn { get; set; }
+
 			[OutputField(OrderIndex = 5)]
 			public HtmlString Details { get; set; }
 
@@ -125,9 +128,6 @@ namespace UiMFTemplate.Core.Commands
 
 			[OutputField(OrderIndex = 2)]
 			public string Title { get; set; }
-
-			[OutputField(OrderIndex = 3, Label = "Date created")]
-			public DateTime CreatedOn { get; set; }
 		}
 	}
 }

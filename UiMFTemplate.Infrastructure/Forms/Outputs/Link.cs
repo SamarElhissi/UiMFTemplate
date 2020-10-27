@@ -13,7 +13,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 
 		public string Anchor { get; }
 		public string CssClass { get; set; }
+		public string Target { get; set; } = "_self";
 		public string Url { get; }
-        public string Target { get; set; } = "_self";
-    }
+	}
 }

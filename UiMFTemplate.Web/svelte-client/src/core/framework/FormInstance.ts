@@ -9,12 +9,13 @@ import { UmfApp } from "./UmfApp";
 export class FormInstance {
 	public readonly metadata: umf.FormMetadata;
 	public outputs: OutputFieldValue[] = [];
-	public inputs: Array<InputController<any>> = [];
+	public inputs: InputController<any>[] = [];
 
 	constructor(metadata: umf.FormMetadata, controlRegister: ControlRegister) {
 		this.metadata = new umf.FormMetadata(metadata);
 		this.inputs = controlRegister.createInputControllers(this.metadata.inputFields);
 	}
+
 
 	private enforceCanPostOnLoad(): void {
 		// If user is trying to auto-submit a form which is not enabled for `PostOnLoad`.
@@ -34,6 +35,7 @@ export class FormInstance {
 	}
 
 	public async submit(app: UmfApp, asPostOnLoad: boolean, args: any): Promise<umf.FormResponse> {
+
 		if (asPostOnLoad) {
 			this.enforceCanPostOnLoad();
 		}
@@ -42,6 +44,7 @@ export class FormInstance {
 
 		// If not all required inputs are filled.
 		if (formData == null) {
+
 			throw new Error(`Form '${this.metadata.id}' cannot be submitted, because some required input fields do not have values.`);
 		}
 
@@ -56,8 +59,11 @@ export class FormInstance {
 		if (response == null) {
 			throw new Error(`Received null response.`);
 		}
-
+		if (args != null && args.formComponent != null) {
+			args.formComponent.destoryOutputs();
+		}
 		await app.runFunctions(response.metadata.functionsToRun);
+
 		app.handleResponse(response, this, args);
 
 		await this.fire("form:responseHandled", new FormResponseEventArguments(app, response));
@@ -65,8 +71,8 @@ export class FormInstance {
 		return response;
 	}
 
-	public initializeInputFields(data: any): Promise<Array<InputController<any>>> {
-		const promises: Array<Promise<InputController<any>>> = [];
+	public initializeInputFields(data: any): Promise<InputController<any>[]> {
+		const promises: Promise<InputController<any>>[] = [];
 
 		for (const fieldMetadata of this.inputs) {
 			let value = null;
@@ -88,7 +94,9 @@ export class FormInstance {
 
 	public setInputFields(data: any): void {
 		for (const field of this.inputs) {
-			field.value = data[field.metadata.id];
+			if (field != null) {
+				field.value = data[field.metadata.id];
+			}
 		}
 	}
 
@@ -97,15 +105,17 @@ export class FormInstance {
 		const promises = [];
 
 		for (const input of this.inputs) {
-			const promise = input.serialize().then((t) => {
-				// Don't include inputs without values, because we only
-				// want to serialize "non-default" values.
-				if (t.value != null && t.value !== "") {
-					data[input.metadata.id] = t.value;
-				}
-			});
+			if (input != null) {
+				const promise = input.serialize().then((t) => {
+					// Don't include inputs without values, because we only
+					// want to serialize "non-default" values.
+					if (t.value != null && t.value !== "") {
+						data[input.metadata.id] = t.value;
+					}
+				});
 
-			promises.push(promise);
+				promises.push(promise);
+			}
 		}
 
 		return Promise.all(promises).then(() => data);
@@ -190,7 +200,7 @@ export class FormInstance {
 
 		// Run input event handlers.
 		for (const input of this.inputs) {
-			if (input.metadata.eventHandlers != null) {
+			if (input != null && input.metadata != null && input.metadata.eventHandlers != null) {
 				for (const eventHandlerMetadata of input.metadata.eventHandlers) {
 					if (eventHandlerMetadata.runAt === eventName) {
 						const handler = parameters.app.controlRegister.inputFieldEventHandlers[eventHandlerMetadata.id];
@@ -244,18 +254,19 @@ export class FormInstance {
 		let hasRequiredMissingInput = false;
 
 		for (const input of this.inputs) {
-			const promise = input.getValue().then((value) => {
-				data[input.metadata.id] = value;
+			if (input != null) {
+				const promise = input.getValue().then((value) => {
+					data[input.metadata.id] = value;
 
-				const isVisible = !input.metadata.eventHandlers.length ||
-				input.metadata.eventHandlers.find((t) => t.id === "depend-on") == null;
+					const isVisible = !input.metadata.eventHandlers.length ||
+						input.metadata.eventHandlers.find((t) => t.id === "depend-on") == null;
 
-				if (isVisible && input.metadata.required && (value == null || (typeof (value) === "string" && value === ""))) {
-					hasRequiredMissingInput = true;
-				}
-			});
-
-			promises.push(promise);
+					if (isVisible && input.metadata.required && (value == null || (typeof (value) === "string" && value === ""))) {
+						hasRequiredMissingInput = true;
+					}
+				});
+				promises.push(promise);
+			}
 		}
 
 		await Promise.all(promises);

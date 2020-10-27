@@ -5,9 +5,9 @@ namespace UiMFTemplate.Core.Security.Magic
 	using UiMFTemplate.Infrastructure.User;
 
 	public class MagicPermissionManager : EntityPermissionManager<UserContext, MagicAction, MagicRole, Magic>
-    {
-        public MagicPermissionManager() : base(new MagicRoleChecker())
-        {
-        }
-    }
+	{
+		public MagicPermissionManager() : base(new MagicRoleChecker())
+		{
+		}
+	}
 }

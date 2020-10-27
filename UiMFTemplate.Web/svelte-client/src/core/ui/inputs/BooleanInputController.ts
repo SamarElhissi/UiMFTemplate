@@ -1,4 +1,4 @@
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 
 export class BooleanInputController extends umf.InputController<boolean> {
 	public serializeValue(value: boolean | string): string {

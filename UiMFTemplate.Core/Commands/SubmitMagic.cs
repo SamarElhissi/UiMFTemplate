@@ -28,13 +28,17 @@ namespace UiMFTemplate.Core.Commands
 	[Secure(typeof(CoreActions), nameof(CoreActions.CreateMagic))]
 	public class SubmitMagic : MyAsyncForm<SubmitMagic.Request, SubmitMagic.Response>
 	{
+		private readonly IOptions<AppConfig> appConfig;
 		private readonly CoreDbContext context;
 		private readonly EmailTemplateRegister emailSender;
 		private readonly NotificationsDbContext notificationsDbContext;
-		private readonly IOptions<AppConfig> appConfig;
 		private readonly UserManager<ApplicationUser> userManager;
 
-		public SubmitMagic(CoreDbContext context, EmailTemplateRegister emailSender, NotificationsDbContext notificationsDbContext, IOptions<AppConfig> appConfig, UserManager<ApplicationUser> userManager)
+		public SubmitMagic(CoreDbContext context,
+			EmailTemplateRegister emailSender,
+			NotificationsDbContext notificationsDbContext,
+			IOptions<AppConfig> appConfig,
+			UserManager<ApplicationUser> userManager)
 		{
 			this.context = context;
 			this.emailSender = emailSender;
@@ -67,9 +71,7 @@ namespace UiMFTemplate.Core.Commands
 			var supervisors = await this.userManager.GetUsersInRoleAsync(CoreRoles.Supervisor.Name);
 			foreach (var user in supervisors)
 			{
-
-
-				var model = new MagicSubmittedEmail.Model( "", user.UserName, user.Email, MagicDetails.Button(Magic.Id).AsUrl(this.appConfig.Value));
+				var model = new MagicSubmittedEmail.Model("", user.UserName, user.Email, MagicDetails.Button(Magic.Id).AsUrl(this.appConfig.Value));
 				await this.emailSender.SendEmail(user.Email, model);
 
 				this.notificationsDbContext.Add(
@@ -79,6 +81,7 @@ namespace UiMFTemplate.Core.Commands
 						$"New Magic submitted",
 						null));
 			}
+
 			await this.notificationsDbContext.SaveChangesAsync(cancellationToken);
 
 			return new Response()

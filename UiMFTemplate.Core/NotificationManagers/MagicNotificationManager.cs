@@ -9,6 +9,7 @@ namespace UiMFTemplate.Core.NotificationManagers
 	public class MagicNotificationManager : INotificationManager
 	{
 		public const string Key = "UiMFTemplate.Core.Domain.Magic";
+
 		public NotificationDetail GetLink(object entityId)
 		{
 			return new NotificationDetail

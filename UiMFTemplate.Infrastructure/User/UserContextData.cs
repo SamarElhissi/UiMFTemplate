@@ -11,7 +11,7 @@ namespace UiMFTemplate.Infrastructure.User
 		{
 			this.UserName = userName;
 			this.UserId = userId;
-        }
+		}
 
 		public string UserId { get; }
 

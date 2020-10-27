@@ -36,6 +36,7 @@ namespace UiMFTemplate.DependencyInjection
 	{
 		private static readonly Lazy<Assembly[]> AssembliesWithBootstrapper = new Lazy<Assembly[]>(GetAssembliesWithBootstrapper);
 		private static readonly Lazy<Assembly[]> AssembliesWithRequestHandlers = new Lazy<Assembly[]>(GetAssembliesWithRequestHandlers);
+
 		public static IdentityBuilder AddEmailConfirmationTotpTokenProvider(this IdentityBuilder builder)
 		{
 			var userType = builder.UserType;
@@ -71,7 +72,6 @@ namespace UiMFTemplate.DependencyInjection
 
 			// Unops.Gms.Conversations
 			registry.For<ConversationsDbContext<int>>().Use(ctx => new ConversationsDbContext<int>(coreDbContextOptions, "cnv"));
-
 		}
 
 		public static void ConfigureDomainEvents(this ServiceRegistry registry, Assembly callingAssembly, Container container)
@@ -104,7 +104,8 @@ namespace UiMFTemplate.DependencyInjection
 		public static void ConfigureEmailTemplates(this ServiceRegistry registry)
 		{
 			registry.For<IViewRenderService>().Use<ViewRenderService>();
-			registry.For<EmailTemplateRegister>().Use(ctx => new EmailTemplateRegister(ctx.GetInstance<IEmailSender>(), ctx.GetInstance<AppDependencyInjectionContainer>())).Singleton();
+			registry.For<EmailTemplateRegister>().Use(ctx =>
+				new EmailTemplateRegister(ctx.GetInstance<IEmailSender>(), ctx.GetInstance<AppDependencyInjectionContainer>())).Singleton();
 			registry.SetLifecycleForImplementationsOfInterface(typeof(IEmailTemplate<>), AssembliesWithBootstrapper.Value);
 		}
 
@@ -117,7 +118,8 @@ namespace UiMFTemplate.DependencyInjection
 			registry.For<ActionRegister>().Use(ctx => ActionRegister.Default).Singleton();
 
 			registry.AddTransient<IEntityRepository>();
-			registry.For<EntitySecurityConfigurationRegister>().Use(ctx => new EntitySecurityConfigurationRegister(new AppDependencyInjectionContainer(ctx.GetInstance))).Singleton();
+			registry.For<EntitySecurityConfigurationRegister>()
+				.Use(ctx => new EntitySecurityConfigurationRegister(new AppDependencyInjectionContainer(ctx.GetInstance))).Singleton();
 			registry.For<ObjectSecurityConfigurationRegister>().Use(ctx => new ObjectSecurityConfigurationRegister()).Singleton();
 
 			registry.For<AppDependencyInjectionContainer>().Use(ctx => new AppDependencyInjectionContainer(ctx.GetInstance));

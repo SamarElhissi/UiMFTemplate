@@ -29,6 +29,8 @@ namespace UiMFTemplate.Core.Domain
 			this.Status = MagicStatus.Draft;
 		}
 
+		public bool CanClose => this.Status == MagicStatus.Submitted;
+
 		public bool CanEdit => this.Status == MagicStatus.Draft;
 
 		public DateTime? ClosedOn { get; private set; }
@@ -41,6 +43,12 @@ namespace UiMFTemplate.Core.Domain
 		public DateTime? SubmittedOn { get; private set; }
 		public string Title { get; private set; }
 		public bool IsDeleted { get; set; }
+
+		public void Close()
+		{
+			this.Status = MagicStatus.Closed;
+			this.ClosedOn = DateTime.Now;
+		}
 
 		public void Delete()
 		{
@@ -90,20 +98,6 @@ namespace UiMFTemplate.Core.Domain
 			return result;
 		}
 
-		public bool CanClose => this.Status == MagicStatus.Submitted;
-
-		public void Submit()
-		{
-			this.Status = MagicStatus.Submitted;
-			this.SubmittedOn = DateTime.Now;
-		}
-
-		public void Close()
-		{
-			this.Status = MagicStatus.Closed;
-			this.ClosedOn = DateTime.Now;
-		}
-
 		public Alert GetStatus()
 		{
 			var alert = new Alert(this.Status.ToString());
@@ -120,9 +114,15 @@ namespace UiMFTemplate.Core.Domain
 					alert.Style = AlertStyle.Success;
 					alert.Message = this.ClosedOn?.ToString("D");
 					break;
-
 			}
+
 			return alert;
+		}
+
+		public void Submit()
+		{
+			this.Status = MagicStatus.Submitted;
+			this.SubmittedOn = DateTime.Now;
 		}
 	}
 }

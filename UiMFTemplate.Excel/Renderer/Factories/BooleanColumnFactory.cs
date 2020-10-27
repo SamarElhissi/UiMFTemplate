@@ -2,9 +2,8 @@ namespace UiMFTemplate.Excel.Renderer.Factories
 {
 	using System.Collections.Generic;
 	using ExcelExporter.Core;
-	using UiMFTemplate.Excel.Renderer;
-	using UiMFTemplate.Infrastructure;
 	using UiMetadataFramework.Core;
+	using UiMFTemplate.Infrastructure;
 
 	public class BooleanColumnFactory : ColumnFactory
 	{

@@ -3,7 +3,6 @@ namespace UiMFTemplate.Excel.Renderer.Factories
 	using System;
 	using System.Collections.Generic;
 	using ExcelExporter.Core;
-	using UiMFTemplate.Excel.Renderer;
 	using UiMetadataFramework.Core;
 
 	public class DateColumnFactory : ColumnFactory

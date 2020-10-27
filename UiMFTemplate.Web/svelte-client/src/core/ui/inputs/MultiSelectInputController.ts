@@ -1,4 +1,4 @@
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 import { ITypeaheadConfig } from "./TypeaheadInputController";
 
 export class MultiSelectInputController
@@ -22,9 +22,12 @@ export class MultiSelectInputController
 	}
 
 	public getValue(): Promise<MultiSelectValue> {
-		const valueToSubmit = this.value == null || this.value.items == null || this.value.items.length === 0
-			? null
-			: this.value;
+		const valueToSubmit =
+			this.value == null ||
+			((this.value.items == null || this.value.items.length === 0) &&
+				(this.value.newItems == null || this.value.newItems.length === 0))
+				? null
+				: this.value;
 
 		return Promise.resolve(valueToSubmit);
 	}
@@ -38,9 +41,11 @@ export class MultiSelectInputController
 
 // tslint:disable-next-line:max-classes-per-file
 class MultiSelectValue {
-	constructor(items?: any[]) {
+	constructor(items?: any[], newItems?: any[]) {
 		this.items = items;
+		this.newItems = newItems;
 	}
 
 	public items: any[] = [];
+	public newItems: any[] = [];
 }

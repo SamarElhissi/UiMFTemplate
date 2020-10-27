@@ -1,8 +1,8 @@
 namespace UiMFTemplate.Infrastructure.User
 {
-    using System.Collections.Generic;
+	using System.Collections.Generic;
 
-    /// <summary>
+	/// <summary>
 	/// Represents session state of an authenticated user.
 	/// </summary>
 	public class UserSession
@@ -24,8 +24,6 @@ namespace UiMFTemplate.Infrastructure.User
 		/// </summary>
 		public string CurrentUserId { get; }
 
-        public List<string> Roles { get; set; }
-
 		/// <summary>
 		/// Gets id of the user doing the impersonation.
 		/// </summary>
@@ -37,5 +35,7 @@ namespace UiMFTemplate.Infrastructure.User
 		/// otherwise it will return <see cref="CurrentUserId"/>.
 		/// </summary>
 		public string RealCurrentUserId => this.ImpersonatorUserId ?? this.CurrentUserId;
+
+		public List<string> Roles { get; set; }
 	}
 }

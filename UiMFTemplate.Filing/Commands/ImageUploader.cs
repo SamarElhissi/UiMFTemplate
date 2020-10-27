@@ -7,16 +7,16 @@ namespace UiMFTemplate.Filing.Commands
 	using Filer.Core;
 	using MediatR;
 	using Microsoft.EntityFrameworkCore;
+	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Core;
+	using UiMetadataFramework.Core.Binding;
+	using UiMetadataFramework.MediatR;
 	using UiMFTemplate.Filing.Forms.Inputs;
 	using UiMFTemplate.Filing.Forms.Outputs;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.Forms.CustomProperties;
 	using UiMFTemplate.Infrastructure.User;
-	using UiMetadataFramework.Basic.Output;
-	using UiMetadataFramework.Core;
-	using UiMetadataFramework.Core.Binding;
-	using UiMetadataFramework.MediatR;
 
 	/// <summary>
 	/// Displays files associated with a specific object and allows uploading new files.
@@ -70,7 +70,7 @@ namespace UiMFTemplate.Filing.Commands
 					{ nameof(Request.MetaTag), metadata }
 				}
 			};
-        }
+		}
 
 		public override async Task<Response> Handle(Request message, CancellationToken cancellationToken)
 		{
@@ -149,7 +149,7 @@ namespace UiMFTemplate.Filing.Commands
 			public string MetaTag { get; set; }
 
 			[InputField(Label = "Select image", Required = true, OrderIndex = 5)]
-      [FileUploaderConfig(AllowMultipleFiles = false, AllowedFileExtensions = ".png, .jpg, .jpeg")]
+			[FileUploaderConfig(AllowMultipleFiles = false, AllowedFileExtensions = ".png, .jpg, .jpeg")]
 			public FileUploader Uploader { get; set; }
 		}
 

@@ -5,26 +5,26 @@ namespace UiMFTemplate.Core.Notification
 	using System.Threading.Tasks;
 	using MediatR;
 	using Microsoft.EntityFrameworkCore;
+	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Basic.Response;
+	using UiMetadataFramework.Core.Binding;
+	using UiMetadataFramework.MediatR;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.User;
 	using UiMFTemplate.Notifications;
-	using UiMetadataFramework.Basic.Output;
-    using UiMetadataFramework.Basic.Response;
-	using UiMetadataFramework.Core.Binding;
-    using UiMetadataFramework.MediatR;
 
-    [MyForm(Id = "archive-notification", Label = "Archive")]
+	[MyForm(Id = "archive-notification", Label = "Archive")]
 	public class Archive : AsyncForm<Archive.Request, Archive.Response>
 	{
 		private readonly NotificationsDbContext notificationsDbContext;
 		private readonly UserContext userContext;
 
-        public Archive(NotificationsDbContext notificationsDbContext, UserContext userContext)
+		public Archive(NotificationsDbContext notificationsDbContext, UserContext userContext)
 		{
 			this.notificationsDbContext = notificationsDbContext;
 			this.userContext = userContext;
-        }
+		}
 
 		public static FormLink Button(int id)
 		{
@@ -50,12 +50,12 @@ namespace UiMFTemplate.Core.Notification
 
 			ntf.Archive();
 
-            await this.notificationsDbContext.SaveChangesAsync(cancellationToken);
-            
+			await this.notificationsDbContext.SaveChangesAsync(cancellationToken);
+
 			return new Response
-            {
-                Form = typeof(MyNotifications).GetFormId()
-            };
+			{
+				Form = typeof(MyNotifications).GetFormId()
+			};
 		}
 
 		public class Request : IRequest<Response>
@@ -64,7 +64,7 @@ namespace UiMFTemplate.Core.Notification
 		}
 
 		public class Response : ReloadResponse
-        {
+		{
 		}
 	}
 }

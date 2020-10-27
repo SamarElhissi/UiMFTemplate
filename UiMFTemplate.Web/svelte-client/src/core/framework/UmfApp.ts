@@ -21,6 +21,7 @@ export class UmfApp implements IAppRouter {
 	public controlRegister: ControlRegister;
 	public go: (form: string, values: any) => void;
 	public makeUrl: (form: string, values: any) => string;
+	public makeOldFormsUrl: (form: string, values: any) => string;
 
 	constructor(server: UmfServer, controlRegister: ControlRegister) {
 		this.server = server;
@@ -55,6 +56,9 @@ export class UmfApp implements IAppRouter {
 		this.makeUrl = (form: string, values: any) => {
 			return router.makeUrl(form, values);
 		};
+		this.makeOldFormsUrl = (form: string, values: any) => {
+			return router.makeOldFormsUrl(form, values);
+		};
 	}
 
 	public registerResponseHandler(handler: IFormResponseHandler): void {
@@ -68,7 +72,6 @@ export class UmfApp implements IAppRouter {
 				this.menu = response.menu;
 
 				this.formsById = {};
-
 				for (const form of this.forms) {
 					this.formsById[form.id] = new FormMetadata(form);
 				}
@@ -90,10 +93,9 @@ export class UmfApp implements IAppRouter {
 		const metadata = this.getForm(formId);
 
 		if (metadata == null) {
-			if (throwError) {
+			if (throwError) {	
 				throw Error(`Form ${formId} not found.`);
 			}
-
 			return null;
 		}
 

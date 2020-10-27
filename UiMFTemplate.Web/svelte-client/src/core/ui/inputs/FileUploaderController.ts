@@ -1,9 +1,8 @@
-import * as axiosLib from "axios";
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 
-const axios = axiosLib.default;
-
-export class FileUploaderController extends umf.InputController<FileUploaderValue> {
+export class FileUploaderController extends umf.InputController<
+	FileUploaderValue
+	> {
 	public selected: any[];
 	public filesIds: any[] = [];
 	public serializeValue(value: FileUploaderValue | string): string {
@@ -21,15 +20,12 @@ export class FileUploaderController extends umf.InputController<FileUploaderValu
 	public getValue(): Promise<FileUploaderValue> {
 		const self = this;
 
-		if (self.selected == null ||
-			self.selected.length === 0) {
+		if (self.selected == null || self.selected.length === 0) {
 			return Promise.resolve(new FileUploaderValue());
 		}
-
 		const promises = [];
 		const result = new FileUploaderValue();
 		const files = self.selected;
-
 		if (self.filesIds.length > 0) {
 			for (const fileId of self.filesIds) {
 				result.files.push(fileId);
@@ -38,29 +34,34 @@ export class FileUploaderController extends umf.InputController<FileUploaderValu
 			self.selected = null;
 		} else {
 			const p = new Promise((resolve, reject) => {
-
 				const formData = new FormData();
 				for (const f of files) {
 					formData.append("file", f);
 				}
 
 				// Make http request to upload the files.
-				axios.post("/file/upload", formData, {
-					headers: {
-						"Content-Type": "multipart/form-data"
-					}
-				}).then((response: axiosLib.AxiosResponse) => {
-					if (response.data.fileIds != null && response.data.fileIds.length > 0) {
-						for (const fileId of response.data.fileIds) {
-							result.files.push(fileId);
-							self.filesIds.push(fileId);
+				fetch("/document/UploadDocument", {
+					method: "POST",
+					body: formData
+				})
+					.then((res) => res.json())
+					.then((response) => {
+						if (response.Exception != null) {
+							alert(response.Message);
+							reject(response.Exception);
 						}
-					}
-					resolve();
-				}).catch((error: axiosLib.AxiosError) => {
-					alert(error.response.data.error);
-					reject(error);
-				});
+						if (response != null && response.length > 0) {
+							for (const file of response) {
+								result.files.push(file.HashId);
+								self.filesIds.push(file.HashId);
+							}
+						}
+						resolve();
+					})
+					.catch((error) => {
+						alert(error.response.data.Message);
+						reject(error);
+					});
 			});
 
 			promises.push(p);

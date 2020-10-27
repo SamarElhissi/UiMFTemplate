@@ -15,6 +15,18 @@ namespace UiMFTemplate.Web.Middleware
 			this.next = next;
 		}
 
+		public async Task Invoke(HttpContext context)
+		{
+			try
+			{
+				await this.next(context);
+			}
+			catch (Exception ex)
+			{
+				await HandleExceptionAsync(context, ex);
+			}
+		}
+
 		private static Task HandleExceptionAsync(HttpContext context, Exception exception)
 		{
 			var baseException = exception.GetBaseException();
@@ -29,18 +41,6 @@ namespace UiMFTemplate.Web.Middleware
 			context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
 			return context.Response.WriteAsync(result);
-		}
-
-		public async Task Invoke(HttpContext context)
-		{
-			try
-			{
-				await this.next(context);
-			}
-			catch (Exception ex)
-			{
-				await HandleExceptionAsync(context, ex);
-			}
 		}
 	}
 }

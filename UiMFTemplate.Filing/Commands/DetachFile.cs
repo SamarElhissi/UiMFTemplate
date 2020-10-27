@@ -5,13 +5,13 @@ namespace UiMFTemplate.Filing.Commands
 	using Filer.Core;
 	using MediatR;
 	using Microsoft.EntityFrameworkCore;
-	using UiMFTemplate.Infrastructure;
-	using UiMFTemplate.Infrastructure.Forms;
-	using UiMFTemplate.Infrastructure.User;
 	using UiMetadataFramework.Basic.Output;
 	using UiMetadataFramework.Core;
 	using UiMetadataFramework.Core.Binding;
 	using UiMetadataFramework.MediatR;
+	using UiMFTemplate.Infrastructure;
+	using UiMFTemplate.Infrastructure.Forms;
+	using UiMFTemplate.Infrastructure.User;
 
 	[Form(Id = "detach-file")]
 	public class DetachFile : Form<DetachFile.Request, DetachFile.Response>

@@ -1,13 +1,13 @@
-import * as umf from "core-framework";
-import {RouteParameterBuilder} from "RouteParameterBuilder";
-import * as abstractStateRouter from "../node_modules/abstract-state-router/index";
-import * as svelteStateRenderer from "../node_modules/svelte-state-renderer/index";
+import * as umf from "./core/framework";
+import { RouteParameterBuilder } from "RouteParameterBuilder";
+import * as abstractStateRouter from "abstract-state-router";
+import * as svelteStateRenderer from "svelte-state-renderer";
 
-import Home from "components/Home";
-import Menu from "components/Menu";
-import Form from "core-ui/Form";
+import Home from "./components/Home.svelte";
+import Menu from "./components/Menu.svelte";
+import Form from "./core/ui/Form.svelte";
 
-type ResolveCallback =  (error: boolean, content: any) => string;
+type ResolveCallback = (error: boolean, content: any) => string;
 
 export class AppRouter implements umf.IAppRouter {
 	private readonly stateRenderer: any;
@@ -18,7 +18,10 @@ export class AppRouter implements umf.IAppRouter {
 	constructor(element: HTMLElement, app: umf.UmfApp) {
 		this.element = element;
 		this.stateRenderer = (svelteStateRenderer as any).default({});
-		this.stateRouter = (abstractStateRouter as any).default(this.stateRenderer, this.element);
+		this.stateRouter = (abstractStateRouter as any).default(
+			this.stateRenderer,
+			this.element
+		);
 		const rpb = this.rpb = new RouteParameterBuilder("_", app);
 
 		this.stateRouter.addState({
@@ -49,7 +52,7 @@ export class AppRouter implements umf.IAppRouter {
 		this.stateRouter.addState({
 			name: "form",
 			data: {},
-			route: "/form/:_id",
+			route: "/uimf-form/:_id",
 			template: Form,
 
 			// Force route reload when value of _d parameter changes. This is
@@ -69,9 +72,7 @@ export class AppRouter implements umf.IAppRouter {
 			},
 			resolve(data: any, parameters: any, cb: ResolveCallback): void {
 				const formInstance = app.getFormInstance(parameters._id, false);
-				if (formInstance == null) {
-					self.stateRouter.go("form", { _id: "login" });
-				} else {
+				if (formInstance != null) {
 					formInstance.initializeInputFields(parameters).then(() => {
 						cb(false, {
 							metadata: formInstance.metadata,
@@ -82,10 +83,11 @@ export class AppRouter implements umf.IAppRouter {
 				}
 			}
 		});
+		
 		if (app.getForm("login") != null) {
 			this.stateRouter.evaluateCurrentRoute("form", { _id: "login" });
 		} else {
-			this.stateRouter.evaluateCurrentRoute("form", { _id: "dashboard" });
+			this.stateRouter.evaluateCurrentRoute("home");
 		}
 	}
 
@@ -95,7 +97,7 @@ export class AppRouter implements umf.IAppRouter {
 	}
 
 	public on(eventName: string, fn: () => void): void {
-		this.element.addEventListener(eventName, function(): void {
+		this.element.addEventListener(eventName, function (): void {
 			fn();
 		});
 	}
@@ -106,5 +108,18 @@ export class AppRouter implements umf.IAppRouter {
 
 	public makeUrl(form: string, values: any): string {
 		return this.stateRouter.makePath("form", this.rpb.buildFormRouteParameters(form, values));
+	}
+	public makeOldFormsUrl(form: string, values: any): string {
+		var href = `/#/form/${form}?`;
+		var props = Object.getOwnPropertyNames(values);
+		console.log(typeof(values));
+		console.log(values);
+		var q = "";
+		props.forEach((prop, index) =>{
+			q+=prop+"="+values[prop];
+			if(index + 1 != props.length)
+				q+="&";
+		})
+		return href+q;
 	}
 }

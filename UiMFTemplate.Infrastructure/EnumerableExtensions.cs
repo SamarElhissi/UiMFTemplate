@@ -1,10 +1,8 @@
 namespace UiMFTemplate.Infrastructure
 {
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
-	using UiMFTemplate.Infrastructure.Forms.Attributes;
 
 	public static class EnumerableExtensions
 	{
@@ -30,5 +28,5 @@ namespace UiMFTemplate.Infrastructure
 			var attribute = value.GetAttribute<DescriptionAttribute>();
 			return attribute.Description;
 		}
-    }
+	}
 }

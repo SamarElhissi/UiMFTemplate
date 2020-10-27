@@ -1,20 +1,14 @@
 ﻿import * as alertifyLib from "alertifyjs";
-import Menu from "components/Menu";
-import { UmfApp, UmfServer } from "core-framework";
-import * as handlers from "core-handlers";
-import moment from "moment/min/moment-with-locales";
+import Menu from "./components/Menu.svelte";
+import * as handlers from "./core/handlers";
 import { AppRouter } from "./AppRouter";
 import controlRegister from "./ControlRegister";
+import { UmfApp, UmfServer } from "core/framework";
+import { setupI18n,initI18n } from "./services/Translation.js";
+
 
 const alertify = alertifyLib.default;
 
-moment.locale("en-us", {
-	postformat(t: string): string {
-		return t.replace(/\d/g, function(match: string): string {
-			return match;
-		}).replace(/,/g, "ØŒ");
-	}
-});
 
 alertify.defaults = {
 	closable: false,
@@ -38,6 +32,13 @@ alertify.defaults = {
 		ok: "ajs-ok",
 		// class name attached to cancel button
 		cancel: "ajs-cancel"
+	},
+	// global hooks
+	hooks: {
+		// invoked before initializing any dialog
+		preinit(instance) { },
+		// invoked after initializing any dialog
+		postinit(instance) { }
 	}
 };
 
@@ -55,17 +56,27 @@ class MyApp extends UmfApp {
 
 const server = new UmfServer(
 	"/api/form/metadata",
-	"/api/form/run",
-	"/api/form/menu");
+    "/api/form/run",
+    "/api/form/menu");
 
 const app = new MyApp(server);
 
 // Create a global variable, which can be accessed from any component.
-(window as any).app = app;
+(window as any).uimfapp = app;
 
 app.on("request:started", (request) => {
 	showLoader();
 });
+
+document.addEventListener("lang:changed", (e: any) => {
+	if (e.detail != null) {
+		setupI18n({
+			withLocale: e.detail.lang === "en-US" ? "en" : "ar"
+		});
+	}
+});
+
+initI18n();
 
 app.on("request:completed", (error) => {
 	if (error != null) {
@@ -88,7 +99,7 @@ app.load().then((response) => {
 	app.registerResponseHandler(new handlers.MessageResponseHandler());
 	app.registerResponseHandler(new handlers.ReloadResponseHandler((form, inputFieldValues) => {
 		return app.load().then((t) => {
-			buildMenu(app);
+				buildMenu(app);
 			if (form === "home") {
 				return "#/home";
 			}
@@ -100,14 +111,9 @@ app.load().then((response) => {
 		app.go(form, inputFieldValues);
 	}));
 
-	buildMenu(app);
+		buildMenu(app);
 });
 
-// setInterval(() => {
-// 	app.loadMenu().then((t) => {
-// 		buildMenu(app);
-// 	});
-// }, 10000);
 
 function buildMenu(theApp: UmfApp): void {
 	// Remove old menu.
@@ -119,7 +125,7 @@ function buildMenu(theApp: UmfApp): void {
 	// tslint:disable-next-line:no-unused-expression
 	new Menu({
 		target: document.getElementById("topmenu"),
-		data: {
+		props: {
 			forms: theApp.forms,
 			menu: theApp.menu,
 			app: theApp,
@@ -140,7 +146,7 @@ function hideLoader(): void {
 	const progress = document.getElementById("progress");
 	progress.setAttribute("style", "width:100%");
 
-	setTimeout(function(): void {
+	setTimeout(function (): void {
 		loader.setAttribute("class", "d-none");
 	}, 500);
 }

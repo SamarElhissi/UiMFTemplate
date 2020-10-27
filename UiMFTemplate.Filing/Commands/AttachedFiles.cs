@@ -7,12 +7,12 @@ namespace UiMFTemplate.Filing.Commands
 	using Filer.Core;
 	using MediatR;
 	using Microsoft.EntityFrameworkCore;
-	using UiMFTemplate.Filing.Forms.Outputs;
-	using UiMFTemplate.Infrastructure;
 	using UiMetadataFramework.Basic.Output;
 	using UiMetadataFramework.Core;
 	using UiMetadataFramework.Core.Binding;
 	using UiMetadataFramework.MediatR;
+	using UiMFTemplate.Filing.Forms.Outputs;
+	using UiMFTemplate.Infrastructure;
 
 	/// <summary>
 	/// Displays files associated with a specific object.

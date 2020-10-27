@@ -7,7 +7,7 @@ namespace UiMFTemplate.Core.Notification
 	{
 		private static readonly List<NotificationCategory> List;
 
-        static NotificationCategory()
+		static NotificationCategory()
 		{
 			List = typeof(NotificationCategory)
 				.GetFields()

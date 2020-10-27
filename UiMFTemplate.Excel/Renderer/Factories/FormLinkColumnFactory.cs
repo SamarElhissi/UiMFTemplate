@@ -4,10 +4,9 @@ namespace UiMFTemplate.Excel.Renderer.Factories
 	using System.Linq;
 	using ExcelExporter.Core;
 	using Microsoft.EntityFrameworkCore.Internal;
-	using UiMFTemplate.Excel.Renderer;
-	using UiMFTemplate.Infrastructure.Configuration;
 	using UiMetadataFramework.Basic.Output;
 	using UiMetadataFramework.Core;
+	using UiMFTemplate.Infrastructure.Configuration;
 
 	public class FormLinkColumnFactory : ColumnFactory
 	{

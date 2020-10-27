@@ -6,10 +6,10 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 	[OutputFieldType("pie-graph")]
 	public class PieGraph
 	{
-		public PieChartDataItem[] Data { get; set; }
-
 		[JsonProperty(PropertyName = "chartHeader")]
 		public Alert ChartHeader { get; set; }
+
+		public PieChartDataItem[] Data { get; set; }
 	}
 
 	public class PieChartDataItem

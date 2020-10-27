@@ -2,20 +2,20 @@
 
 namespace UiMFTemplate.Infrastructure.Forms.Outputs
 {
-    using UiMetadataFramework.Core.Binding;
+	using UiMetadataFramework.Core.Binding;
 
-    [OutputFieldType("preformatted-text")]
-    public class PreformattedText
-    {
-        public PreformattedText()
-        {
-        }
+	[OutputFieldType("preformatted-text")]
+	public class PreformattedText
+	{
+		public PreformattedText()
+		{
+		}
 
-        public PreformattedText(string text)
-        {
-            this.Value = text;
-        }
+		public PreformattedText(string text)
+		{
+			this.Value = text;
+		}
 
-        public string Value { get; set; }
-    }
+		public string Value { get; set; }
+	}
 }

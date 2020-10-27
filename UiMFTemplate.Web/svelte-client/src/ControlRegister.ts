@@ -1,60 +1,58 @@
-import * as umf from "core-framework";
+import * as umf from "./core/framework";
 
-import { BooleanInputController } from "core-ui/inputs/BooleanInputController";
-import { DateInputController } from "core-ui/inputs/DateInputController";
-import { DateRangeInputController } from "core-ui/inputs/DateRangeInputController";
-import { DropdownInputController } from "core-ui/inputs/DropdownInputController";
-import { EmailInputController } from "core-ui/inputs/EmailInputController";
-import { FileUploaderController } from "core-ui/inputs/FileUploaderController";
-import { HtmlEditorInputController } from "core-ui/inputs/HtmlEditorInputController";
-import { MultiSelectInputController } from "core-ui/inputs/MultiSelectInputController";
-import { NumberInputController } from "core-ui/inputs/NumberInputController";
-import { NumberObjectInputController } from "core-ui/inputs/NumberObjectInputController";
-import { NumberRangeInputController } from "core-ui/inputs/NumberRangeInputController";
-import { PaginatorInputController } from "core-ui/inputs/PaginatorInputController";
-import { PasswordInputController } from "core-ui/inputs/PasswordInputController";
-import { ReceiptListInputController } from "core-ui/inputs/ReceiptListInputController";
-import { TextareaInputController } from "core-ui/inputs/TextareaInputController";
-import { TypeaheadInputController } from "core-ui/inputs/TypeaheadInputController";
+import { BooleanInputController } from "./core/ui/inputs/BooleanInputController";
+import { DateInputController } from "./core/ui/inputs/DateInputController";
+import { DateRangeInputController } from "./core/ui/inputs/DateRangeInputController";
+import { DropdownInputController } from "./core/ui/inputs/DropdownInputController";
+import { EmailInputController } from "./core/ui/inputs/EmailInputController";
+import { FileUploaderController } from "./core/ui/inputs/FileUploaderController";
+//import { HtmlEditorInputController } from "./core/ui/inputs/HtmlEditorInputController";
+import { MultiSelectInputController } from "./core/ui/inputs/MultiSelectInputController";
+import { NumberInputController } from "./core/ui/inputs/NumberInputController";
+import { NumberObjectInputController } from "./core/ui/inputs/NumberObjectInputController";
+import { NumberRangeInputController } from "./core/ui/inputs/NumberRangeInputController";
+import { PaginatorInputController } from "./core/ui/inputs/PaginatorInputController";
+import { PasswordInputController } from "./core/ui/inputs/PasswordInputController";
+import { TextareaInputController } from "./core/ui/inputs/TextareaInputController";
+import { TypeaheadInputController } from "./core/ui/inputs/TypeaheadInputController";
 
-import BooleanInput from "core-ui/inputs/Boolean";
-import DateInput from "core-ui/inputs/Date";
-import DateRangeInput from "core-ui/inputs/DateRange";
-import DropdownInput from "core-ui/inputs/Dropdown";
-import EmailInput from "core-ui/inputs/Email";
-import FileUploader from "core-ui/inputs/FileUploader";
-import HtmlEditor from "core-ui/inputs/HtmlEditor";
-import MultiSelectInput from "core-ui/inputs/MultiSelect";
-import NumberInput from "core-ui/inputs/Number";
-import NumberRangeInput from "core-ui/inputs/NumberRange";
-import ONumberInput from "core-ui/inputs/ONumber";
-import Password from "core-ui/inputs/Password";
-import ReceiptListInput from "core-ui/inputs/ReceiptList";
-import TextInput from "core-ui/inputs/Text";
-import Textarea from "core-ui/inputs/Textarea";
-import PieGraph from "core-ui/outputs/PieGraph";
+import BooleanInput from "./core/ui/inputs/Boolean.svelte";
+import DateInput from "./core/ui/inputs/Date.svelte";
+import DateRangeInput from "./core/ui/inputs/DateRange.svelte";
+import DropdownInput from "./core/ui/inputs/Dropdown.svelte";
+import EmailInput from "./core/ui/inputs/Email.svelte";
+import FileUploader from "./core/ui/inputs/FileUploader.svelte";
+//import HtmlEditor from "./core/ui/inputs/HtmlEditor";
+import MultiSelectInput from "./core/ui/inputs/MultiSelect.svelte";
+import NumberInput from "./core/ui/inputs/Number.svelte";
+import NumberRangeInput from "./core/ui/inputs/NumberRange.svelte";
+import ONumberInput from "./core/ui/inputs/ONumber.svelte";
+import Password from "./core/ui/inputs/Password.svelte";
+import TextInput from "./core/ui/inputs/Text.svelte";
+import Textarea from "./core/ui/inputs/Textarea.svelte";
+import PieGraph from "./core/ui/outputs/PieGraph.svelte";
+import Checklist from "./core/ui/inputs/Checklist.svelte";
 
-import ActionList from "core-ui/outputs/ActionList";
-import Alert from "core-ui/outputs/Alert";
-import DateTimeOutput from "core-ui/outputs/Datetime";
-import Documentation from "core-ui/outputs/Documentation";
-import DownloadableFile from "core-ui/outputs/DownloadableFile";
-import FileSize from "core-ui/outputs/FileSize";
-import FormLink from "core-ui/outputs/FormLink";
-import HtmlString from "core-ui/outputs/HtmlString";
-import Image from "core-ui/outputs/Image";
-import InlineForm from "core-ui/outputs/InlineForm";
-import Link from "core-ui/outputs/Link";
-import NumberOutput from "core-ui/outputs/Number";
-import ObjectList from "core-ui/outputs/ObjectList";
-import Paginator from "core-ui/outputs/Paginator";
-import TableOutput from "core-ui/outputs/Table";
-import Tabstrip from "core-ui/outputs/Tabstrip";
-import TextOutput from "core-ui/outputs/Text";
-import TextValue from "core-ui/outputs/TextValue";
-import TextValueMultiline from "core-ui/outputs/TextValueMultiline";
-import Conversation from "core-ui/outputs/Conversation";
-import PreformattedText from "core-ui/outputs/PreformattedText";
+import ActionList from "./core/ui/outputs/ActionList.svelte";
+import Alert from "./core/ui/outputs/Alert.svelte";
+import DateTimeOutput from "./core/ui/outputs/Datetime.svelte";
+import Documentation from "./core/ui/outputs/Documentation.svelte";
+import DownloadableFile from "./core/ui/outputs/DownloadableFile.svelte";
+import FileSize from "./core/ui/outputs/FileSize.svelte";
+import FormLink from "./core/ui/outputs/FormLink.svelte";
+import HtmlString from "./core/ui/outputs/HtmlString.svelte";
+import Image from "./core/ui/outputs/Image.svelte";
+import InlineForm from "./core/ui/outputs/InlineForm.svelte";
+import Link from "./core/ui/outputs/Link.svelte";
+import NumberOutput from "./core/ui/outputs/Number.svelte";
+import ObjectList from "./core/ui/outputs/ObjectList.svelte";
+import Paginator from "./core/ui/outputs/Paginator.svelte";
+import TableOutput from "./core/ui/outputs/Table.svelte";
+import Tabstrip from "./core/ui/outputs/Tabstrip.svelte";
+import TextOutput from "./core/ui/outputs/Text.svelte";
+import TextValue from "./core/ui/outputs/TextValue.svelte";
+import TextValueMultiline from "./core/ui/outputs/TextValueMultiline.svelte";
+import ListOutput from "./core/ui/outputs/List.svelte";
 
 import {
 	BindToOutput,
@@ -63,12 +61,10 @@ import {
 	InputLogToConsole,
 	OutputLogToConsole,
 	ReloadFormAfterAction
+} from "./core/eventHandlers";
 
-} from "core-eventHandlers";
+import { Growl, Redirect } from "./core/functions";
 
-import { UmfServer } from "core-framework";
-import { Growl, Redirect } from "core-functions";
-import { RedirectResponseHandler } from "core-handlers";
 
 const controlRegister = new umf.ControlRegister();
 controlRegister.registerInputFieldControl("text", TextInput, umf.StringInputController);
@@ -83,12 +79,12 @@ controlRegister.registerInputFieldControl("paginator", null, PaginatorInputContr
 controlRegister.registerInputFieldControl("typeahead", MultiSelectInput, TypeaheadInputController);
 controlRegister.registerInputFieldControl("my-typeahead", MultiSelectInput, TypeaheadInputController);
 controlRegister.registerInputFieldControl("multiselect", MultiSelectInput, MultiSelectInputController);
+
 controlRegister.registerInputFieldControl("password", Password, PasswordInputController);
 controlRegister.registerInputFieldControl("textarea", Textarea, TextareaInputController, new umf.OutputControlConfiguration(false, true));
 controlRegister.registerInputFieldControl("file-uploader", FileUploader, FileUploaderController, new umf.OutputControlConfiguration(false, true));
 controlRegister.registerInputFieldControl("number-range", NumberRangeInput, NumberRangeInputController);
-controlRegister.registerInputFieldControl("html-editor", HtmlEditor, HtmlEditorInputController, new umf.OutputControlConfiguration(false, true));
-controlRegister.registerInputFieldControl("receipt-list", ReceiptListInput, ReceiptListInputController);
+//controlRegister.registerInputFieldControl("html-editor", HtmlEditor, HtmlEditorInputController, new umf.OutputControlConfiguration(false, true));
 
 controlRegister.registerOutputFieldControl("text", TextOutput);
 controlRegister.registerOutputFieldControl("number", NumberOutput);
@@ -110,8 +106,8 @@ controlRegister.registerOutputFieldControl("object-list", ObjectList, new umf.Ou
 controlRegister.registerOutputFieldControl("html-string", HtmlString);
 controlRegister.registerOutputFieldControl("documentation", Documentation, new umf.OutputControlConfiguration(true, true));
 controlRegister.registerOutputFieldControl("pie-graph", PieGraph, new umf.OutputControlConfiguration(false, true));
-controlRegister.registerOutputFieldControl("conversation", Conversation, new umf.OutputControlConfiguration(false, true));
-controlRegister.registerOutputFieldControl("preformatted-text", PreformattedText, new umf.OutputControlConfiguration(false, true));
+controlRegister.registerOutputFieldControl("list", ListOutput);
+
 
 // Form event handlers.
 controlRegister.registerFormEventHandler("log-to-console", new FormLogToConsole());

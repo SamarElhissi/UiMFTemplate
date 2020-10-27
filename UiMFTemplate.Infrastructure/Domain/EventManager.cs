@@ -83,7 +83,8 @@ namespace UiMFTemplate.Infrastructure.Domain
 							!info.IsAbstract &&
 							!info.IsGenericType;
 					})
-					.Where(t => t.GetTypeInfo().GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>)))
+					.Where(t => t.GetTypeInfo().GetInterfaces()
+						.Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>)))
 					.ToList();
 
 				foreach (var handler in handlers)

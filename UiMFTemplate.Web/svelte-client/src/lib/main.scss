@@ -1207,3 +1207,83 @@ form .form-group {
 .btn:hover{
   cursor: pointer;
 }
+
+.response {
+  margin-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-header {
+  text-align: center;
+  padding-top: 20px;
+  border-bottom: 1px solid #17a2b8;
+  background-color: #fff;
+  position: relative;
+}
+
+.form-header h2 {
+  display: inline-block;
+}
+
+.help-content {
+  text-align: left;
+}
+
+.alert {
+  margin: 5px 8px;
+  padding: 10px 15px;
+  border: 1px solid #bbb;
+}
+
+.alert > .heading {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.hidden {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -1000px;
+}
+
+.actionlist {
+  margin: 0 0;
+  padding: 0 5px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.actionlist > li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.alert.success {
+  background: #ebfff8;
+}
+
+.alert.warning {
+  background: #fdffeb;
+}
+
+.alert.danger {
+  background: #ffeaea;
+}
+
+.checkbox{
+  height: 20px;
+  width: 20px;
+  margin: 0.6rem 0.5rem 1.1rem 0.5rem;
+  overflow: initial;
+  position: relative;
+  clip: initial;
+  -webkit-clip-path: initial;
+  clip-path: initial;
+  top: 3px;
+}

@@ -2,8 +2,8 @@ namespace UiMFTemplate.Excel.Renderer.Factories
 {
 	using System.Collections.Generic;
 	using ExcelExporter.Core;
-	using UiMFTemplate.Infrastructure.Forms.Outputs;
 	using UiMetadataFramework.Core;
+	using UiMFTemplate.Infrastructure.Forms.Outputs;
 
 	public class HtmlStringColumnFactory : ColumnFactory
 	{

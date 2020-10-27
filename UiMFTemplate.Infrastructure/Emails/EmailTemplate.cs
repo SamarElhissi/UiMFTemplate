@@ -28,7 +28,7 @@ namespace UiMFTemplate.Infrastructure.Emails
 			{
 				BodyEncoding = Encoding.Unicode,
 				IsBodyHtml = true,
-				Body = "<div>" + body + 
+				Body = "<div>" + body +
 					"<br><br><hr><small>You received this message because " +
 					$"registered as user in <a href='{this.appConfig.SiteRoot}'>{this.appConfig.SiteRoot}</a>.</small></div>",
 				Subject = this.GetSubject(model)

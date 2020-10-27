@@ -4,13 +4,13 @@ namespace UiMFTemplate.Core.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using MediatR;
+	using UiMetadataFramework.Basic.Input;
 	using UiMetadataFramework.Basic.Output;
 	using UiMetadataFramework.Core.Binding;
 	using UiMFTemplate.Core.DataAccess;
 	using UiMFTemplate.Core.Domain;
 	using UiMFTemplate.Core.Security;
 	using UiMFTemplate.Infrastructure.Forms;
-	using UiMFTemplate.Infrastructure.Forms.Inputs;
 	using UiMFTemplate.Infrastructure.Security;
 	using UiMFTemplate.Infrastructure.User;
 
@@ -39,9 +39,9 @@ namespace UiMFTemplate.Core.Commands
 		public override async Task<Response> Handle(Request message, CancellationToken cancellationToken)
 		{
 			var userId = Convert.ToInt32(this.userContext.User.UserId);
-			var Magic = new Magic(message.Title, message.Description?.Value, userId);
+			var magic = new Magic(message.Title, message.Description?.Value, userId);
 
-			await this.context.Magics.AddAsync(Magic, cancellationToken);
+			await this.context.Magics.AddAsync(magic, cancellationToken);
 			await this.context.SaveChangesAsync(cancellationToken);
 
 			return new Response();
@@ -50,7 +50,7 @@ namespace UiMFTemplate.Core.Commands
 		public class Request : IRequest<Response>
 		{
 			[InputField(OrderIndex = 2, Required = true)]
-			public HtmlEditor Description { get; set; }
+			public TextareaValue Description { get; set; }
 
 			[InputField(OrderIndex = 0, Required = true)]
 			public string Title { get; set; }

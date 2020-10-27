@@ -1,5 +1,5 @@
-import * as umf from "core-framework";
-import { NumberInputController } from "core-ui/inputs/NumberInputController";
+import * as umf from "../../framework";
+import { NumberInputController } from "./NumberInputController";
 
 export class NumberRangeInputController extends umf.InputController<NumberRange> {
 	public min: number = null;

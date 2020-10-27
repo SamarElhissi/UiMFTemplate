@@ -21,6 +21,14 @@ namespace UiMFTemplate.Infrastructure
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
 	using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
+	using UiMetadataFramework.Basic.Input;
+	using UiMetadataFramework.Basic.Input.Typeahead;
+	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Basic.Response;
+	using UiMetadataFramework.Core;
+	using UiMetadataFramework.Core.Binding;
+	using UiMetadataFramework.MediatR;
+	using UiMFTemplate.Infrastructure.Configuration;
 	using UiMFTemplate.Infrastructure.Domain;
 	using UiMFTemplate.Infrastructure.Emails;
 	using UiMFTemplate.Infrastructure.Forms;
@@ -31,14 +39,6 @@ namespace UiMFTemplate.Infrastructure
 	using UiMFTemplate.Infrastructure.Forms.Typeahead;
 	using UiMFTemplate.Infrastructure.Security;
 	using UiMFTemplate.Infrastructure.User;
-	using UiMetadataFramework.Basic.Input;
-	using UiMetadataFramework.Basic.Input.Typeahead;
-	using UiMetadataFramework.Basic.Output;
-	using UiMetadataFramework.Basic.Response;
-	using UiMetadataFramework.Core;
-	using UiMetadataFramework.Core.Binding;
-	using UiMetadataFramework.MediatR;
-	using UiMFTemplate.Infrastructure.Configuration;
 
 	public static class Extensions
 	{
@@ -81,17 +81,6 @@ namespace UiMFTemplate.Infrastructure
 				Form = formLink.Form,
 				InputFieldValues = formLink.InputFieldValues
 			};
-		}
-
-		public static string AsUrl(this FormLink link, AppConfig appConfig)
-		{
-			var param = "";
-			foreach (var inputValue in link.InputFieldValues)
-			{
-				param += $"{inputValue.Key}={inputValue.Value}";
-			}
-
-			return $"{appConfig.SiteRoot}/#/form/{link.Form}?" + param;
 		}
 
 		public static MenuItem AsMenuItem(this FormLink formLink, string menuGroup, int orderIndex = 0)
@@ -156,6 +145,48 @@ namespace UiMFTemplate.Infrastructure
 				}),
 				TotalItemCount = queryable.Count
 			};
+		}
+
+		public static string AsUrl(this FormLink link, AppConfig appConfig)
+		{
+			var param = "";
+			foreach (var inputValue in link.InputFieldValues)
+			{
+				param += $"{inputValue.Key}={inputValue.Value}";
+			}
+
+			return $"{appConfig.SiteRoot}/#/form/{link.Form}?" + param;
+		}
+
+		public static int CalculateAge(this DateTime dob)
+		{
+			var now = DateTime.Now;
+			var years = new DateTime(now.Subtract(dob).Ticks).Year - 1;
+			var dobDateNow = dob.AddYears(years);
+			var months = 0;
+			for (var i = 1; i <= 12; i++)
+			{
+				if (dobDateNow.AddMonths(i) == now)
+				{
+					months = i;
+					break;
+				}
+
+				if (dobDateNow.AddMonths(i) >= now)
+				{
+					months = i - 1;
+					break;
+				}
+			}
+
+			var days = now.Subtract(dobDateNow.AddMonths(months)).Days;
+
+			if (months >= 6)
+			{
+				years += 1;
+			}
+
+			return years;
 		}
 
 		public static string Clean(this string strIn)
@@ -364,6 +395,23 @@ namespace UiMFTemplate.Infrastructure
 			return message;
 		}
 
+		public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
+		{
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(nameof(assembly));
+			}
+
+			try
+			{
+				return assembly.GetTypes();
+			}
+			catch (ReflectionTypeLoadException e)
+			{
+				return e.Types.Where(t => t != null);
+			}
+		}
+
 		public static T GetValueOrDefault<T>(this Dictionary<string, T> dictionary, string key, T defaultValue)
 		{
 			if (dictionary.TryGetValue(key, out var value))
@@ -461,21 +509,21 @@ namespace UiMFTemplate.Infrastructure
 			return item;
 		}
 
-        public static T SingleOrException<T>(this List<T> queryable, Func<T, bool> where = null)
-        {
-            var item = where != null
-                ? queryable.SingleOrDefault(where)
-                : queryable.SingleOrDefault();
+		public static T SingleOrException<T>(this List<T> queryable, Func<T, bool> where = null)
+		{
+			var item = where != null
+				? queryable.SingleOrDefault(where)
+				: queryable.SingleOrDefault();
 
-            if (item == null)
-            {
-                throw new BusinessException("The item is not registered in the system");
-            }
+			if (item == null)
+			{
+				throw new BusinessException("The item is not registered in the system");
+			}
 
-            return item;
-        }
+			return item;
+		}
 
-        public static async Task<T> SingleOrExceptionAsync<T>(this IQueryable<T> queryable, Expression<Func<T, bool>> where = null)
+		public static async Task<T> SingleOrExceptionAsync<T>(this IQueryable<T> queryable, Expression<Func<T, bool>> where = null)
 		{
 			var item = where != null
 				? await queryable.SingleOrDefaultAsync(where)
@@ -489,7 +537,7 @@ namespace UiMFTemplate.Infrastructure
 			return item;
 		}
 
-    public static string SubstringAfterLast(this string value, string search, StringComparison comparisonType)
+		public static string SubstringAfterLast(this string value, string search, StringComparison comparisonType)
 		{
 			if (value == null)
 			{
@@ -559,14 +607,14 @@ namespace UiMFTemplate.Infrastructure
 				Action = formLink.Action,
 				CssClass = cssClass,
 				ConfirmationMessage = confirmationMessage,
-                Target = target
-            };
+				Target = target
+			};
 		}
 
 		public static T WithGrowlMessage<T>(this T response, string message, GrowlNotificationStyle style)
 			where T : FormResponse<MyFormResponseMetadata>
 		{
-            return response.WithGrowlMessage(null, message, style);
+			return response.WithGrowlMessage(null, message, style);
 		}
 
 		public static T WithGrowlMessage<T>(this T response, string heading, string message, GrowlNotificationStyle style)
@@ -576,26 +624,26 @@ namespace UiMFTemplate.Infrastructure
 			response.Metadata.FunctionsToRun = response.Metadata.FunctionsToRun ?? new List<ClientFunctionMetadata>();
 
 			var growlFunction = new GrowlNotification(heading, message, style).GetClientFunctionMetadata();
-			
+
 			response.Metadata.FunctionsToRun.Add(growlFunction);
 
 			return response;
 		}
 
-        public static T WithRedirect<T>(this T response, FormLink form)
-            where T : FormResponse<MyFormResponseMetadata>
-        {
-            response.Metadata = response.Metadata ?? new MyFormResponseMetadata();
-            response.Metadata.FunctionsToRun = response.Metadata.FunctionsToRun ?? new List<ClientFunctionMetadata>();
-            var customProperties = new Dictionary<string, object>()
-                .Set("Form", form.Form)
-                .Set("InputFieldValues", form.InputFieldValues);
-            var clientMetadata = new ClientFunctionMetadata("redirect", customProperties);
+		public static T WithRedirect<T>(this T response, FormLink form)
+			where T : FormResponse<MyFormResponseMetadata>
+		{
+			response.Metadata = response.Metadata ?? new MyFormResponseMetadata();
+			response.Metadata.FunctionsToRun = response.Metadata.FunctionsToRun ?? new List<ClientFunctionMetadata>();
+			var customProperties = new Dictionary<string, object>()
+				.Set("Form", form.Form)
+				.Set("InputFieldValues", form.InputFieldValues);
+			var clientMetadata = new ClientFunctionMetadata("redirect", customProperties);
 
-            response.Metadata.FunctionsToRun.Add(clientMetadata);
+			response.Metadata.FunctionsToRun.Add(clientMetadata);
 
-            return response;
-        }
+			return response;
+		}
 
 		internal static T GetCustomProperty<T>(this FormMetadata form, string propertyName)
 		{
@@ -617,52 +665,5 @@ namespace UiMFTemplate.Infrastructure
 		{
 			return entity.GetType().GetProperty(name)?.GetValue(entity, null);
 		}
-
-		public static int CalculateAge(this DateTime dob)
-		{
-			var now = DateTime.Now;
-			var years = new DateTime(now.Subtract(dob).Ticks).Year - 1;
-			var dobDateNow = dob.AddYears(years);
-			var months = 0;
-			for (var i = 1; i <= 12; i++)
-			{
-				if (dobDateNow.AddMonths(i) == now)
-				{
-					months = i;
-					break;
-				}
-				if (dobDateNow.AddMonths(i) >= now)
-				{
-					months = i - 1;
-					break;
-				}
-			}
-			var days = now.Subtract(dobDateNow.AddMonths(months)).Days;
-
-			if (months >= 6)
-			{
-				years += 1;
-			}
-
-			return years;
-		}
-
-		public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
-		{
-			if (assembly == null)
-			{
-				throw new ArgumentNullException(nameof(assembly));
-			}
-
-			try
-			{
-				return assembly.GetTypes();
-			}
-			catch (ReflectionTypeLoadException e)
-			{
-				return e.Types.Where(t => t != null);
-			}
-		}
-
 	}
 }

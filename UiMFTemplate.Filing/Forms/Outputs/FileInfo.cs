@@ -2,11 +2,11 @@ namespace UiMFTemplate.Filing.Forms.Outputs
 {
 	using System;
 	using Filer.Core;
+	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Core.Binding;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.Forms.Outputs;
-	using UiMetadataFramework.Basic.Output;
-	using UiMetadataFramework.Core.Binding;
 
 	public class FileInfo
 	{
@@ -23,7 +23,7 @@ namespace UiMFTemplate.Filing.Forms.Outputs
 		[OutputField(Label = "", OrderIndex = 100)]
 		public ActionList Actions { get; set; }
 
-    [OutputField(Label = "Created on", OrderIndex = 10)]
+		[OutputField(Label = "Created on", OrderIndex = 10)]
 		public DateTime CreatedOn { get; set; }
 
 		[OutputField(Hidden = true, OrderIndex = 1)]

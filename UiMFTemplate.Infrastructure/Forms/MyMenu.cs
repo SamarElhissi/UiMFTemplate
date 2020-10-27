@@ -6,11 +6,11 @@ namespace UiMFTemplate.Infrastructure.Forms
 	using System.Threading;
 	using System.Threading.Tasks;
 	using MediatR;
+	using UiMetadataFramework.Core;
+	using UiMetadataFramework.MediatR;
 	using UiMFTemplate.Infrastructure.Forms.Menu;
 	using UiMFTemplate.Infrastructure.Security;
 	using UiMFTemplate.Infrastructure.User;
-	using UiMetadataFramework.Core;
-	using UiMetadataFramework.MediatR;
 
 	/// <summary>
 	/// Gets all forms available to the current user.

@@ -1,4 +1,4 @@
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 
 export class TextareaInputController extends umf.InputController<Textarea> {
 	public selected: string;

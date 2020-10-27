@@ -32,18 +32,18 @@ export class ControlRegister {
 	public functions: { [id: string]: IFunctionRunner } = {};
 
 	public createInputControllers(fields: umf.InputFieldMetadata[]): Array<InputController<any>> {
-		const result: Array<InputController<any>> = [];
+		var result: Array<InputController<any>> = [];
 
-		for (const field of fields) {
+		for (let field of fields) {
 			// Instantiate new input controller.
-			const entry = this.inputs[field.type];
-			const ctor = entry != null && entry.controller != null
+			var entry = this.inputs[field.type];
+			var ctor = entry != null && entry.controller != null
 				? entry.controller
 				: StringInputController;
-
+			
 			result.push(new ctor(field));
 		}
-
+		
 		result.sort((a: InputController<any>, b: InputController<any>) => {
 			return a.metadata.orderIndex - b.metadata.orderIndex;
 		});

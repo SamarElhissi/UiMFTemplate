@@ -9,7 +9,7 @@ namespace UiMFTemplate.Core.Security.Magic
 	{
 		public IEnumerable<MagicRole> GetRoles(UserContext user, Magic context)
 		{
-			if (user.HasRole(CoreRoles.Supervisor)|| user.HasRole(CoreRoles.SysAdmin))
+			if (user.HasRole(CoreRoles.Supervisor) || user.HasRole(CoreRoles.SysAdmin))
 			{
 				yield return MagicRole.Manager;
 			}

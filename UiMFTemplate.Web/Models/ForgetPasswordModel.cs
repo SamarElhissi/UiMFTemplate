@@ -1,8 +1,7 @@
-
-namespace UiMFTemplate.Web.Models 
+namespace UiMFTemplate.Web.Models
 {
-    public class ForgetPasswordModel
-    {
-        public string Mobile { get; set; }
-    }
+	public class ForgetPasswordModel
+	{
+		public string Mobile { get; set; }
+	}
 }

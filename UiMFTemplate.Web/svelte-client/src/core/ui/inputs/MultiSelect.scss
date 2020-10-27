@@ -1,3 +1,6 @@
+.choices {
+    width: 100% !important;
+}
 .choices__inner {
 	min-width: 100%;
 	min-height: 32px;
@@ -10,7 +13,7 @@
 	min-width: 100px;
 	background-color: transparent !important;
 	margin-bottom: 5px !important;
-    padding: 4px !important; 
+    padding: 4px 4px 4px 0 !important; 
     height: 32px !important;   
 }
 
@@ -29,7 +32,7 @@
     margin-right: 4px;
     margin-bottom: 0;
     margin-left: 8px;
-    padding-left: 14px;
+    padding-left: 16px;
     border-left: 1px solid #008fa1;
     background-image: url(../assets/cross.svg);
     background-size: 8px;
@@ -39,7 +42,7 @@
 }
 
 .choices__list--multiple .choices__item {
-    font-size: 14px !important;
+    font-size: 13px !important;
 }
 
 .choices__input {
@@ -48,5 +51,5 @@
 }
 
 .choices__item {
-    font-size: 14px !important;
+    font-size: 13px !important;
 }

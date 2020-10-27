@@ -1,64 +1,63 @@
 namespace UiMFTemplate.Help.Commands
 {
-    using System;
-    using System.IO;
+	using System;
+	using System.IO;
 	using System.Threading;
 	using System.Threading.Tasks;
-    using Markdig;
-    using MediatR;
-    using UiMetadataFramework.Core;
-    using UiMetadataFramework.Core.Binding;
-    using UiMFTemplate.Help.Security;
-    using UiMFTemplate.Infrastructure;
-    using UiMFTemplate.Infrastructure.Forms;
-	using UiMFTemplate.Infrastructure.Forms.CustomProperties;
+	using Markdig;
+	using MediatR;
+	using UiMetadataFramework.Core;
+	using UiMetadataFramework.Core.Binding;
+	using UiMFTemplate.Help.Security;
+	using UiMFTemplate.Infrastructure;
+	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.Forms.Outputs;
-    using UiMFTemplate.Infrastructure.Security;
+	using UiMFTemplate.Infrastructure.Security;
 
-    [MyForm(Id = "help", PostOnLoad = true, Label = "")]
-    [Secure(typeof(HelpActions), nameof(HelpActions.ViewHelpFiles))]
+	[MyForm(Id = "help", PostOnLoad = true, Label = "")]
+	[Secure(typeof(HelpActions), nameof(HelpActions.ViewHelpFiles))]
 	public class Help : MyAsyncForm<Help.Request, Help.Response>
-    {
-        public override async Task<Response> Handle(Request message, CancellationToken cancellationToken)
-        {
-            var fileName = message.FileId;
-            string content;
+	{
+		public override async Task<Response> Handle(Request message, CancellationToken cancellationToken)
+		{
+			var fileName = message.FileId;
+			string content;
 
-            try
-            {
-                // Open the text file using a stream reader.
-                using (var sr = new StreamReader($"Help/{fileName}"))
-                {
-                    // Read the stream to a string, and write the string to the console.
-                    content = await sr.ReadToEndAsync();
-                }
-            }
-            catch (Exception)
-            {
-                throw new BusinessException($"Help file {message.FileId} could not be loaded.");
-            }
-
-            var result = Markdown.ToHtml(content);
-
-            return new Response
-            {
-                Content = new Documentation
+			try
+			{
+				// Open the text file using a stream reader.
+				using (var sr = new StreamReader($"Help/{fileName}"))
 				{
-                    Value = result
-                }
-            };
-        }
+					// Read the stream to a string, and write the string to the console.
+					content = await sr.ReadToEndAsync();
+				}
+			}
+			catch (Exception)
+			{
+				throw new BusinessException($"Help file {message.FileId} could not be loaded.");
+			}
 
-        public class Response : FormResponse<MyFormResponseMetadata>
-        {
-            [OutputField(Label = "")]
+			var result = Markdown.ToHtml(content);
+
+			return new Response
+			{
+				Content = new Documentation
+				{
+					Value = result
+				}
+			};
+		}
+
+		public class Response : FormResponse<MyFormResponseMetadata>
+		{
+			[OutputField(Label = "")]
 			public Documentation Content { get; set; }
-        }
+		}
 
-        public class Request : IRequest<Response>
-        {
-            [InputField(Required = true, Hidden = true)]
-            public string FileId { get; set; }
-        }
-    }
+		public class Request : IRequest<Response>
+		{
+			[InputField(Required = true, Hidden = true)]
+			public string FileId { get; set; }
+		}
+	}
 }

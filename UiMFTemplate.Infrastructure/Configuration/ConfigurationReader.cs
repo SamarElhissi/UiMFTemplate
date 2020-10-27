@@ -1,6 +1,6 @@
 namespace UiMFTemplate.Infrastructure.Configuration
 {
-	using System.IO;
+	using System;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.Configuration;
 
@@ -13,12 +13,13 @@ namespace UiMFTemplate.Infrastructure.Configuration
 		}
 
 		public static IConfiguration GetConfigurations()
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false);
-
-			return builder.Build();
+		{
+			return new ConfigurationBuilder()
+				.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+				.AddJsonFile("appsettings.json")
+				.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+				.AddEnvironmentVariables()
+				.Build();
 		}
 
 		public static T GetSection<T>(this IConfiguration root)

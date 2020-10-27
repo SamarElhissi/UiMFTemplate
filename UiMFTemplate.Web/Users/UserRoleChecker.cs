@@ -12,15 +12,16 @@ namespace UiMFTemplate.Web.Users
 
 	public class UserRoleChecker : IUserRoleChecker
 	{
+		private const string UserCookieName = "user-data";
 		private readonly IDataProtector protector;
 		private readonly SignInManager<ApplicationUser> signInManager;
-		private const string UserCookieName = "user-data";
 
 		public UserRoleChecker(SignInManager<ApplicationUser> signInManager, IDataProtectionProvider protectionProvider)
 		{
 			this.signInManager = signInManager;
 			this.protector = protectionProvider.CreateProtector("app-cookie");
 		}
+
 		public IEnumerable<SystemRole> GetDynamicRoles(UserContextData userData)
 		{
 			yield return userData != null
@@ -43,6 +44,7 @@ namespace UiMFTemplate.Web.Users
 					userSession = null;
 				}
 			}
+
 			if (userSession?.ImpersonatorUserId != null &&
 				userSession.ImpersonatorUserId != userSession.CurrentUserId)
 			{

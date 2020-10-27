@@ -1,4 +1,4 @@
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 import { DateInputController } from "./DateInputController";
 
 export class DateRangeInputController extends umf.InputController<DateRange> {

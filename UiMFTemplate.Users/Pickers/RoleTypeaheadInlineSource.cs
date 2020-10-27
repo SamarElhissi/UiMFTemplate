@@ -2,9 +2,9 @@ namespace UiMFTemplate.Users.Pickers
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using UiMetadataFramework.Basic.Input.Typeahead;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Security;
-	using UiMetadataFramework.Basic.Input.Typeahead;
 	using UiMFTemplate.Users.Security;
 
 	[Secure(typeof(UserActions), nameof(UserActions.ManageUsers))]

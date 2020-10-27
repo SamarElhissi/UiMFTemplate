@@ -3,7 +3,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Inputs
 	using UiMetadataFramework.Core.Binding;
 
 	public class HtmlEditor
-    {
+	{
 		public HtmlEditor(string value)
 		{
 			this.Value = value;

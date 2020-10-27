@@ -4,17 +4,18 @@ namespace UiMFTemplate.Core.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using UiMetadataFramework.Basic.EventHandlers;
+	using UiMetadataFramework.Basic.Input;
 	using UiMetadataFramework.Basic.Output;
 	using UiMetadataFramework.Core.Binding;
 	using UiMFTemplate.Core.DataAccess;
 	using UiMFTemplate.Core.Extensions;
 	using UiMFTemplate.Core.Security;
 	using UiMFTemplate.Infrastructure.Forms;
-	using UiMFTemplate.Infrastructure.Forms.Inputs;
 	using UiMFTemplate.Infrastructure.Forms.Record;
 	using UiMFTemplate.Infrastructure.Security;
 
-	[MyForm(Id = "edit-Magic", PostOnLoad = true, Label = "Edit Magic", SubmitButtonLabel = UiFormConstants.EditSubmitLabel, PostOnLoadValidation = false)]
+	[MyForm(Id = "edit-Magic", PostOnLoad = true, Label = "Edit Magic", SubmitButtonLabel = UiFormConstants.EditSubmitLabel,
+		PostOnLoadValidation = false)]
 	[Secure(typeof(CoreActions), nameof(CoreActions.CreateMagic))]
 	public class EditMagic : MyAsyncForm<EditMagic.Request, EditMagic.Response>
 	{
@@ -64,7 +65,7 @@ namespace UiMFTemplate.Core.Commands
 		{
 			[InputField(OrderIndex = 5, Required = true)]
 			[BindToOutput(nameof(Response.Details))]
-			public HtmlEditor Details { get; set; }
+			public TextareaValue Details { get; set; }
 
 			[InputField(Hidden = true, Required = true)]
 			public int Id { get; set; }

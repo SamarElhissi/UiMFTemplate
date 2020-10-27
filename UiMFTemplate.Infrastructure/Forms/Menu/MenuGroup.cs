@@ -28,7 +28,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Menu
 				{
 					path += folders[j] + "/";
 				}
-				
+
 				yield return path.TrimEnd('/');
 			}
 		}

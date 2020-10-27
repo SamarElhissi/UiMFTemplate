@@ -19,35 +19,34 @@ namespace UiMFTemplate.Infrastructure.Forms
 		public const string SubTabsTemplate = "subtabs-template";
 		public const string SubTabsClass = "subtabs";
 
-        public static string ExcelTemplateUrl(string templateKey, int? formId) =>
-            $"/file/downloadExcelTemplate?templateName={templateKey}&formId={formId}";
-
-        public const string InputsVerticalMultipleColumn = "inputs-vertical-multiple-column";
+		public const string InputsVerticalMultipleColumn = "inputs-vertical-multiple-column";
 		public const string InputsVerticalTwoColumn = "inputs-vertical-two-column";
 		public const string InputsVerticalOneColumn = "inputs-vertical-one-column";
 		public const string OutputsVerticalOneColumn = "outputs-vertical-one-column";
 		public const string InputsHorizontalOneColumn = "inputs-horizontal-one-column";
 		public const string OutputsHorizontalOneColumn = "outputs-horizontal-one-column";
 		public const string InputsHorizontalMultipleColumn = "inputs-horizontal-one-column";
-        public const string InputsHorizontalTwoColumn = "inputs-horizontal-two-column";
-        public const string OutputsHorizontalMultipleColumn = "outputs-horizontal-one-column";
+		public const string InputsHorizontalTwoColumn = "inputs-horizontal-two-column";
+		public const string OutputsHorizontalMultipleColumn = "outputs-horizontal-one-column";
 		public const string OutputsVerticalMultipleColumn = "outputs-vertical-multiple-column";
 		public const string OutputsVerticalTwoColumn = "outputs-vertical-two-column";
 
-    public const string TargetBlank = "_blank";
-    public const string UploadButtonLabel = "Download";
-    public const string Filters = "<i class='fa fa-filter'></i> Filter";
-    public const string DangerIcon = "<i class='fa fa-times-circle icon-danger'></i>";
-    public const string SuccessIcon = "<i class='fa fa-check-circle icon-success'></i>";
-    public const string WarningIcon = "<i class='fa fa-exclamation-triangle icon-warning'></i>";
-    public const string Currency = "(UGX)";
-    public const string FooterRow = "row-footer";
+		public const string TargetBlank = "_blank";
+		public const string UploadButtonLabel = "Download";
+		public const string Filters = "<i class='fa fa-filter'></i> Filter";
+		public const string DangerIcon = "<i class='fa fa-times-circle icon-danger'></i>";
+		public const string SuccessIcon = "<i class='fa fa-check-circle icon-success'></i>";
+		public const string WarningIcon = "<i class='fa fa-exclamation-triangle icon-warning'></i>";
+		public const string Currency = "(UGX)";
+		public const string FooterRow = "row-footer";
 
-    public const string CardLayout = "card-layout";
-    public const string InputsVerticalFourColumn = "inputs-vertical-four-column";
+		public const string CardLayout = "card-layout";
+		public const string InputsVerticalFourColumn = "inputs-vertical-four-column";
 
-    public static string CounterForTopMenu(int count) => count == 0 ? "" : $"<span class='count'>{count}</span>";
-		public static string FileUrl(int fileId) => $"/file/download?id={fileId}";
+		public static string CounterForTopMenu(int count) => count == 0 ? "" : $"<span class='count'>{count}</span>";
+
+		public static string ExcelTemplateUrl(string templateKey, int? formId) =>
+			$"/file/downloadExcelTemplate?templateName={templateKey}&formId={formId}";
 
 		public static Link ExportToExcelLink<T>(string form, string field, IRequest<T> message)
 		{
@@ -58,5 +57,7 @@ namespace UiMFTemplate.Infrastructure.Forms
 				CssClass = "btn btn-success"
 			};
 		}
+
+		public static string FileUrl(int fileId) => $"/file/download?id={fileId}";
 	}
 }

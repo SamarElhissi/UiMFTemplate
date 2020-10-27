@@ -102,6 +102,12 @@ namespace UiMFTemplate.Core.Commands
 			[HiddenInExcel]
 			public ActionList Actions { get; set; }
 
+			[OutputField(OrderIndex = 4, Label = "Complainer")]
+			public string Complainer { get; set; }
+
+			[OutputField(OrderIndex = 5, Label = "Date created")]
+			public DateTime CreatedOn { get; set; }
+
 			[OutputField(OrderIndex = 6)]
 			public HtmlString Details { get; set; }
 
@@ -113,12 +119,6 @@ namespace UiMFTemplate.Core.Commands
 
 			[OutputField(OrderIndex = 2)]
 			public string Title { get; set; }
-
-			[OutputField(OrderIndex = 4, Label = "Complainer")]
-			public string Complainer { get; set; }
-
-			[OutputField(OrderIndex = 5, Label = "Date created")]
-			public DateTime CreatedOn { get; set; }
 		}
 	}
 }

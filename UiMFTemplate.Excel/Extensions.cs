@@ -60,6 +60,18 @@ namespace UiMFTemplate.Excel
 			return columns;
 		}
 
+		public static string GetPlainTextFromHtml(this string htmlString)
+		{
+			const string HtmlTagPattern = "<.*?>";
+			var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+			htmlString = regexCss.Replace(htmlString, string.Empty);
+			htmlString = Regex.Replace(htmlString, HtmlTagPattern, string.Empty);
+			htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
+			htmlString = htmlString.Replace("&nbsp;", string.Empty);
+
+			return htmlString;
+		}
+
 		public static string GetText(this ExcelWorksheet worksheet, string columnName, int row, Dictionary<string, int> columns)
 		{
 			if (columns.TryGetValue(columnName.ToLower(), out var column))
@@ -96,18 +108,6 @@ namespace UiMFTemplate.Excel
 		public static List<Column<string>> ToExcelColumns(this List<string> columns)
 		{
 			return columns.Select(a => new Column<string>(a, null)).ToList();
-		}
-
-		public static string GetPlainTextFromHtml(this string htmlString)
-		{
-			const string HtmlTagPattern = "<.*?>";
-			var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
-			htmlString = regexCss.Replace(htmlString, string.Empty);
-			htmlString = Regex.Replace(htmlString, HtmlTagPattern, string.Empty);
-			htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
-			htmlString = htmlString.Replace("&nbsp;", string.Empty);
-
-			return htmlString;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import * as umf from "core-framework";
+import * as umf from "../../framework";
 
 export class HtmlEditorInputController extends umf.InputController<HtmEditor> {
 	public selected: string;

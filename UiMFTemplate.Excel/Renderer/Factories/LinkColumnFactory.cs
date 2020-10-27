@@ -2,10 +2,9 @@ namespace UiMFTemplate.Excel.Renderer.Factories
 {
 	using System.Collections.Generic;
 	using ExcelExporter.Core;
-	using UiMFTemplate.Excel.Renderer;
+	using UiMetadataFramework.Core;
 	using UiMFTemplate.Infrastructure.Configuration;
 	using UiMFTemplate.Infrastructure.Forms.Outputs;
-	using UiMetadataFramework.Core;
 
 	public class LinkColumnFactory : ColumnFactory
 	{

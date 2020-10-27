@@ -1,13 +1,14 @@
 namespace UiMFTemplate.Notifications
 {
 	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Core.Binding;
 	using UiMFTemplate.Infrastructure.Forms;
-    using UiMetadataFramework.Core.Binding;
 
-    public class NotificationDetail: MyFormResponse
+	public class NotificationDetail : MyFormResponse
 	{
-        [OutputField(Label = "")]
+		[OutputField(Label = "")]
 		public ActionList Actions { get; set; }
+
 		public string Description { get; set; }
 
 		/// <summary>

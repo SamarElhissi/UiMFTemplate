@@ -1,4 +1,4 @@
-import { FormEventArguments, UmfApp } from "core-framework";
+import { FormEventArguments, UmfApp } from "../../framework";
 
 /**
  * Represents an event triggered by an action-list.

@@ -5,16 +5,16 @@ namespace UiMFTemplate.Core.Notification
 	using System.Threading.Tasks;
 	using MediatR;
 	using Microsoft.EntityFrameworkCore;
+	using UiMetadataFramework.Basic.Output;
+	using UiMetadataFramework.Basic.Response;
+	using UiMetadataFramework.Core.Binding;
+	using UiMetadataFramework.MediatR;
 	using UiMFTemplate.Infrastructure;
 	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.User;
 	using UiMFTemplate.Notifications;
-	using UiMetadataFramework.Basic.Output;
-    using UiMetadataFramework.Basic.Response;
-	using UiMetadataFramework.Core.Binding;
-    using UiMetadataFramework.MediatR;
 
-    [MyForm(Id = "unarchive-notification", Label = "Unarchive")]
+	[MyForm(Id = "unarchive-notification", Label = "Unarchive")]
 	public class UnArchive : AsyncForm<UnArchive.Request, UnArchive.Response>
 	{
 		private readonly NotificationsDbContext notificationsDbContext;
@@ -50,11 +50,11 @@ namespace UiMFTemplate.Core.Notification
 
 			ntf.UnArchive();
 			await this.notificationsDbContext.SaveChangesAsync(cancellationToken);
-            return new Response
-            {
-                Form = typeof(MyNotifications).GetFormId()
-            };
-        }
+			return new Response
+			{
+				Form = typeof(MyNotifications).GetFormId()
+			};
+		}
 
 		public class Request : IRequest<Response>
 		{

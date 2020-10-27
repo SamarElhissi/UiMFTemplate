@@ -19,9 +19,25 @@ namespace UiMFTemplate.Infrastructure.Forms.Menu
 		{
 			foreach (var menuGroup in groups.DistinctBy(t => t.Name))
 			{
-				string normalizedGroupName = String.IsNullOrWhiteSpace(menuGroup.Name) ? "" : menuGroup.Name;
+				string normalizedGroupName = string.IsNullOrWhiteSpace(menuGroup.Name) ? "" : menuGroup.Name;
 				this.groups.Add(normalizedGroupName, menuGroup);
 			}
+		}
+
+		public void AddMenuItem(Forms.Menu.MenuItem item)
+		{
+			var group = this.GetGroupMetadata(item.MenuGroup);
+
+			var result = new MenuItem
+			{
+				Group = group,
+				OrderIndex = item.OrderIndex,
+				Label = item.Label,
+				Form = item.Form,
+				InputFieldValues = item.InputFieldValues
+			};
+
+			this.items.Add(result);
 		}
 
 		public void AddMenuItemIfFormHasMenuConfiguration(FormMetadata metadata)
@@ -44,22 +60,6 @@ namespace UiMFTemplate.Infrastructure.Forms.Menu
 			};
 
 			this.items.Add(item);
-		}
-
-		public void AddMenuItem(Forms.Menu.MenuItem item)
-		{
-			var group = this.GetGroupMetadata(item.MenuGroup);
-
-			var result = new MenuItem
-			{
-				Group = group,
-				OrderIndex = item.OrderIndex,
-				Label = item.Label,
-				Form = item.Form,
-				InputFieldValues = item.InputFieldValues
-			};
-
-			this.items.Add(result);
 		}
 
 		public IMenuNode Build()
@@ -85,14 +85,14 @@ namespace UiMFTemplate.Infrastructure.Forms.Menu
 						OrderIndex = group.OrderIndex
 					};
 
-					if (parent != null && 
+					if (parent != null &&
 						!parent.Children.Contains(current))
 					{
 						parent.AddNode(current);
 					}
 
-					if (parent == null && 
-						current != root && 
+					if (parent == null &&
+						current != root &&
 						!root.Children.Contains(current))
 					{
 						root.AddNode(current);

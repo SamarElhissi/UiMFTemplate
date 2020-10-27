@@ -6,6 +6,7 @@ namespace UiMFTemplate.Core.Domain.Enum
 	public enum MagicStatus
 	{
 		Draft = 1,
+
 		[HtmlString(Html = "Submitted " + UiFormConstants.SuccessIcon)]
 		Submitted = 2,
 

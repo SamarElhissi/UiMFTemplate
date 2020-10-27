@@ -4,7 +4,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 
 	[OutputFieldType("youtube-embed")]
 	public class YoutubeEmbed
-    {
+	{
 		public YoutubeEmbed()
 		{
 		}

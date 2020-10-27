@@ -7,7 +7,6 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 	{
 		public Documentation()
 		{
-			
 		}
 
 		public Documentation(string htmlString)

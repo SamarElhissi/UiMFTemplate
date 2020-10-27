@@ -6,6 +6,7 @@ namespace UiMFTemplate.Infrastructure.Forms.Record
 	public class RecordResponse : MyFormResponse
 	{
 		[NotField]
-		public DropdownValue<RecordRequestOperation?> NextOperation { get; set; } = new DropdownValue<RecordRequestOperation?>(RecordRequestOperation.Post);
+		public DropdownValue<RecordRequestOperation?> NextOperation { get; set; } =
+			new DropdownValue<RecordRequestOperation?>(RecordRequestOperation.Post);
 	}
 }

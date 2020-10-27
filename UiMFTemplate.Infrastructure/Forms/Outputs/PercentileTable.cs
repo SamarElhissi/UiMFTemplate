@@ -20,13 +20,13 @@ namespace UiMFTemplate.Infrastructure.Forms.Outputs
 			this.Actions = actions;
 		}
 
+		[JsonProperty(PropertyName = "actions")]
+		public ActionList Actions { get; set; }
+
 		[JsonProperty(PropertyName = "age")]
 		public decimal Age { get; set; }
 
 		[JsonProperty(PropertyName = "raven")]
 		public decimal RavenScore { get; set; }
-
-		[JsonProperty(PropertyName = "actions")]
-		public ActionList Actions { get; set; }
 	}
 }

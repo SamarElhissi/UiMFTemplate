@@ -1,7 +1,7 @@
 namespace UiMFTemplate.Notifications
 {
-	using MediatR;
 	using System.Collections.Generic;
+	using MediatR;
 	using UiMetadataFramework.Core.Binding;
 	using UiMFTemplate.Infrastructure.Forms;
 	using UiMFTemplate.Infrastructure.Forms.Outputs;
@@ -17,12 +17,6 @@ namespace UiMFTemplate.Notifications
 			this.notificationManagerRegister = notificationManagerRegister;
 		}
 
-		protected override NotificationDetail Handle(Request message)
-		{
-			var repository = this.notificationManagerRegister.GetInstance(message.ContextType);
-			return repository.GetLink(message.ContextId);
-		}
-
 		public static FormLink<NotificationDetails> Button(string cotextType, string contextId)
 		{
 			return new FormLink<NotificationDetails>
@@ -36,11 +30,16 @@ namespace UiMFTemplate.Notifications
 			};
 		}
 
+		protected override NotificationDetail Handle(Request message)
+		{
+			var repository = this.notificationManagerRegister.GetInstance(message.ContextType);
+			return repository.GetLink(message.ContextId);
+		}
+
 		public class Request : IRequest<NotificationDetail>
 		{
 			public string ContextId { get; set; }
 			public string ContextType { get; set; }
 		}
 	}
-
 }

@@ -24,6 +24,7 @@ namespace UiMFTemplate.Core.Commands
 	{
 		private readonly CoreDbContext context;
 		private readonly UserSecurityContext permissionManager;
+
 		public MagicDetails(CoreDbContext context, UserSecurityContext permissionManager)
 		{
 			this.context = context;
@@ -76,6 +77,15 @@ namespace UiMFTemplate.Core.Commands
 			[OutputField(OrderIndex = -1)]
 			public ActionList Actions { get; set; }
 
+			[OutputField(OrderIndex = 7, Label = "Date closed")]
+			public DateTime? ClosedOn { get; set; }
+
+			[OutputField(OrderIndex = 100, Label = null)]
+			public InlineForm Conversation { get; set; }
+
+			[OutputField(OrderIndex = 3, Label = "Date created")]
+			public DateTime CreatedOn { get; set; }
+
 			[OutputField(OrderIndex = 9)]
 			public PreformattedText Details { get; set; }
 
@@ -85,20 +95,11 @@ namespace UiMFTemplate.Core.Commands
 			[OutputField(OrderIndex = 4)]
 			public HtmlString Status { get; set; }
 
-			[OutputField(OrderIndex = 2)]
-			public string Title { get; set; }
-
-			[OutputField(OrderIndex = 3, Label = "Date created")]
-			public DateTime CreatedOn { get; set; }
-
 			[OutputField(OrderIndex = 5, Label = "Date submitted")]
 			public DateTime? SubmittedOn { get; set; }
 
-			[OutputField(OrderIndex = 7, Label = "Date closed")]
-			public DateTime? ClosedOn { get; set; }
-
-			[OutputField(OrderIndex = 100, Label = null)]
-			public InlineForm Conversation { get; set; }
+			[OutputField(OrderIndex = 2)]
+			public string Title { get; set; }
 		}
 	}
 }
