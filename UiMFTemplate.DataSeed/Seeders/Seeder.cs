@@ -77,7 +77,7 @@ namespace UiMFTemplate.DataSeed.Seeders
 			if (dynamicRoles.Any())
 			{
 				throw new BusinessException(
-					$"Cannot assign dynamic roles {dynamicRoles.Select(t => $"'{t.Name}'").Join()} to a user.");
+					$"Cannot assign dynamic roles {dynamicRoles.Select(t => $"'{t.Name}'").Join(",")} to a user.");
 			}
 
 			var userManager = this.Container.Container.GetInstance<UserManager<ApplicationUser>>();

@@ -2,6 +2,7 @@
 	import FormComponent from "../Form.svelte";
 	import FormOutput from "../Output.svelte";
 	import Tooltip from "../help/Tooltip.svelte";
+	import * as umf from "uimf-core";
 	import { ActionListEventArguments } from "./ActionListEventArguments";
 	import { onMount } from "svelte";
 	import { _ } from "../../../services/Translation";
@@ -9,7 +10,7 @@
 	export let app;
 	export let form;
 	export let parent;
-	let isBulkActionModalOpen = true;
+	let isBulkActionModalOpen = false;
 	let bulkActionContainer;
 	let currentBulkActionForm = null;
 
@@ -18,7 +19,9 @@
 	let visible = true;
 	let bulkActions = [];
 	let rowCssClass = null;
+	let nodata = "no data found.";
 	let map = null;
+	let selectAllCheckbox;
 
 	function buildFilter(currentFormInstance, parameters) {
 		let promise;
@@ -69,6 +72,15 @@
 		const metadata = field.metadata;
 		rowCssClass = (metadata.customProperties || {}).rowCssClass || {};
 		bulkActions = (metadata.customProperties || {}).bulkAction || [];
+		if(data == null || 
+		data.every(t => 
+		t.actions == null || 
+		t.actions.actions == null)) {
+			bulkActions = [];
+		}
+		if((metadata.customProperties || {}).tableConfig){
+			nodata = metadata.customProperties.tableConfig.noDataLabel;
+		}
 
 		// Create map, with key being the lowercase version of the property name
 		// and value being the actual property name.
@@ -82,10 +94,26 @@
 		}
 	});
 	function getField(row, column) {
-		const value = row[map[column.id.toLowerCase()]];
+		var col = column.id == null ? column.toLowerCase() : column.id.toLowerCase();
+		var metadata = column.id == null ? null : column;
+		var data = row.hasOwnProperty(map[col]) ? row[map[col]] : null;
+		if(!row.hasOwnProperty(map[col])) {
+						for(let property in row) {
+							if(row[property] != null && row[property].metadata != null) {
+								var index = 0;
+								for(var propertyMetadata of row[property].metadata) {
+									if(propertyMetadata.id.toLowerCase() == col) {
+										data = row[property].data[index];
+										break;
+									}
+									index++;
+								}
+							}
+						}
+					}
 		return {
-			data: value,
-			metadata: column,
+			data: data,
+			metadata: metadata,
 		};
 	}
 	function getRowCssClass(row) {
@@ -104,14 +132,43 @@
 	let selectedItemsCount = 0;
 
 	let columnsOrdered;
-
 	$: {
-		columnsOrdered = field.metadata.customProperties.columns
-			.filter((b) => !b.hidden)
-			.sort((a, b) => a.orderIndex - b.orderIndex);
+		var allColumns = field.metadata.customProperties.columns.filter(b => !b.hidden);
+		var dynamicTable = allColumns.filter(b => b.type == "dynamic-table");
+		var columns = allColumns.filter(b => b.type != "dynamic-table" && b.id != "cssClass");
+		for(var output of dynamicTable) {
+					if(field.data.length > 0) {
+						var data = field.data[0];
+					    let column = null;
+						for(var property in data) {
+							if(property.toLowerCase() == output.id.toLowerCase()){
+								column = data[property];
+								break;
+							}
+						}
+						if(column != null){
+						for(var col of column.metadata) {
+							columns.push(new umf.OutputFieldMetadata(col));
+						}
+						}
+					}
+				}
+				
+			var sortedColumns = columns.sort((a, b) => a.orderIndex - b.orderIndex);
+		
+			if(columns == null || columns.length == 0){
+					if(field.data != null && field.data.length > 0) {
+						columnsOrdered = Object.keys(field.data[0]);
+					}
+				}
+			else{
+				        columnsOrdered=sortedColumns;
+				}
 	}
+
+
 	function enableBulkButton() {
-		let disabled = false;
+		disabled = false;
 	}
 
 	async function runBulkAction(action) {
@@ -152,7 +209,7 @@
 				},
 			});
 
-			f.init();
+			f.init(f);
 
 			f.$on("form:responseHandled", (e) => {
 				closeBulkActionModal(e.detail.response);
@@ -164,13 +221,18 @@
 	}
 	async function onActionRun(formId, response) {
 		const parentForm = parent;
-		const app = parentForm.app;
-		if (
-			response.metadata.handler !== "redirect" &&
-			response.metadata.handler !== "reload"
-		) {
+
+		var isRedirectResponse = response.metadata.functionsToRun != null ? 
+			response.metadata.functionsToRun.filter(a => a.id == "redirect").length > 0 ? true : false : false;
+
+		var isReloadResponse = response.metadata.functionsToRun != null ? 
+			response.metadata.functionsToRun.filter(a => a.id == "reload").length > 0 ? true : false : false;
+			
+		if (!isRedirectResponse && !isReloadResponse)
+		{
 			// If asked to redirect to another form, then we redirect
 			// and do not reload parent form, as that would be a wasted effort.
+
 			await parentForm.submit(null, true);
 		}
 
@@ -180,9 +242,10 @@
 	async function closeBulkActionModal(response) {
 		enableBulkButton();
 		isBulkActionModalOpen = false;
-		currentBulkActionForm = null;
 
 		currentBulkActionForm.$destroy();
+
+		currentBulkActionForm = null;
 
 		const parentFormComponent = parent;
 
@@ -208,6 +271,12 @@
 		);
 	}
 
+	function isBulkActionVisible(action) {
+		return field.data.filter(t => t.actions != null &&
+		t.actions.actions != null &&
+		t.actions.actions.some(f => f.form === action.formId)).length > 0;
+	}
+
 	function selectItem(checkboxElement, row) {
 		// eslint-disable-next-line no-underscore-dangle, no-param-reassign
 		row.__selected = checkboxElement.checked;
@@ -217,19 +286,18 @@
 		selectedItemsCount = selectedItems.length;
 	}
 
-	function selectAllItems(checkboxElement) {
+	function selectAllItems() {
 		for (const row of field.data) {
 			if (!isDisabled(row)) {
 				// eslint-disable-next-line no-underscore-dangle, no-param-reassign
-				row.__selected = checkboxElement.checked;
+				row.__selected = selectAllCheckbox.checked;
 			}
 		}
-
 		const checkboxes = table.querySelectorAll("tbody>tr>td .checkbox");
 
 		for (const checkbox of checkboxes) {
 			if (!checkbox.disabled) {
-				checkbox.checked = checkboxElement.checked;
+				checkbox.checked = selectAllCheckbox.checked;
 			}
 		}
 
@@ -237,6 +305,7 @@
 		const selectedItems = field.data.filter((t) => t.__selected === true);
 		selectedItemsCount = selectedItems.length;
 	}
+
 	function sortData(column, columns) {
 		const paginatorInput = form.inputs.find(
 			(t) =>
@@ -265,39 +334,11 @@
 	}
 </script>
 
-<style>
-	.btn-row {
-		text-align: left;
-	}
-
-	.checkbox {
-		clip: unset;
-		clip-path: unset;
-		position: unset;
-		width: 15px;
-		height: 15px;
-	}
-
-	.sortable-column {
-		cursor: pointer;
-	}
-
-	.horizontal-scroll {
-		overflow: hidden;
-		overflow-x: auto;
-		clear: both;
-		width: 100%;
-	}
-
-	.table {
-		min-width: rem-calc(640);
-	}
-</style>
 
 {#if visible && field.data != null && field.data.length > 0 && map != null}
 	<div class="horizontal-scroll">
 		<table
-			class="table table-condensed table-striped table-bordered table-hover jr-table"
+			class="table table-hover"
 			bind:this={table}>
 			<thead>
 				{#if bulkActions.length > 0}
@@ -307,15 +348,14 @@
 								{#if selectedItemsCount > 0}
 									<button
 										{disabled}
-										style="direction: rtl;"
-										class="btn btn-default"
+										class="btn {action.cssClass} pull-right"
 										on:click={runBulkAction(action)}>
 										{action.label}
 										<small>({selectedItemsCount})</small>
 									</button>
-								{:else}
+								{:else if isBulkActionVisible(action)}
 									<button
-										class="btn btn-default"
+										class="btn {action.cssClass} pull-right"
 										disabled>{action.label}</button>
 								{/if}
 							{/each}
@@ -328,7 +368,8 @@
 							<input
 								type="checkbox"
 								class="checkbox"
-								on:change={selectAllItems(this)} />
+								bind:this={selectAllCheckbox}
+								on:change={() => selectAllItems()} />
 						</th>
 					{/if}
 					{#each columnsOrdered as column}
@@ -342,7 +383,7 @@
 										default: column.label,
 									})}
 									{/if}
-									<i class="fa fa-sort-down" />
+									<i class="fa fa-sort-down" style="cursor:pointer"/>
 								</th>
 							{:else}
 								<th
@@ -353,7 +394,7 @@
 										default: column.label,
 									})}
 									{/if}
-									<i class="fa fa-sort-up" />
+									<i class="fa fa-sort-up" style="cursor:pointer" />
 								</th>
 							{/if}
 						{:else}
@@ -382,7 +423,7 @@
 			<tbody>
 				{#if map != null}
 					{#each field.data as row}
-						<tr class={getRowCssClass(row)}>
+						<tr class="{getRowCssClass(row)} table-light">
 							{#if bulkActions.length > 0}
 								<td>
 									<div class="form-group form-check">
@@ -398,13 +439,17 @@
 							{/if}
 							{#each columnsOrdered as column}
 								<td>
-									{#if !(getField(row, column).metadata.getCustomProperty('hideIfNull') === true && getField(row, column).data === null)}
+									{#if getField(row, column).metadata === null}
+						                {getField(row, column).data}
+					                {:else}
+									{#if !(getField(row, column).data === null)}
 										<FormOutput
 											field={getField(row, column)}
 											{app}
 											{form}
 											{parent}
 											showLabel="false" />
+									{/if}
 									{/if}
 								</td>
 							{/each}
@@ -422,11 +467,11 @@
 			class="hidden" />
 		<div class="modal">
 			<div class="card">
-				<span class="close modal-close" on:click={closeBulkActionModal(null)} />
+				<span class="close modal-close" on:click={() => closeBulkActionModal(null)} />
 				<div bind:this={bulkActionContainer} />
 			</div>
 		</div>
 	{/if}
 {:else}
-	<div class="alert-nodata">No data found.</div>
+	<div class="alert-nodata">{nodata}</div>
 {/if}

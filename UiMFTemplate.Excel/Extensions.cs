@@ -109,5 +109,10 @@ namespace UiMFTemplate.Excel
 		{
 			return columns.Select(a => new Column<string>(a, null)).ToList();
 		}
+
+		public static string Join<T>(this IEnumerable<T> items, string separator)
+		{
+			return string.Join(separator, items);
+		}
 	}
 }

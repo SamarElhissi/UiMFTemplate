@@ -52,7 +52,7 @@ export class AppRouter implements umf.IAppRouter {
 		this.stateRouter.addState({
 			name: "form",
 			data: {},
-			route: "/uimf-form/:_id",
+			route: "/form/:_id",
 			template: Form,
 
 			// Force route reload when value of _d parameter changes. This is
@@ -87,7 +87,7 @@ export class AppRouter implements umf.IAppRouter {
 		if (app.getForm("login") != null) {
 			this.stateRouter.evaluateCurrentRoute("form", { _id: "login" });
 		} else {
-			this.stateRouter.evaluateCurrentRoute("home");
+			this.stateRouter.evaluateCurrentRoute("form", { _id: "dashboard" });
 		}
 	}
 

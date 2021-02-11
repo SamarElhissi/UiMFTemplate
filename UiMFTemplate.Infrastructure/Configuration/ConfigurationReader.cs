@@ -21,13 +21,5 @@ namespace UiMFTemplate.Infrastructure.Configuration
 				.AddEnvironmentVariables()
 				.Build();
 		}
-
-		public static T GetSection<T>(this IConfiguration root)
-			where T : class, new()
-		{
-			var result = new T();
-			root.GetSection(nameof(AppConfig)).Bind(result);
-			return result;
-		}
 	}
 }

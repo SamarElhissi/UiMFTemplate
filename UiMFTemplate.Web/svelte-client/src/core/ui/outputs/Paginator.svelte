@@ -112,7 +112,7 @@
 			const first = {
 				text: "First",
 				params: firstParams,
-				cssClass: paginatorInput.value.pageIndex === 1 ? "btn disabled" : "",
+				cssClass: paginatorInput.value.pageIndex === 1 ? " disabled" : "",
 			};
 			const prevParams = Object.assign({}, params);
 			prevParams[paginatorInput.metadata.id] = Object.assign(
@@ -125,7 +125,7 @@
 			const previous = {
 				text: "Prev",
 				params: prevParams,
-				cssClass: paginatorInput.value.pageIndex === 1 ? "btn disabled" : "",
+				cssClass: paginatorInput.value.pageIndex === 1 ? " disabled" : "",
 			};
 
 			const nextParams = Object.assign({}, params);
@@ -140,7 +140,7 @@
 				text: "Next",
 				params: nextParams,
 				cssClass:
-					paginatorInput.value.pageIndex === pageCount ? "btn disabled" : "",
+					paginatorInput.value.pageIndex === pageCount ? " disabled" : "",
 			};
 
 			const lastParams = Object.assign({}, params);
@@ -154,7 +154,7 @@
 				text: "Last",
 				params: lastParams,
 				cssClass:
-					paginatorInput.value.pageIndex === pageCount ? "btn disabled" : "",
+					paginatorInput.value.pageIndex === pageCount ? " disabled" : "",
 			};
 
 			let from = paginatorInput.value.pageIndex;

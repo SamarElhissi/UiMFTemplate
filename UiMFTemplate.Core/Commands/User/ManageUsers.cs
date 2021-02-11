@@ -83,8 +83,8 @@ namespace UiMFTemplate.Core.Commands.User
 			if (message.Activation != null)
 			{
 				query = message.Activation.Value == UserActivation.Active
-					? query.Where(u => u.Active)
-					: query.Where(u => !u.Active);
+					? query.Where(u => u.DateActivated.HasValue)
+					: query.Where(u => !u.DateActivated.HasValue);
 			}
 
 			var result = query

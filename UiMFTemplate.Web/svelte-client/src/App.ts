@@ -101,7 +101,7 @@ app.load().then((response) => {
 		return app.load().then((t) => {
 				buildMenu(app);
 			if (form === "home") {
-				return "#/home";
+				return "#/form/dashboard";
 			}
 			return app.makeUrl(form, inputFieldValues);
 		});

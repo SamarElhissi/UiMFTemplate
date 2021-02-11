@@ -17,7 +17,6 @@ namespace UiMFTemplate.Conversations.Mappings
 		{
 			entity.ToTable("Comment", this.schema);
 			entity.HasKey(t => t.Id);
-			entity.Property(t => t.Id).HasColumnName("Id").UseSqlServerIdentityColumn();
 			entity.Property(t => t.AuthorId).HasColumnName("AuthorId");
 			entity.Property(t => t.PostedOn).HasColumnName("PostedOn");
 			entity.Property(t => t.Text).HasColumnName("Text").IsUnicode().IsRequired();

@@ -28,6 +28,7 @@
 	let initiallyHideForm;
 	let documentation;
 	let hideForm;
+	let title = metadata.label;
 	const handlers = [];
 
 	const __this = {
@@ -49,10 +50,11 @@
 	export function renderResponse(response) {
 		outputFieldValues = null;
 		outputFieldValues = form.outputs;
+		responseMetadata = null;
 		responseMetadata = form.metadata;
-
-		if (parent == null && response.metadata.title != null) {
+		if (parent == null && response.metadata != null && response.metadata.title != null) {
 			document.title = response.metadata.title;
+			title = response.metadata.title;
 		}
 	}
 
@@ -170,7 +172,7 @@
 			openForms.push(form);
 
 			if (parent == null) {
-				if (responseMetadata.title == null && form.metadata.label != null) {
+				if ((responseMetadata.metadata == null || responseMetadata.metadata.title == null) && form.metadata.label != null) {
 					document.title = form.metadata.label;
 				}
 			}
@@ -223,26 +225,24 @@
 
 {#if initialized}
 	<div class="inputs-horizontal-one-column {cssClass} jf panel panel-default">
-		{#if (responseMetadata.title != null && responseMetadata.title != '') || (metadata.label != null && metadata.label != '')}
+		{#if (title != null && title != '')}
 			<div class="form-header">
 				<h3 class="text-center">
-					{$_(`${form.metadata.id}.description`, {
-						default: responseMetadata.title || metadata.label,
-					})}
+					 {title}
 				</h3>
-				{#if responseMetadata.status}
-					<div class="alert {responseMetadata.status.style}">
-						{#if responseMetadata.status.heading != null}
+				{#if responseMetadata.metadata != null && responseMetadata.metadata.status}
+					<div class="alert {responseMetadata.metadata.status.style}">
+						{#if responseMetadata.metadata.status.heading != null}
 							<div class="heading">
-								{#if responseMetadata.status.icon != null}
-									<span>{@html responseMetadata.status.icon}</span>
+								{#if responseMetadata.metadata.status.icon != null}
+									<span>{@html responseMetadata.metadata.status.icon}</span>
 								{/if}
-								{responseMetadata.status.heading}
+								{responseMetadata.metadata.status.heading}
 							</div>
 						{/if}
-						{#if responseMetadata.status.message != null}
+						{#if responseMetadata.metadata.status.message != null}
 							<div class="body">
-								{@html responseMetadata.status.message}
+								{@html responseMetadata.metadata.status.message}
 							</div>
 						{/if}
 					</div>

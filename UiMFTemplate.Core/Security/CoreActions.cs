@@ -11,7 +11,7 @@ namespace UiMFTemplate.Core.Security
 
 		public static readonly SystemAction CreateMagic = new SystemAction(nameof(CreateMagic), CoreRoles.User);
 		public static readonly SystemAction ViewMagic = new SystemAction(nameof(ViewMagic), CoreRoles.User, CoreRoles.Supervisor);
-		public static readonly SystemAction ViewAllMagic = new SystemAction(nameof(ViewAllMagic), CoreRoles.Supervisor);
+		public static readonly SystemAction ViewAllMagic = new SystemAction(nameof(ViewAllMagic), CoreRoles.SysAdmin);
 		public static readonly SystemAction CloseMagic = new SystemAction(nameof(CloseMagic), CoreRoles.Supervisor);
 	}
 }

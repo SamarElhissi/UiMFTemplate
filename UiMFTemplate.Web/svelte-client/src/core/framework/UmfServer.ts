@@ -98,8 +98,8 @@ export class UmfServer {
 				return response.json();
 			})
 			.then((invokeFormResponses: any) => {
-				if (invokeFormResponses.Exception != null) {
-					this.fire("request:completed", invokeFormResponses.Message);
+				if (invokeFormResponses.error != null) {
+					this.fire("request:completed", invokeFormResponses.error);
 					return null;
 				}
 				invokeFormResponses[0].data.metadata =

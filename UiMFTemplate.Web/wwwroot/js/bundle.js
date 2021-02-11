@@ -3798,9 +3798,6 @@
     function component_subscribe(component, store, callback) {
         component.$$.on_destroy.push(subscribe(store, callback));
     }
-    function null_to_empty(value) {
-        return value == null ? '' : value;
-    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -7900,7 +7897,7 @@
     			p = element("p");
     			t0 = text("Welcome to ");
     			strong = element("strong");
-    			strong.textContent = "GRAMMS";
+    			strong.textContent = "TeamR";
     			add_location(strong, file$3, 0, 14, 14);
     			add_location(p, file$3, 0, 0, 0);
     		},
@@ -28551,16 +28548,16 @@
     	return child_ctx;
     }
 
-    // (224:0) {#if initialized}
+    // (226:0) {#if initialized}
     function create_if_block$7(ctx) {
     	let div;
     	let t0;
     	let t1;
     	let div_class_value;
     	let current;
-    	let if_block0 = (/*responseMetadata*/ ctx[8].title != null && /*responseMetadata*/ ctx[8].title != "" || /*metadata*/ ctx[5].label != null && /*metadata*/ ctx[5].label != "") && create_if_block_5(ctx);
-    	let if_block1 = /*initialized*/ ctx[1] && /*visibleInputFields*/ ctx[10].length > 0 && create_if_block_3$2(ctx);
-    	let if_block2 = /*outputFieldValues*/ ctx[9] != null && create_if_block_1$5(ctx);
+    	let if_block0 = /*title*/ ctx[15] != null && /*title*/ ctx[15] != "" && create_if_block_5(ctx);
+    	let if_block1 = /*initialized*/ ctx[1] && /*visibleInputFields*/ ctx[9].length > 0 && create_if_block_3$2(ctx);
+    	let if_block2 = /*outputFieldValues*/ ctx[8] != null && create_if_block_1$5(ctx);
 
     	const block = {
     		c: function create() {
@@ -28570,8 +28567,8 @@
     			if (if_block1) if_block1.c();
     			t1 = space();
     			if (if_block2) if_block2.c();
-    			attr_dev(div, "class", div_class_value = "inputs-horizontal-one-column " + /*cssClass*/ ctx[12] + " jf panel panel-default");
-    			add_location(div, file$8, 224, 1, 6188);
+    			attr_dev(div, "class", div_class_value = "inputs-horizontal-one-column " + /*cssClass*/ ctx[11] + " jf panel panel-default");
+    			add_location(div, file$8, 226, 1, 6358);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -28583,11 +28580,11 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (/*responseMetadata*/ ctx[8].title != null && /*responseMetadata*/ ctx[8].title != "" || /*metadata*/ ctx[5].label != null && /*metadata*/ ctx[5].label != "") {
+    			if (/*title*/ ctx[15] != null && /*title*/ ctx[15] != "") {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
 
-    					if (dirty[0] & /*responseMetadata, metadata*/ 288) {
+    					if (dirty[0] & /*title*/ 32768) {
     						transition_in(if_block0, 1);
     					}
     				} else {
@@ -28606,11 +28603,11 @@
     				check_outros();
     			}
 
-    			if (/*initialized*/ ctx[1] && /*visibleInputFields*/ ctx[10].length > 0) {
+    			if (/*initialized*/ ctx[1] && /*visibleInputFields*/ ctx[9].length > 0) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
 
-    					if (dirty[0] & /*initialized, visibleInputFields*/ 1026) {
+    					if (dirty[0] & /*initialized, visibleInputFields*/ 514) {
     						transition_in(if_block1, 1);
     					}
     				} else {
@@ -28629,11 +28626,11 @@
     				check_outros();
     			}
 
-    			if (/*outputFieldValues*/ ctx[9] != null) {
+    			if (/*outputFieldValues*/ ctx[8] != null) {
     				if (if_block2) {
     					if_block2.p(ctx, dirty);
 
-    					if (dirty[0] & /*outputFieldValues*/ 512) {
+    					if (dirty[0] & /*outputFieldValues*/ 256) {
     						transition_in(if_block2, 1);
     					}
     				} else {
@@ -28652,7 +28649,7 @@
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*cssClass*/ 4096 && div_class_value !== (div_class_value = "inputs-horizontal-one-column " + /*cssClass*/ ctx[12] + " jf panel panel-default")) {
+    			if (!current || dirty[0] & /*cssClass*/ 2048 && div_class_value !== (div_class_value = "inputs-horizontal-one-column " + /*cssClass*/ ctx[11] + " jf panel panel-default")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -28681,36 +28678,31 @@
     		block,
     		id: create_if_block$7.name,
     		type: "if",
-    		source: "(224:0) {#if initialized}",
+    		source: "(226:0) {#if initialized}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (226:2) {#if (responseMetadata.title != null && responseMetadata.title != '') || (metadata.label != null && metadata.label != '')}
+    // (228:2) {#if (title != null && title != '')}
     function create_if_block_5(ctx) {
     	let div1;
     	let h3;
-
-    	let t0_value = /*$_*/ ctx[16](`${/*form*/ ctx[2].metadata.id}.description`, {
-    		default: /*responseMetadata*/ ctx[8].title || /*metadata*/ ctx[5].label
-    	}) + "";
-
     	let t0;
     	let t1;
     	let t2;
     	let t3;
     	let div0;
     	let current;
-    	let if_block0 = /*responseMetadata*/ ctx[8].status && create_if_block_7(ctx);
-    	let if_block1 = /*documentation*/ ctx[14] && create_if_block_6(ctx);
+    	let if_block0 = /*responseMetadata*/ ctx[7].metadata != null && /*responseMetadata*/ ctx[7].metadata.status && create_if_block_7(ctx);
+    	let if_block1 = /*documentation*/ ctx[13] && create_if_block_6(ctx);
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
     			h3 = element("h3");
-    			t0 = text(t0_value);
+    			t0 = text(/*title*/ ctx[15]);
     			t1 = space();
     			if (if_block0) if_block0.c();
     			t2 = space();
@@ -28718,11 +28710,11 @@
     			t3 = space();
     			div0 = element("div");
     			attr_dev(h3, "class", "text-center");
-    			add_location(h3, file$8, 227, 4, 6426);
+    			add_location(h3, file$8, 229, 4, 6510);
     			attr_dev(div0, "class", "border-bottom col-md-12");
-    			add_location(div0, file$8, 254, 4, 7259);
+    			add_location(div0, file$8, 254, 4, 7352);
     			attr_dev(div1, "class", "form-header");
-    			add_location(div1, file$8, 226, 3, 6395);
+    			add_location(div1, file$8, 228, 3, 6479);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -28737,11 +28729,9 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if ((!current || dirty[0] & /*$_, form, responseMetadata, metadata*/ 65828) && t0_value !== (t0_value = /*$_*/ ctx[16](`${/*form*/ ctx[2].metadata.id}.description`, {
-    				default: /*responseMetadata*/ ctx[8].title || /*metadata*/ ctx[5].label
-    			}) + "")) set_data_dev(t0, t0_value);
+    			if (!current || dirty[0] & /*title*/ 32768) set_data_dev(t0, /*title*/ ctx[15]);
 
-    			if (/*responseMetadata*/ ctx[8].status) {
+    			if (/*responseMetadata*/ ctx[7].metadata != null && /*responseMetadata*/ ctx[7].metadata.status) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
@@ -28754,11 +28744,11 @@
     				if_block0 = null;
     			}
 
-    			if (/*documentation*/ ctx[14]) {
+    			if (/*documentation*/ ctx[13]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
 
-    					if (dirty[0] & /*documentation*/ 16384) {
+    					if (dirty[0] & /*documentation*/ 8192) {
     						transition_in(if_block1, 1);
     					}
     				} else {
@@ -28797,20 +28787,20 @@
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(226:2) {#if (responseMetadata.title != null && responseMetadata.title != '') || (metadata.label != null && metadata.label != '')}",
+    		source: "(228:2) {#if (title != null && title != '')}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (233:4) {#if responseMetadata.status}
+    // (233:4) {#if responseMetadata.metadata != null && responseMetadata.metadata.status}
     function create_if_block_7(ctx) {
     	let div;
     	let t;
     	let div_class_value;
-    	let if_block0 = /*responseMetadata*/ ctx[8].status.heading != null && create_if_block_9(ctx);
-    	let if_block1 = /*responseMetadata*/ ctx[8].status.message != null && create_if_block_8(ctx);
+    	let if_block0 = /*responseMetadata*/ ctx[7].metadata.status.heading != null && create_if_block_9(ctx);
+    	let if_block1 = /*responseMetadata*/ ctx[7].metadata.status.message != null && create_if_block_8(ctx);
 
     	const block = {
     		c: function create() {
@@ -28818,8 +28808,8 @@
     			if (if_block0) if_block0.c();
     			t = space();
     			if (if_block1) if_block1.c();
-    			attr_dev(div, "class", div_class_value = "alert " + /*responseMetadata*/ ctx[8].status.style);
-    			add_location(div, file$8, 233, 5, 6618);
+    			attr_dev(div, "class", div_class_value = "alert " + /*responseMetadata*/ ctx[7].metadata.status.style);
+    			add_location(div, file$8, 233, 5, 6648);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -28828,7 +28818,7 @@
     			if (if_block1) if_block1.m(div, null);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*responseMetadata*/ ctx[8].status.heading != null) {
+    			if (/*responseMetadata*/ ctx[7].metadata.status.heading != null) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
@@ -28841,7 +28831,7 @@
     				if_block0 = null;
     			}
 
-    			if (/*responseMetadata*/ ctx[8].status.message != null) {
+    			if (/*responseMetadata*/ ctx[7].metadata.status.message != null) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -28854,7 +28844,7 @@
     				if_block1 = null;
     			}
 
-    			if (dirty[0] & /*responseMetadata*/ 256 && div_class_value !== (div_class_value = "alert " + /*responseMetadata*/ ctx[8].status.style)) {
+    			if (dirty[0] & /*responseMetadata*/ 128 && div_class_value !== (div_class_value = "alert " + /*responseMetadata*/ ctx[7].metadata.status.style)) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -28869,20 +28859,20 @@
     		block,
     		id: create_if_block_7.name,
     		type: "if",
-    		source: "(233:4) {#if responseMetadata.status}",
+    		source: "(233:4) {#if responseMetadata.metadata != null && responseMetadata.metadata.status}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (235:6) {#if responseMetadata.status.heading != null}
+    // (235:6) {#if responseMetadata.metadata.status.heading != null}
     function create_if_block_9(ctx) {
     	let div;
     	let t0;
-    	let t1_value = /*responseMetadata*/ ctx[8].status.heading + "";
+    	let t1_value = /*responseMetadata*/ ctx[7].metadata.status.heading + "";
     	let t1;
-    	let if_block = /*responseMetadata*/ ctx[8].status.icon != null && create_if_block_10(ctx);
+    	let if_block = /*responseMetadata*/ ctx[7].metadata.status.icon != null && create_if_block_10(ctx);
 
     	const block = {
     		c: function create() {
@@ -28891,7 +28881,7 @@
     			t0 = space();
     			t1 = text(t1_value);
     			attr_dev(div, "class", "heading");
-    			add_location(div, file$8, 235, 7, 6731);
+    			add_location(div, file$8, 235, 7, 6779);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -28900,7 +28890,7 @@
     			append_dev(div, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*responseMetadata*/ ctx[8].status.icon != null) {
+    			if (/*responseMetadata*/ ctx[7].metadata.status.icon != null) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -28913,7 +28903,7 @@
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*responseMetadata*/ 256 && t1_value !== (t1_value = /*responseMetadata*/ ctx[8].status.heading + "")) set_data_dev(t1, t1_value);
+    			if (dirty[0] & /*responseMetadata*/ 128 && t1_value !== (t1_value = /*responseMetadata*/ ctx[7].metadata.status.heading + "")) set_data_dev(t1, t1_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -28925,29 +28915,29 @@
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(235:6) {#if responseMetadata.status.heading != null}",
+    		source: "(235:6) {#if responseMetadata.metadata.status.heading != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (237:8) {#if responseMetadata.status.icon != null}
+    // (237:8) {#if responseMetadata.metadata.status.icon != null}
     function create_if_block_10(ctx) {
     	let span;
-    	let raw_value = /*responseMetadata*/ ctx[8].status.icon + "";
+    	let raw_value = /*responseMetadata*/ ctx[7].metadata.status.icon + "";
 
     	const block = {
     		c: function create() {
     			span = element("span");
-    			add_location(span, file$8, 237, 9, 6815);
+    			add_location(span, file$8, 237, 9, 6872);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
     			span.innerHTML = raw_value;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*responseMetadata*/ 256 && raw_value !== (raw_value = /*responseMetadata*/ ctx[8].status.icon + "")) span.innerHTML = raw_value;		},
+    			if (dirty[0] & /*responseMetadata*/ 128 && raw_value !== (raw_value = /*responseMetadata*/ ctx[7].metadata.status.icon + "")) span.innerHTML = raw_value;		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(span);
     		}
@@ -28957,30 +28947,30 @@
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(237:8) {#if responseMetadata.status.icon != null}",
+    		source: "(237:8) {#if responseMetadata.metadata.status.icon != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (243:6) {#if responseMetadata.status.message != null}
+    // (243:6) {#if responseMetadata.metadata.status.message != null}
     function create_if_block_8(ctx) {
     	let div;
-    	let raw_value = /*responseMetadata*/ ctx[8].status.message + "";
+    	let raw_value = /*responseMetadata*/ ctx[7].metadata.status.message + "";
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "body");
-    			add_location(div, file$8, 243, 7, 7012);
+    			add_location(div, file$8, 243, 7, 7096);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			div.innerHTML = raw_value;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*responseMetadata*/ 256 && raw_value !== (raw_value = /*responseMetadata*/ ctx[8].status.message + "")) div.innerHTML = raw_value;		},
+    			if (dirty[0] & /*responseMetadata*/ 128 && raw_value !== (raw_value = /*responseMetadata*/ ctx[7].metadata.status.message + "")) div.innerHTML = raw_value;		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     		}
@@ -28990,7 +28980,7 @@
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(243:6) {#if responseMetadata.status.message != null}",
+    		source: "(243:6) {#if responseMetadata.metadata.status.message != null}",
     		ctx
     	});
 
@@ -29001,7 +28991,7 @@
     function create_if_block_6(ctx) {
     	let each_1_anchor;
     	let current;
-    	let each_value_2 = /*documentation*/ ctx[14];
+    	let each_value_2 = /*documentation*/ ctx[13];
     	validate_each_argument(each_value_2);
     	let each_blocks = [];
 
@@ -29030,8 +29020,8 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*documentation*/ 16384) {
-    				each_value_2 = /*documentation*/ ctx[14];
+    			if (dirty[0] & /*documentation*/ 8192) {
+    				each_value_2 = /*documentation*/ ctx[13];
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -29113,7 +29103,7 @@
     		},
     		p: function update(ctx, dirty) {
     			const help_changes = {};
-    			if (dirty[0] & /*documentation*/ 16384) help_changes.data = /*document*/ ctx[40];
+    			if (dirty[0] & /*documentation*/ 8192) help_changes.data = /*document*/ ctx[40];
     			help.$set(help_changes);
     		},
     		i: function intro(local) {
@@ -29152,8 +29142,8 @@
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block = /*initiallyHideForm*/ ctx[13] && create_if_block_4$1(ctx);
-    	let each_value_1 = /*visibleInputFields*/ ctx[10];
+    	let if_block = /*initiallyHideForm*/ ctx[12] && create_if_block_4$1(ctx);
+    	let each_value_1 = /*visibleInputFields*/ ctx[9];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -29183,14 +29173,14 @@
     			button.disabled = /*disabled*/ ctx[0];
     			attr_dev(button, "tabindex", "-1");
     			attr_dev(button, "class", "btn btn-default");
-    			add_location(button, file$8, 277, 6, 7974);
+    			add_location(button, file$8, 277, 6, 8067);
     			attr_dev(div0, "class", "full-width");
     			set_style(div0, "margin-bottom", "10px");
-    			add_location(div0, file$8, 276, 5, 7913);
-    			attr_dev(form_1, "class", /*hideForm*/ ctx[15]);
-    			add_location(form_1, file$8, 265, 4, 7567);
+    			add_location(div0, file$8, 276, 5, 8006);
+    			attr_dev(form_1, "class", /*hideForm*/ ctx[14]);
+    			add_location(form_1, file$8, 265, 4, 7660);
     			attr_dev(div1, "class", "form-body");
-    			add_location(div1, file$8, 259, 3, 7379);
+    			add_location(div1, file$8, 259, 3, 7472);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -29205,7 +29195,7 @@
     			append_dev(form_1, t1);
     			append_dev(form_1, div0);
     			append_dev(div0, button);
-    			button.innerHTML = /*submitButtonLabel*/ ctx[11];
+    			button.innerHTML = /*submitButtonLabel*/ ctx[10];
     			current = true;
 
     			if (!mounted) {
@@ -29214,7 +29204,7 @@
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (/*initiallyHideForm*/ ctx[13]) {
+    			if (/*initiallyHideForm*/ ctx[12]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -29227,8 +29217,8 @@
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*visibleInputFields, app, tabindex, form, __this*/ 132124) {
-    				each_value_1 = /*visibleInputFields*/ ctx[10];
+    			if (dirty[0] & /*visibleInputFields, app, tabindex, form, __this*/ 66076) {
+    				each_value_1 = /*visibleInputFields*/ ctx[9];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -29255,13 +29245,13 @@
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*submitButtonLabel*/ 2048) button.innerHTML = /*submitButtonLabel*/ ctx[11];
+    			if (!current || dirty[0] & /*submitButtonLabel*/ 1024) button.innerHTML = /*submitButtonLabel*/ ctx[10];
     			if (!current || dirty[0] & /*disabled*/ 1) {
     				prop_dev(button, "disabled", /*disabled*/ ctx[0]);
     			}
 
-    			if (!current || dirty[0] & /*hideForm*/ 32768) {
-    				attr_dev(form_1, "class", /*hideForm*/ ctx[15]);
+    			if (!current || dirty[0] & /*hideForm*/ 16384) {
+    				attr_dev(form_1, "class", /*hideForm*/ ctx[14]);
     			}
     		},
     		i: function intro(local) {
@@ -29313,22 +29303,22 @@
     		c: function create() {
     			div = element("div");
     			span = element("span");
-    			add_location(span, file$8, 262, 6, 7499);
+    			add_location(span, file$8, 262, 6, 7592);
     			attr_dev(div, "class", "hideForm-header");
-    			add_location(div, file$8, 261, 5, 7438);
+    			add_location(div, file$8, 261, 5, 7531);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, span);
-    			span.innerHTML = /*initiallyHideForm*/ ctx[13];
+    			span.innerHTML = /*initiallyHideForm*/ ctx[12];
 
     			if (!mounted) {
-    				dispose = listen_dev(div, "click", /*toggleForm*/ ctx[7](), false, false, false);
+    				dispose = listen_dev(div, "click", /*toggleForm*/ ctx[6](), false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*initiallyHideForm*/ 8192) span.innerHTML = /*initiallyHideForm*/ ctx[13];		},
+    			if (dirty[0] & /*initiallyHideForm*/ 4096) span.innerHTML = /*initiallyHideForm*/ ctx[12];		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			mounted = false;
@@ -29358,7 +29348,7 @@
     				app: /*app*/ ctx[3],
     				tabindex: /*tabindex*/ ctx[4] * 100 + /*inputField*/ ctx[37].metadata.orderIndex,
     				form: /*form*/ ctx[2],
-    				formComponent: /*__this*/ ctx[17]
+    				formComponent: /*__this*/ ctx[16]
     			},
     			$$inline: true
     		});
@@ -29373,9 +29363,9 @@
     		},
     		p: function update(ctx, dirty) {
     			const forminput_changes = {};
-    			if (dirty[0] & /*visibleInputFields*/ 1024) forminput_changes.field = /*inputField*/ ctx[37];
+    			if (dirty[0] & /*visibleInputFields*/ 512) forminput_changes.field = /*inputField*/ ctx[37];
     			if (dirty[0] & /*app*/ 8) forminput_changes.app = /*app*/ ctx[3];
-    			if (dirty[0] & /*tabindex, visibleInputFields*/ 1040) forminput_changes.tabindex = /*tabindex*/ ctx[4] * 100 + /*inputField*/ ctx[37].metadata.orderIndex;
+    			if (dirty[0] & /*tabindex, visibleInputFields*/ 528) forminput_changes.tabindex = /*tabindex*/ ctx[4] * 100 + /*inputField*/ ctx[37].metadata.orderIndex;
     			if (dirty[0] & /*form*/ 4) forminput_changes.form = /*form*/ ctx[2];
     			forminput.$set(forminput_changes);
     		},
@@ -29422,7 +29412,7 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*visibleInputFields*/ 1024 && safe_not_equal(previous_key, previous_key = /*inputField*/ ctx[37])) {
+    			if (dirty[0] & /*visibleInputFields*/ 512 && safe_not_equal(previous_key, previous_key = /*inputField*/ ctx[37])) {
     				group_outros();
     				transition_out(key_block, 1, 1, noop);
     				check_outros();
@@ -29464,7 +29454,7 @@
     function create_if_block_1$5(ctx) {
     	let div;
     	let current;
-    	let each_value = /*outputFieldValues*/ ctx[9];
+    	let each_value = /*outputFieldValues*/ ctx[8];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -29485,7 +29475,7 @@
     			}
 
     			attr_dev(div, "class", "response");
-    			add_location(div, file$8, 288, 3, 8199);
+    			add_location(div, file$8, 288, 3, 8292);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -29497,8 +29487,8 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*outputFieldValues, app, form, __this*/ 131596) {
-    				each_value = /*outputFieldValues*/ ctx[9];
+    			if (dirty[0] & /*outputFieldValues, app, form, __this*/ 65804) {
+    				each_value = /*outputFieldValues*/ ctx[8];
     				validate_each_argument(each_value);
     				let i;
 
@@ -29570,7 +29560,7 @@
     				field: /*outputField*/ ctx[34],
     				app: /*app*/ ctx[3],
     				form: /*form*/ ctx[2],
-    				parent: /*__this*/ ctx[17]
+    				parent: /*__this*/ ctx[16]
     			},
     			$$inline: true
     		});
@@ -29585,7 +29575,7 @@
     		},
     		p: function update(ctx, dirty) {
     			const formoutput_changes = {};
-    			if (dirty[0] & /*outputFieldValues*/ 512) formoutput_changes.field = /*outputField*/ ctx[34];
+    			if (dirty[0] & /*outputFieldValues*/ 256) formoutput_changes.field = /*outputField*/ ctx[34];
     			if (dirty[0] & /*app*/ 8) formoutput_changes.app = /*app*/ ctx[3];
     			if (dirty[0] & /*form*/ 4) formoutput_changes.form = /*form*/ ctx[2];
     			formoutput.$set(formoutput_changes);
@@ -29633,13 +29623,13 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*outputFieldValues*/ 512) show_if = /*outputField*/ ctx[34].metadata.hidden == false && !(/*outputField*/ ctx[34].metadata.getCustomProperty("hideIfNull") === true && /*outputField*/ ctx[34].data === null);
+    			if (dirty[0] & /*outputFieldValues*/ 256) show_if = /*outputField*/ ctx[34].metadata.hidden == false && !(/*outputField*/ ctx[34].metadata.getCustomProperty("hideIfNull") === true && /*outputField*/ ctx[34].data === null);
 
     			if (show_if) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
 
-    					if (dirty[0] & /*outputFieldValues*/ 512) {
+    					if (dirty[0] & /*outputFieldValues*/ 256) {
     						transition_in(if_block, 1);
     					}
     				} else {
@@ -29755,9 +29745,6 @@
     let globalTabindex = 1;
 
     function instance$8($$self, $$props, $$invalidate) {
-    	let $_;
-    	validate_store(nn, "_");
-    	component_subscribe($$self, nn, $$value => $$invalidate(16, $_ = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Form", slots, []);
     	let { form } = $$props;
@@ -29779,6 +29766,7 @@
     	let initiallyHideForm;
     	let documentation;
     	let hideForm;
+    	let title = metadata.label;
     	const handlers = [];
 
     	const __this = {
@@ -29793,16 +29781,18 @@
     	};
 
     	function destoryOutputs() {
-    		$$invalidate(9, outputFieldValues = null);
+    		$$invalidate(8, outputFieldValues = null);
     	}
 
     	function renderResponse(response) {
-    		$$invalidate(9, outputFieldValues = null);
-    		$$invalidate(9, outputFieldValues = form.outputs);
-    		$$invalidate(8, responseMetadata = form.metadata);
+    		$$invalidate(8, outputFieldValues = null);
+    		$$invalidate(8, outputFieldValues = form.outputs);
+    		$$invalidate(7, responseMetadata = null);
+    		$$invalidate(7, responseMetadata = form.metadata);
 
-    		if (parent == null && response.metadata.title != null) {
+    		if (parent == null && response.metadata != null && response.metadata.title != null) {
     			document.title = response.metadata.title;
+    			$$invalidate(15, title = response.metadata.title);
     		}
     	}
 
@@ -29876,14 +29866,14 @@
 
     	function init() {
     		if (!initialized) {
-    			$$invalidate(10, visibleInputFields = form.inputs.filter(t => t != null && t.metadata.hidden === false));
+    			$$invalidate(9, visibleInputFields = form.inputs.filter(t => t != null && t.metadata.hidden === false));
     			$$invalidate(1, initialized = true);
-    			$$invalidate(11, submitButtonLabel = form.metadata.getCustomProperty("submitButtonLabel") || "Submit");
-    			$$invalidate(12, cssClass = form.metadata.getCustomProperty("cssClass") || "");
-    			$$invalidate(13, initiallyHideForm = form.metadata.getCustomProperty("initiallyHideForm") || null);
-    			$$invalidate(14, documentation = form.metadata.getCustomProperty("documentation") || null);
+    			$$invalidate(10, submitButtonLabel = form.metadata.getCustomProperty("submitButtonLabel") || "Submit");
+    			$$invalidate(11, cssClass = form.metadata.getCustomProperty("cssClass") || "");
+    			$$invalidate(12, initiallyHideForm = form.metadata.getCustomProperty("initiallyHideForm") || null);
+    			$$invalidate(13, documentation = form.metadata.getCustomProperty("documentation") || null);
 
-    			$$invalidate(15, hideForm = form.metadata.getCustomProperty("initiallyHideForm") != null
+    			$$invalidate(14, hideForm = form.metadata.getCustomProperty("initiallyHideForm") != null
     			? "hidden"
     			: null);
 
@@ -29903,7 +29893,7 @@
     			openForms.push(form);
 
     			if (parent == null) {
-    				if (responseMetadata.title == null && form.metadata.label != null) {
+    				if ((responseMetadata.metadata == null || responseMetadata.metadata.title == null) && form.metadata.label != null) {
     					document.title = form.metadata.label;
     				}
     			}
@@ -29913,9 +29903,9 @@
     	function toggleForm() {
     		// eslint-disable-next-line no-console
     		if (hideForm.hideForm == null) {
-    			$$invalidate(15, hideForm = "hidden");
+    			$$invalidate(14, hideForm = "hidden");
     		} else {
-    			$$invalidate(15, hideForm = null);
+    			$$invalidate(14, hideForm = null);
     		}
     	}
 
@@ -29942,8 +29932,8 @@
 
     	function enableForm() {
     		$$invalidate(0, disabled = false);
-    		$$invalidate(10, visibleInputFields = []);
-    		$$invalidate(10, visibleInputFields = form.inputs.filter(t => t != null && t.metadata.hidden === false));
+    		$$invalidate(9, visibleInputFields = []);
+    		$$invalidate(9, visibleInputFields = form.inputs.filter(t => t != null && t.metadata.hidden === false));
     	}
 
     	function getInputComponent(inputId) {
@@ -29974,10 +29964,10 @@
     		if ("app" in $$props) $$invalidate(3, app = $$props.app);
     		if ("disabled" in $$props) $$invalidate(0, disabled = $$props.disabled);
     		if ("tabindex" in $$props) $$invalidate(4, tabindex = $$props.tabindex);
-    		if ("useUrl" in $$props) $$invalidate(18, useUrl = $$props.useUrl);
-    		if ("parent" in $$props) $$invalidate(19, parent = $$props.parent);
+    		if ("useUrl" in $$props) $$invalidate(17, useUrl = $$props.useUrl);
+    		if ("parent" in $$props) $$invalidate(18, parent = $$props.parent);
     		if ("initialized" in $$props) $$invalidate(1, initialized = $$props.initialized);
-    		if ("metadata" in $$props) $$invalidate(5, metadata = $$props.metadata);
+    		if ("metadata" in $$props) $$invalidate(19, metadata = $$props.metadata);
     	};
 
     	$$self.$capture_state = () => ({
@@ -30007,6 +29997,7 @@
     		initiallyHideForm,
     		documentation,
     		hideForm,
+    		title,
     		handlers,
     		__this,
     		destoryOutputs,
@@ -30019,8 +30010,7 @@
     		toggleForm,
     		bindEventHandlersToCustomEvents,
     		enableForm,
-    		getInputComponent,
-    		$_
+    		getInputComponent
     	});
 
     	$$self.$inject_state = $$props => {
@@ -30028,21 +30018,22 @@
     		if ("app" in $$props) $$invalidate(3, app = $$props.app);
     		if ("disabled" in $$props) $$invalidate(0, disabled = $$props.disabled);
     		if ("tabindex" in $$props) $$invalidate(4, tabindex = $$props.tabindex);
-    		if ("useUrl" in $$props) $$invalidate(18, useUrl = $$props.useUrl);
-    		if ("parent" in $$props) $$invalidate(19, parent = $$props.parent);
+    		if ("useUrl" in $$props) $$invalidate(17, useUrl = $$props.useUrl);
+    		if ("parent" in $$props) $$invalidate(18, parent = $$props.parent);
     		if ("initialized" in $$props) $$invalidate(1, initialized = $$props.initialized);
-    		if ("metadata" in $$props) $$invalidate(5, metadata = $$props.metadata);
-    		if ("responseMetadata" in $$props) $$invalidate(8, responseMetadata = $$props.responseMetadata);
+    		if ("metadata" in $$props) $$invalidate(19, metadata = $$props.metadata);
+    		if ("responseMetadata" in $$props) $$invalidate(7, responseMetadata = $$props.responseMetadata);
     		if ("inputs" in $$props) inputs = $$props.inputs;
     		if ("dispatch" in $$props) dispatch = $$props.dispatch;
     		if ("openForms" in $$props) openForms = $$props.openForms;
-    		if ("outputFieldValues" in $$props) $$invalidate(9, outputFieldValues = $$props.outputFieldValues);
-    		if ("visibleInputFields" in $$props) $$invalidate(10, visibleInputFields = $$props.visibleInputFields);
-    		if ("submitButtonLabel" in $$props) $$invalidate(11, submitButtonLabel = $$props.submitButtonLabel);
-    		if ("cssClass" in $$props) $$invalidate(12, cssClass = $$props.cssClass);
-    		if ("initiallyHideForm" in $$props) $$invalidate(13, initiallyHideForm = $$props.initiallyHideForm);
-    		if ("documentation" in $$props) $$invalidate(14, documentation = $$props.documentation);
-    		if ("hideForm" in $$props) $$invalidate(15, hideForm = $$props.hideForm);
+    		if ("outputFieldValues" in $$props) $$invalidate(8, outputFieldValues = $$props.outputFieldValues);
+    		if ("visibleInputFields" in $$props) $$invalidate(9, visibleInputFields = $$props.visibleInputFields);
+    		if ("submitButtonLabel" in $$props) $$invalidate(10, submitButtonLabel = $$props.submitButtonLabel);
+    		if ("cssClass" in $$props) $$invalidate(11, cssClass = $$props.cssClass);
+    		if ("initiallyHideForm" in $$props) $$invalidate(12, initiallyHideForm = $$props.initiallyHideForm);
+    		if ("documentation" in $$props) $$invalidate(13, documentation = $$props.documentation);
+    		if ("hideForm" in $$props) $$invalidate(14, hideForm = $$props.hideForm);
+    		if ("title" in $$props) $$invalidate(15, title = $$props.title);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -30055,7 +30046,6 @@
     		form,
     		app,
     		tabindex,
-    		metadata,
     		submit,
     		toggleForm,
     		responseMetadata,
@@ -30066,10 +30056,11 @@
     		initiallyHideForm,
     		documentation,
     		hideForm,
-    		$_,
+    		title,
     		__this,
     		useUrl,
     		parent,
+    		metadata,
     		destoryOutputs,
     		renderResponse,
     		reloadTopForm,
@@ -30098,18 +30089,18 @@
     				app: 3,
     				disabled: 0,
     				tabindex: 4,
-    				useUrl: 18,
-    				parent: 19,
+    				useUrl: 17,
+    				parent: 18,
     				initialized: 1,
-    				metadata: 5,
+    				metadata: 19,
     				destoryOutputs: 20,
     				renderResponse: 21,
     				reloadTopForm: 22,
     				reloadAllForms: 23,
     				fireAndBubbleUp: 24,
-    				submit: 6,
+    				submit: 5,
     				init: 25,
-    				toggleForm: 7,
+    				toggleForm: 6,
     				bindEventHandlersToCustomEvents: 26,
     				enableForm: 27,
     				getInputComponent: 28
@@ -30135,7 +30126,7 @@
     			console.warn("<Form> was created without expected prop 'app'");
     		}
 
-    		if (/*metadata*/ ctx[5] === undefined && !("metadata" in props)) {
+    		if (/*metadata*/ ctx[19] === undefined && !("metadata" in props)) {
     			console.warn("<Form> was created without expected prop 'metadata'");
     		}
     	}
@@ -30245,7 +30236,7 @@
     	}
 
     	get submit() {
-    		return this.$$.ctx[6];
+    		return this.$$.ctx[5];
     	}
 
     	set submit(value) {
@@ -30261,7 +30252,7 @@
     	}
 
     	get toggleForm() {
-    		return this.$$.ctx[7];
+    		return this.$$.ctx[6];
     	}
 
     	set toggleForm(value) {
@@ -30325,7 +30316,7 @@
             this.stateRouter.addState({
                 name: "form",
                 data: {},
-                route: "/uimf-form/:_id",
+                route: "/form/:_id",
                 template: Form,
                 // Force route reload when value of _d parameter changes. This is
                 // needed because by default the router will not reload route even if
@@ -30357,7 +30348,7 @@
                 this.stateRouter.evaluateCurrentRoute("form", { _id: "login" });
             }
             else {
-                this.stateRouter.evaluateCurrentRoute("home");
+                this.stateRouter.evaluateCurrentRoute("form", { _id: "dashboard" });
             }
         }
         AppRouter.prototype.fire = function (eventName, params) {
@@ -30538,7 +30529,7 @@
         return FormResponseMetadata;
     }());
 
-    var uimfcore = /*#__PURE__*/Object.freeze({
+    var umf = /*#__PURE__*/Object.freeze({
         __proto__: null,
         FormMetadata: FormMetadata,
         FormLink: FormLink$1,
@@ -30642,8 +30633,8 @@
                 return response.json();
             })
                 .then(function (invokeFormResponses) {
-                if (invokeFormResponses.Exception != null) {
-                    _this.fire("request:completed", invokeFormResponses.Message);
+                if (invokeFormResponses.error != null) {
+                    _this.fire("request:completed", invokeFormResponses.error);
                     return null;
                 }
                 invokeFormResponses[0].data.metadata =
@@ -31261,7 +31252,7 @@
         return Menu;
     }());
 
-    var umf = /*#__PURE__*/Object.freeze({
+    var umf$1 = /*#__PURE__*/Object.freeze({
         __proto__: null,
         UmfServer: UmfServer,
         UmfApp: UmfApp,
@@ -40387,7 +40378,7 @@
     		}
 
     		formElement.addEventListener("submit", e => {
-    			if (field.metadata.required && a.getValue().length === 0) {
+    			if (field.metadata.required && field.value.value == null) {
     				e.preventDefault();
     				alertify$1.error("The field " + field.metadata.label + " is required");
     			}
@@ -61231,6 +61222,7 @@
     			t0 = space();
     			strong = element("strong");
     			t1 = text(t1_value);
+    			set_style(strong, "font-size", "16px");
     			add_location(strong, file$m, 22, 4, 663);
     			attr_dev(div, "class", "heading");
     			add_location(div, file$m, 18, 3, 547);
@@ -61316,7 +61308,8 @@
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "body");
-    			add_location(div, file$m, 26, 3, 761);
+    			set_style(div, "font-size", "16px");
+    			add_location(div, file$m, 26, 3, 784);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -61363,12 +61356,12 @@
     			strong = element("strong");
     			small = element("small");
     			t2 = text(t2_value);
-    			add_location(div0, file$m, 33, 4, 905);
-    			add_location(small, file$m, 35, 13, 975);
-    			add_location(strong, file$m, 35, 5, 967);
-    			add_location(div1, file$m, 34, 4, 955);
+    			add_location(div0, file$m, 33, 4, 952);
+    			add_location(small, file$m, 35, 13, 1022);
+    			add_location(strong, file$m, 35, 5, 1014);
+    			add_location(div1, file$m, 34, 4, 1002);
     			attr_dev(div2, "class", "dateview");
-    			add_location(div2, file$m, 32, 3, 877);
+    			add_location(div2, file$m, 32, 3, 924);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -63191,10 +63184,9 @@
     }
 
     /* src\core\ui\outputs\Documentation.svelte generated by Svelte v3.29.4 */
-
     const file$q = "src\\core\\ui\\outputs\\Documentation.svelte";
 
-    // (183:2) {#if field.data != null && field.data.value != null}
+    // (73:3) {#if field.data != null && field.data.value != null}
     function create_if_block$j(ctx) {
     	let html_tag;
     	let raw_value = /*field*/ ctx[0].data.value + "";
@@ -63222,7 +63214,7 @@
     		block,
     		id: create_if_block$j.name,
     		type: "if",
-    		source: "(183:2) {#if field.data != null && field.data.value != null}",
+    		source: "(73:3) {#if field.data != null && field.data.value != null}",
     		ctx
     	});
 
@@ -63230,6 +63222,7 @@
     }
 
     function create_fragment$q(ctx) {
+    	let div3;
     	let div2;
     	let div0;
     	let t;
@@ -63238,23 +63231,27 @@
 
     	const block = {
     		c: function create() {
+    			div3 = element("div");
     			div2 = element("div");
     			div0 = element("div");
     			if (if_block) if_block.c();
     			t = space();
     			div1 = element("div");
-    			attr_dev(div0, "class", "content svelte-asbmjj");
-    			add_location(div0, file$q, 181, 1, 3272);
-    			attr_dev(div1, "class", "table-of-contents svelte-asbmjj");
-    			add_location(div1, file$q, 187, 1, 3421);
-    			attr_dev(div2, "class", "wrapper svelte-asbmjj");
-    			add_location(div2, file$q, 180, 0, 3248);
+    			attr_dev(div0, "class", "content");
+    			add_location(div0, file$q, 71, 2, 1767);
+    			attr_dev(div1, "class", "table-of-contents");
+    			add_location(div1, file$q, 77, 2, 1921);
+    			attr_dev(div2, "class", "wrapper");
+    			add_location(div2, file$q, 70, 1, 1742);
+    			attr_dev(div3, "class", "documentation");
+    			add_location(div3, file$q, 69, 0, 1712);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div2);
     			append_dev(div2, div0);
     			if (if_block) if_block.m(div0, null);
     			/*div0_binding*/ ctx[3](div0);
@@ -63279,7 +63276,7 @@
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div3);
     			if (if_block) if_block.d();
     			/*div0_binding*/ ctx[3](null);
     			/*div1_binding*/ ctx[4](null);
@@ -63307,52 +63304,54 @@
     	let result = "<ul>";
     	let counter = 0;
 
-    	content.querySelectorAll("h1, h2, h3").forEach(e => {
-    		e.setAttribute("id", counter);
-    		const openLevel = e.tagName.match(/\d/g)[0];
+    	onMount(() => {
+    		content.querySelectorAll("h1, h2, h3").forEach(e => {
+    			e.setAttribute("id", counter);
+    			const openLevel = e.tagName.match(/\d/g)[0];
 
-    		if (openLevel > closeLevel) {
-    			result += `${"<ul><li><a data-target='"}${counter}'>${e.innerText}</a>`;
-    		} else if (openLevel < closeLevel) {
-    			const closingTags = Array(closeLevel - openLevel).fill().map(() => "</li></ul>").join("");
-    			result += `${closingTags}</li><li><a data-target='${counter}'>${e.innerText}</a>`;
-    		} else {
-    			if (closeLevel !== 1) {
-    				result += "</li>";
-    			}
-
-    			result += `<li><a data-target='${counter}'>${e.innerText}</a>`;
-    		}
-
-    		closeLevel = openLevel;
-    		counter += 1;
-    	});
-
-    	result += Array(closeLevel).fill().map(() => "</li></ul>").join("");
-    	output.innerHTML = result;
-
-    	document.querySelectorAll(".table-of-contents a").forEach(a => {
-    		a.addEventListener("click", event => {
-    			const target = event.currentTarget.getAttribute("data-target");
-    			document.getElementById(target).scrollIntoView({ behavior: "smooth" });
-
-    			// clear active
-    			document.querySelectorAll(".table-of-contents li.active").forEach(li => {
-    				li.classList.remove("active");
-    			});
-
-    			// set active
-    			let parent = a.parentElement;
-
-    			while (parent) {
-    				if (parent.tagName === "LI") {
-    					parent.classList.add("active");
+    			if (openLevel > closeLevel) {
+    				result += `${"<ul><li><a data-target='"}${counter}'>${e.innerText}</a>`;
+    			} else if (openLevel < closeLevel) {
+    				const closingTags = Array(closeLevel - openLevel).fill().map(() => "</li></ul>").join("");
+    				result += `${closingTags}</li><li><a data-target='${counter}'>${e.innerText}</a>`;
+    			} else {
+    				if (closeLevel !== 1) {
+    					result += "</li>";
     				}
 
-    				parent = parent.parentElement;
+    				result += `<li><a data-target='${counter}'>${e.innerText}</a>`;
     			}
 
-    			event.stopPropagation();
+    			closeLevel = openLevel;
+    			counter += 1;
+    		});
+
+    		result += Array(closeLevel).fill().map(() => "</li></ul>").join("");
+    		$$invalidate(2, output.innerHTML = result, output);
+
+    		document.querySelectorAll(".table-of-contents a").forEach(a => {
+    			a.addEventListener("click", event => {
+    				const target = event.currentTarget.getAttribute("data-target");
+    				document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+
+    				// clear active
+    				document.querySelectorAll(".table-of-contents li.active").forEach(li => {
+    					li.classList.remove("active");
+    				});
+
+    				// set active
+    				let parent = a.parentElement;
+
+    				while (parent) {
+    					if (parent.tagName === "LI") {
+    						parent.classList.add("active");
+    					}
+
+    					parent = parent.parentElement;
+    				}
+
+    				event.stopPropagation();
+    			});
     		});
     	});
 
@@ -63381,6 +63380,7 @@
     	};
 
     	$$self.$capture_state = () => ({
+    		onMount,
     		field,
     		content,
     		output,
@@ -64856,7 +64856,7 @@
 
     			t = space();
     			attr_dev(div, "class", div_class_value = "object-list-item " + /*cssClass*/ ctx[5] + " svelte-l15sn4");
-    			add_location(div, file$v, 39, 2, 891);
+    			add_location(div, file$v, 39, 2, 920);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -65017,7 +65017,7 @@
     			inputFields: []
     		});
 
-    	let cssClass = formMetadata.getCustomProperty("cssClass") || "";
+    	let cssClass = (field.metadata.getCustomProperty("objectListConfig") || {}).itemsStyle || "";
 
     	for (const item of field.data.items) {
     		items.push(FormInstance.getOutputFieldValues(formMetadata.outputFields, item));
@@ -65037,8 +65037,8 @@
     	};
 
     	$$self.$capture_state = () => ({
-    		umf,
-    		uimfcore,
+    		umf: umf$1,
+    		uimfcore: umf,
     		FormOutput: Output,
     		field,
     		app,
@@ -65138,43 +65138,47 @@
 
     function get_each_context_1$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[34] = list[i];
+    	child_ctx[49] = list[i];
     	return child_ctx;
     }
 
     function get_each_context$8(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[31] = list[i];
+    	child_ctx[46] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[34] = list[i];
+    	child_ctx[49] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[39] = list[i];
+    	child_ctx[54] = list[i];
     	return child_ctx;
     }
 
-    // (430:0) {:else}
-    function create_else_block_3(ctx) {
+    // (475:0) {:else}
+    function create_else_block_2$1(ctx) {
     	let div;
+    	let t;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			div.textContent = "No data found.";
+    			t = text(/*nodata*/ ctx[9]);
     			attr_dev(div, "class", "alert-nodata");
-    			add_location(div, file$w, 430, 1, 11641);
+    			add_location(div, file$w, 475, 1, 13727);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
+    			append_dev(div, t);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*nodata*/ 512) set_data_dev(t, /*nodata*/ ctx[9]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -65184,16 +65188,16 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_3.name,
+    		id: create_else_block_2$1.name,
     		type: "else",
-    		source: "(430:0) {:else}",
+    		source: "(475:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (297:0) {#if visible && field.data != null && field.data.length > 0 && map != null}
+    // (338:0) {#if visible && field.data != null && field.data.length > 0 && map != null}
     function create_if_block$p(ctx) {
     	let div;
     	let table_1;
@@ -65206,9 +65210,9 @@
     	let t3;
     	let if_block3_anchor;
     	let current;
-    	let if_block0 = /*bulkActions*/ ctx[8].length > 0 && create_if_block_13(ctx);
-    	let if_block1 = /*bulkActions*/ ctx[8].length > 0 && create_if_block_12(ctx);
-    	let each_value_2 = /*columnsOrdered*/ ctx[11];
+    	let if_block0 = /*bulkActions*/ ctx[8].length > 0 && create_if_block_14(ctx);
+    	let if_block1 = /*bulkActions*/ ctx[8].length > 0 && create_if_block_13(ctx);
+    	let each_value_2 = /*columnsOrdered*/ ctx[13];
     	validate_each_argument(each_value_2);
     	let each_blocks = [];
 
@@ -65220,7 +65224,7 @@
     		each_blocks[i] = null;
     	});
 
-    	let if_block2 = /*map*/ ctx[9] != null && create_if_block_2$8(ctx);
+    	let if_block2 = /*map*/ ctx[10] != null && create_if_block_2$8(ctx);
     	let if_block3 = /*bulkActions*/ ctx[8].length > 0 && create_if_block_1$d(ctx);
 
     	const block = {
@@ -65244,13 +65248,13 @@
     			t3 = space();
     			if (if_block3) if_block3.c();
     			if_block3_anchor = empty();
-    			add_location(tr, file$w, 324, 4, 8430);
-    			add_location(thead, file$w, 301, 3, 7801);
-    			add_location(tbody, file$w, 381, 3, 10277);
-    			attr_dev(table_1, "class", "table table-condensed table-striped table-bordered table-hover jr-table svelte-149cxl6");
-    			add_location(table_1, file$w, 298, 2, 7683);
-    			attr_dev(div, "class", "horizontal-scroll svelte-149cxl6");
-    			add_location(div, file$w, 297, 1, 7648);
+    			add_location(tr, file$w, 364, 4, 10331);
+    			add_location(thead, file$w, 342, 3, 9672);
+    			add_location(tbody, file$w, 422, 3, 12264);
+    			attr_dev(table_1, "class", "table table-hover");
+    			add_location(table_1, file$w, 339, 2, 9608);
+    			attr_dev(div, "class", "horizontal-scroll");
+    			add_location(div, file$w, 338, 1, 9573);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -65269,7 +65273,7 @@
     			append_dev(table_1, t2);
     			append_dev(table_1, tbody);
     			if (if_block2) if_block2.m(tbody, null);
-    			/*table_1_binding*/ ctx[22](table_1);
+    			/*table_1_binding*/ ctx[27](table_1);
     			insert_dev(target, t3, anchor);
     			if (if_block3) if_block3.m(target, anchor);
     			insert_dev(target, if_block3_anchor, anchor);
@@ -65280,7 +65284,7 @@
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_13(ctx);
+    					if_block0 = create_if_block_14(ctx);
     					if_block0.c();
     					if_block0.m(thead, t0);
     				}
@@ -65293,7 +65297,7 @@
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block_12(ctx);
+    					if_block1 = create_if_block_13(ctx);
     					if_block1.c();
     					if_block1.m(tr, t1);
     				}
@@ -65302,8 +65306,8 @@
     				if_block1 = null;
     			}
 
-    			if (dirty[0] & /*sortData, columnsOrdered, $_, form*/ 1054724) {
-    				each_value_2 = /*columnsOrdered*/ ctx[11];
+    			if (dirty[0] & /*sortData, columnsOrdered, $_, form*/ 8413188) {
+    				each_value_2 = /*columnsOrdered*/ ctx[13];
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -65330,11 +65334,11 @@
     				check_outros();
     			}
 
-    			if (/*map*/ ctx[9] != null) {
+    			if (/*map*/ ctx[10] != null) {
     				if (if_block2) {
     					if_block2.p(ctx, dirty);
 
-    					if (dirty[0] & /*map*/ 512) {
+    					if (dirty[0] & /*map*/ 1024) {
     						transition_in(if_block2, 1);
     					}
     				} else {
@@ -65392,7 +65396,7 @@
     			if (if_block1) if_block1.d();
     			destroy_each(each_blocks, detaching);
     			if (if_block2) if_block2.d();
-    			/*table_1_binding*/ ctx[22](null);
+    			/*table_1_binding*/ ctx[27](null);
     			if (detaching) detach_dev(t3);
     			if (if_block3) if_block3.d(detaching);
     			if (detaching) detach_dev(if_block3_anchor);
@@ -65403,15 +65407,15 @@
     		block,
     		id: create_if_block$p.name,
     		type: "if",
-    		source: "(297:0) {#if visible && field.data != null && field.data.length > 0 && map != null}",
+    		source: "(338:0) {#if visible && field.data != null && field.data.length > 0 && map != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (303:4) {#if bulkActions.length > 0}
-    function create_if_block_13(ctx) {
+    // (344:4) {#if bulkActions.length > 0}
+    function create_if_block_14(ctx) {
     	let tr;
     	let td;
     	let td_colspan_value;
@@ -65432,10 +65436,10 @@
     				each_blocks[i].c();
     			}
 
-    			attr_dev(td, "colspan", td_colspan_value = /*columnsOrdered*/ ctx[11].length + 1);
-    			attr_dev(td, "class", "btn-row svelte-149cxl6");
-    			add_location(td, file$w, 304, 6, 7861);
-    			add_location(tr, file$w, 303, 5, 7849);
+    			attr_dev(td, "colspan", td_colspan_value = /*columnsOrdered*/ ctx[13].length + 1);
+    			attr_dev(td, "class", "btn-row");
+    			add_location(td, file$w, 345, 6, 9732);
+    			add_location(tr, file$w, 344, 5, 9720);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -65446,7 +65450,7 @@
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*disabled, runBulkAction, bulkActions, selectedItemsCount*/ 66944) {
+    			if (dirty[0] & /*disabled, bulkActions, runBulkAction, selectedItemsCount, isBulkActionVisible*/ 1315200) {
     				each_value_3 = /*bulkActions*/ ctx[8];
     				validate_each_argument(each_value_3);
     				let i;
@@ -65470,7 +65474,7 @@
     				each_blocks.length = each_value_3.length;
     			}
 
-    			if (dirty[0] & /*columnsOrdered*/ 2048 && td_colspan_value !== (td_colspan_value = /*columnsOrdered*/ ctx[11].length + 1)) {
+    			if (dirty[0] & /*columnsOrdered*/ 8192 && td_colspan_value !== (td_colspan_value = /*columnsOrdered*/ ctx[13].length + 1)) {
     				attr_dev(td, "colspan", td_colspan_value);
     			}
     		},
@@ -65482,35 +65486,40 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_13.name,
+    		id: create_if_block_14.name,
     		type: "if",
-    		source: "(303:4) {#if bulkActions.length > 0}",
+    		source: "(344:4) {#if bulkActions.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (316:8) {:else}
-    function create_else_block_2$1(ctx) {
+    // (356:46) 
+    function create_if_block_16(ctx) {
     	let button;
-    	let t_value = /*action*/ ctx[39].label + "";
+    	let t_value = /*action*/ ctx[54].label + "";
     	let t;
+    	let button_class_value;
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "btn btn-default");
+    			attr_dev(button, "class", button_class_value = "btn " + /*action*/ ctx[54].cssClass + " pull-right");
     			button.disabled = true;
-    			add_location(button, file$w, 316, 9, 8271);
+    			add_location(button, file$w, 356, 9, 10155);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
     			append_dev(button, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*bulkActions*/ 256 && t_value !== (t_value = /*action*/ ctx[39].label + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*bulkActions*/ 256 && t_value !== (t_value = /*action*/ ctx[54].label + "")) set_data_dev(t, t_value);
+
+    			if (dirty[0] & /*bulkActions*/ 256 && button_class_value !== (button_class_value = "btn " + /*action*/ ctx[54].cssClass + " pull-right")) {
+    				attr_dev(button, "class", button_class_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button);
@@ -65519,19 +65528,19 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_2$1.name,
-    		type: "else",
-    		source: "(316:8) {:else}",
+    		id: create_if_block_16.name,
+    		type: "if",
+    		source: "(356:46) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (307:8) {#if selectedItemsCount > 0}
-    function create_if_block_14(ctx) {
+    // (348:8) {#if selectedItemsCount > 0}
+    function create_if_block_15(ctx) {
     	let button;
-    	let t0_value = /*action*/ ctx[39].label + "";
+    	let t0_value = /*action*/ ctx[54].label + "";
     	let t0;
     	let t1;
     	let small;
@@ -65539,6 +65548,7 @@
     	let t3;
     	let t4;
     	let t5;
+    	let button_class_value;
     	let mounted;
     	let dispose;
 
@@ -65549,14 +65559,13 @@
     			t1 = space();
     			small = element("small");
     			t2 = text("(");
-    			t3 = text(/*selectedItemsCount*/ ctx[10]);
+    			t3 = text(/*selectedItemsCount*/ ctx[12]);
     			t4 = text(")");
     			t5 = space();
-    			add_location(small, file$w, 313, 10, 8186);
+    			add_location(small, file$w, 353, 10, 10039);
     			button.disabled = /*disabled*/ ctx[7];
-    			set_style(button, "direction", "rtl");
-    			attr_dev(button, "class", "btn btn-default");
-    			add_location(button, file$w, 307, 9, 8004);
+    			attr_dev(button, "class", button_class_value = "btn " + /*action*/ ctx[54].cssClass + " pull-right");
+    			add_location(button, file$w, 348, 9, 9875);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -65573,7 +65582,7 @@
     					button,
     					"click",
     					function () {
-    						if (is_function(/*runBulkAction*/ ctx[16](/*action*/ ctx[39]))) /*runBulkAction*/ ctx[16](/*action*/ ctx[39]).apply(this, arguments);
+    						if (is_function(/*runBulkAction*/ ctx[18](/*action*/ ctx[54]))) /*runBulkAction*/ ctx[18](/*action*/ ctx[54]).apply(this, arguments);
     					},
     					false,
     					false,
@@ -65585,11 +65594,15 @@
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty[0] & /*bulkActions*/ 256 && t0_value !== (t0_value = /*action*/ ctx[39].label + "")) set_data_dev(t0, t0_value);
-    			if (dirty[0] & /*selectedItemsCount*/ 1024) set_data_dev(t3, /*selectedItemsCount*/ ctx[10]);
+    			if (dirty[0] & /*bulkActions*/ 256 && t0_value !== (t0_value = /*action*/ ctx[54].label + "")) set_data_dev(t0, t0_value);
+    			if (dirty[0] & /*selectedItemsCount*/ 4096) set_data_dev(t3, /*selectedItemsCount*/ ctx[12]);
 
     			if (dirty[0] & /*disabled*/ 128) {
     				prop_dev(button, "disabled", /*disabled*/ ctx[7]);
+    			}
+
+    			if (dirty[0] & /*bulkActions*/ 256 && button_class_value !== (button_class_value = "btn " + /*action*/ ctx[54].cssClass + " pull-right")) {
+    				attr_dev(button, "class", button_class_value);
     			}
     		},
     		d: function destroy(detaching) {
@@ -65601,42 +65614,44 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_14.name,
+    		id: create_if_block_15.name,
     		type: "if",
-    		source: "(307:8) {#if selectedItemsCount > 0}",
+    		source: "(348:8) {#if selectedItemsCount > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (306:7) {#each bulkActions as action}
+    // (347:7) {#each bulkActions as action}
     function create_each_block_3(ctx) {
+    	let show_if;
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*selectedItemsCount*/ ctx[10] > 0) return create_if_block_14;
-    		return create_else_block_2$1;
+    		if (/*selectedItemsCount*/ ctx[12] > 0) return create_if_block_15;
+    		if (show_if == null || dirty[0] & /*bulkActions*/ 256) show_if = !!/*isBulkActionVisible*/ ctx[20](/*action*/ ctx[54]);
+    		if (show_if) return create_if_block_16;
     	}
 
-    	let current_block_type = select_block_type_1(ctx);
-    	let if_block = current_block_type(ctx);
+    	let current_block_type = select_block_type_1(ctx, [-1]);
+    	let if_block = current_block_type && current_block_type(ctx);
 
     	const block = {
     		c: function create() {
-    			if_block.c();
+    			if (if_block) if_block.c();
     			if_block_anchor = empty();
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
+    			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (current_block_type === (current_block_type = select_block_type_1(ctx)) && if_block) {
+    			if (current_block_type === (current_block_type = select_block_type_1(ctx, dirty)) && if_block) {
     				if_block.p(ctx, dirty);
     			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
+    				if (if_block) if_block.d(1);
+    				if_block = current_block_type && current_block_type(ctx);
 
     				if (if_block) {
     					if_block.c();
@@ -65645,7 +65660,10 @@
     			}
     		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
+    			if (if_block) {
+    				if_block.d(detaching);
+    			}
+
     			if (detaching) detach_dev(if_block_anchor);
     		}
     	};
@@ -65654,15 +65672,15 @@
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(306:7) {#each bulkActions as action}",
+    		source: "(347:7) {#each bulkActions as action}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (326:5) {#if bulkActions.length > 0}
-    function create_if_block_12(ctx) {
+    // (366:5) {#if bulkActions.length > 0}
+    function create_if_block_13(ctx) {
     	let th;
     	let input;
     	let mounted;
@@ -65673,23 +65691,25 @@
     			th = element("th");
     			input = element("input");
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "checkbox svelte-149cxl6");
-    			add_location(input, file$w, 327, 7, 8510);
+    			attr_dev(input, "class", "checkbox");
+    			add_location(input, file$w, 367, 7, 10411);
     			attr_dev(th, "class", "jr-table-th");
-    			add_location(th, file$w, 326, 6, 8477);
+    			add_location(th, file$w, 366, 6, 10378);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
     			append_dev(th, input);
+    			/*input_binding*/ ctx[24](input);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "change", /*selectAllItems*/ ctx[19](this), false, false, false);
+    				dispose = listen_dev(input, "change", /*change_handler*/ ctx[25], false, false, false);
     				mounted = true;
     			}
     		},
     		p: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(th);
+    			/*input_binding*/ ctx[24](null);
     			mounted = false;
     			dispose();
     		}
@@ -65697,28 +65717,28 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_12.name,
+    		id: create_if_block_13.name,
     		type: "if",
-    		source: "(326:5) {#if bulkActions.length > 0}",
+    		source: "(366:5) {#if bulkActions.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (359:6) {:else}
+    // (400:6) {:else}
     function create_else_block_1$4(ctx) {
     	let th;
     	let current_block_type_index;
     	let if_block;
     	let t;
     	let current;
-    	const if_block_creators = [create_if_block_9$1, create_if_block_11];
+    	const if_block_creators = [create_if_block_10$1, create_if_block_12];
     	const if_blocks = [];
 
     	function select_block_type_4(ctx, dirty) {
-    		if (/*column*/ ctx[34].customProperties != null && /*column*/ ctx[34].customProperties["documentation"] != null) return 0;
-    		if (/*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "") return 1;
+    		if (/*column*/ ctx[49].customProperties != null && /*column*/ ctx[49].customProperties["documentation"] != null) return 0;
+    		if (/*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "") return 1;
     		return -1;
     	}
 
@@ -65732,7 +65752,7 @@
     			if (if_block) if_block.c();
     			t = space();
     			attr_dev(th, "class", "jr-table-th");
-    			add_location(th, file$w, 359, 7, 9557);
+    			add_location(th, file$w, 400, 7, 11544);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -65800,19 +65820,19 @@
     		block,
     		id: create_else_block_1$4.name,
     		type: "else",
-    		source: "(359:6) {:else}",
+    		source: "(400:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (335:6) {#if column.customProperties != null && column.customProperties['sortableBy'] != null}
-    function create_if_block_5$1(ctx) {
+    // (376:6) {#if column.customProperties != null && column.customProperties['sortableBy'] != null}
+    function create_if_block_6$1(ctx) {
     	let if_block_anchor;
 
     	function select_block_type_3(ctx, dirty) {
-    		if (/*column*/ ctx[34].ascending) return create_if_block_6$1;
+    		if (/*column*/ ctx[49].ascending) return create_if_block_7$1;
     		return create_else_block$9;
     	}
 
@@ -65851,18 +65871,18 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_5$1.name,
+    		id: create_if_block_6$1.name,
     		type: "if",
-    		source: "(335:6) {#if column.customProperties != null && column.customProperties['sortableBy'] != null}",
+    		source: "(376:6) {#if column.customProperties != null && column.customProperties['sortableBy'] != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (371:8) {#if column.label != null && column.label != ""}
-    function create_if_block_11(ctx) {
-    	let t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "";
+    // (412:8) {#if column.label != null && column.label != ""}
+    function create_if_block_12(ctx) {
+    	let t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "";
     	let t;
 
     	const block = {
@@ -65873,7 +65893,7 @@
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*$_, form, columnsOrdered*/ 6148 && t_value !== (t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*$_, form, columnsOrdered*/ 24580 && t_value !== (t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "")) set_data_dev(t, t_value);
     		},
     		i: noop,
     		o: noop,
@@ -65884,26 +65904,26 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_11.name,
+    		id: create_if_block_12.name,
     		type: "if",
-    		source: "(371:8) {#if column.label != null && column.label != \\\"\\\"}",
+    		source: "(412:8) {#if column.label != null && column.label != \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (361:8) {#if column.customProperties != null && column.customProperties['documentation'] != null}
-    function create_if_block_9$1(ctx) {
+    // (402:8) {#if column.customProperties != null && column.customProperties['documentation'] != null}
+    function create_if_block_10$1(ctx) {
     	let div;
     	let t;
     	let tooltip;
     	let current;
-    	let if_block = /*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "" && create_if_block_10$1(ctx);
+    	let if_block = /*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "" && create_if_block_11(ctx);
 
     	tooltip = new Tooltip({
     			props: {
-    				data: /*column*/ ctx[34].customProperties.documentation[0]
+    				data: /*column*/ ctx[49].customProperties.documentation[0]
     			},
     			$$inline: true
     		});
@@ -65915,7 +65935,7 @@
     			t = space();
     			create_component(tooltip.$$.fragment);
     			attr_dev(div, "class", "help-tooltip");
-    			add_location(div, file$w, 361, 9, 9691);
+    			add_location(div, file$w, 402, 9, 11678);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -65925,11 +65945,11 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (/*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "") {
+    			if (/*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block_10$1(ctx);
+    					if_block = create_if_block_11(ctx);
     					if_block.c();
     					if_block.m(div, t);
     				}
@@ -65939,7 +65959,7 @@
     			}
 
     			const tooltip_changes = {};
-    			if (dirty[0] & /*columnsOrdered*/ 2048) tooltip_changes.data = /*column*/ ctx[34].customProperties.documentation[0];
+    			if (dirty[0] & /*columnsOrdered*/ 8192) tooltip_changes.data = /*column*/ ctx[49].customProperties.documentation[0];
     			tooltip.$set(tooltip_changes);
     		},
     		i: function intro(local) {
@@ -65960,18 +65980,18 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_9$1.name,
+    		id: create_if_block_10$1.name,
     		type: "if",
-    		source: "(361:8) {#if column.customProperties != null && column.customProperties['documentation'] != null}",
+    		source: "(402:8) {#if column.customProperties != null && column.customProperties['documentation'] != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (363:10) {#if column.label != null && column.label != ""}
-    function create_if_block_10$1(ctx) {
-    	let t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "";
+    // (404:10) {#if column.label != null && column.label != ""}
+    function create_if_block_11(ctx) {
+    	let t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "";
     	let t;
 
     	const block = {
@@ -65982,7 +66002,7 @@
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*$_, form, columnsOrdered*/ 6148 && t_value !== (t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*$_, form, columnsOrdered*/ 24580 && t_value !== (t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t);
@@ -65991,16 +66011,16 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_10$1.name,
+    		id: create_if_block_11.name,
     		type: "if",
-    		source: "(363:10) {#if column.label != null && column.label != \\\"\\\"}",
+    		source: "(404:10) {#if column.label != null && column.label != \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (347:7) {:else}
+    // (388:7) {:else}
     function create_else_block$9(ctx) {
     	let th;
     	let t0;
@@ -66008,7 +66028,7 @@
     	let t1;
     	let mounted;
     	let dispose;
-    	let if_block = /*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "" && create_if_block_8$1(ctx);
+    	let if_block = /*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "" && create_if_block_9$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -66018,9 +66038,10 @@
     			i = element("i");
     			t1 = space();
     			attr_dev(i, "class", "fa fa-sort-up");
-    			add_location(i, file$w, 355, 9, 9477);
-    			attr_dev(th, "class", "sortable-column jr-table-th svelte-149cxl6");
-    			add_location(th, file$w, 347, 8, 9179);
+    			set_style(i, "cursor", "pointer");
+    			add_location(i, file$w, 396, 9, 11441);
+    			attr_dev(th, "class", "sortable-column jr-table-th");
+    			add_location(th, file$w, 388, 8, 11143);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -66034,7 +66055,7 @@
     					th,
     					"click",
     					function () {
-    						if (is_function(/*sortData*/ ctx[20](/*column*/ ctx[34], /*columnsOrdered*/ ctx[11]))) /*sortData*/ ctx[20](/*column*/ ctx[34], /*columnsOrdered*/ ctx[11]).apply(this, arguments);
+    						if (is_function(/*sortData*/ ctx[23](/*column*/ ctx[49], /*columnsOrdered*/ ctx[13]))) /*sortData*/ ctx[23](/*column*/ ctx[49], /*columnsOrdered*/ ctx[13]).apply(this, arguments);
     					},
     					false,
     					false,
@@ -66047,7 +66068,87 @@
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (/*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "") {
+    			if (/*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "") {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_9$1(ctx);
+    					if_block.c();
+    					if_block.m(th, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(th);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$9.name,
+    		type: "else",
+    		source: "(388:7) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (377:7) {#if column.ascending}
+    function create_if_block_7$1(ctx) {
+    	let th;
+    	let t0;
+    	let i;
+    	let t1;
+    	let mounted;
+    	let dispose;
+    	let if_block = /*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "" && create_if_block_8$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			th = element("th");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			i = element("i");
+    			t1 = space();
+    			attr_dev(i, "class", "fa fa-sort-down");
+    			set_style(i, "cursor", "pointer");
+    			add_location(i, file$w, 385, 9, 11051);
+    			attr_dev(th, "class", "sortable-column jr-table-th");
+    			add_location(th, file$w, 377, 8, 10753);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, th, anchor);
+    			if (if_block) if_block.m(th, null);
+    			append_dev(th, t0);
+    			append_dev(th, i);
+    			append_dev(th, t1);
+
+    			if (!mounted) {
+    				dispose = listen_dev(
+    					th,
+    					"click",
+    					function () {
+    						if (is_function(/*sortData*/ ctx[23](/*column*/ ctx[49], /*columnsOrdered*/ ctx[13]))) /*sortData*/ ctx[23](/*column*/ ctx[49], /*columnsOrdered*/ ctx[13]).apply(this, arguments);
+    					},
+    					false,
+    					false,
+    					false
+    				);
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (/*column*/ ctx[49].label != null && /*column*/ ctx[49].label != "") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -66070,97 +66171,18 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$9.name,
-    		type: "else",
-    		source: "(347:7) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (336:7) {#if column.ascending}
-    function create_if_block_6$1(ctx) {
-    	let th;
-    	let t0;
-    	let i;
-    	let t1;
-    	let mounted;
-    	let dispose;
-    	let if_block = /*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "" && create_if_block_7$1(ctx);
-
-    	const block = {
-    		c: function create() {
-    			th = element("th");
-    			if (if_block) if_block.c();
-    			t0 = space();
-    			i = element("i");
-    			t1 = space();
-    			attr_dev(i, "class", "fa fa-sort-down");
-    			add_location(i, file$w, 344, 9, 9109);
-    			attr_dev(th, "class", "sortable-column jr-table-th svelte-149cxl6");
-    			add_location(th, file$w, 336, 8, 8811);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, th, anchor);
-    			if (if_block) if_block.m(th, null);
-    			append_dev(th, t0);
-    			append_dev(th, i);
-    			append_dev(th, t1);
-
-    			if (!mounted) {
-    				dispose = listen_dev(
-    					th,
-    					"click",
-    					function () {
-    						if (is_function(/*sortData*/ ctx[20](/*column*/ ctx[34], /*columnsOrdered*/ ctx[11]))) /*sortData*/ ctx[20](/*column*/ ctx[34], /*columnsOrdered*/ ctx[11]).apply(this, arguments);
-    					},
-    					false,
-    					false,
-    					false
-    				);
-
-    				mounted = true;
-    			}
-    		},
-    		p: function update(new_ctx, dirty) {
-    			ctx = new_ctx;
-
-    			if (/*column*/ ctx[34].label != null && /*column*/ ctx[34].label != "") {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block_7$1(ctx);
-    					if_block.c();
-    					if_block.m(th, t0);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(th);
-    			if (if_block) if_block.d();
-    			mounted = false;
-    			dispose();
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_6$1.name,
+    		id: create_if_block_7$1.name,
     		type: "if",
-    		source: "(336:7) {#if column.ascending}",
+    		source: "(377:7) {#if column.ascending}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (351:9) {#if column.label != null && column.label != ""}
-    function create_if_block_8$1(ctx) {
-    	let t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "";
+    // (392:9) {#if column.label != null && column.label != ""}
+    function create_if_block_9$1(ctx) {
+    	let t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "";
     	let t;
 
     	const block = {
@@ -66171,7 +66193,38 @@
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*$_, form, columnsOrdered*/ 6148 && t_value !== (t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "")) set_data_dev(t, t_value);
+    			if (dirty[0] & /*$_, form, columnsOrdered*/ 24580 && t_value !== (t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_9$1.name,
+    		type: "if",
+    		source: "(392:9) {#if column.label != null && column.label != \\\"\\\"}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (381:9) {#if column.label != null && column.label != ""}
+    function create_if_block_8$1(ctx) {
+    	let t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text(t_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*$_, form, columnsOrdered*/ 24580 && t_value !== (t_value = /*$_*/ ctx[14](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[49].id}`, { default: /*column*/ ctx[49].label }) + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t);
@@ -66182,55 +66235,24 @@
     		block,
     		id: create_if_block_8$1.name,
     		type: "if",
-    		source: "(351:9) {#if column.label != null && column.label != \\\"\\\"}",
+    		source: "(381:9) {#if column.label != null && column.label != \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (340:9) {#if column.label != null && column.label != ""}
-    function create_if_block_7$1(ctx) {
-    	let t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "";
-    	let t;
-
-    	const block = {
-    		c: function create() {
-    			t = text(t_value);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, t, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*$_, form, columnsOrdered*/ 6148 && t_value !== (t_value = /*$_*/ ctx[12](`${/*form*/ ctx[2].metadata.id}.outputs.${/*column*/ ctx[34].id}`, { default: /*column*/ ctx[34].label }) + "")) set_data_dev(t, t_value);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_7$1.name,
-    		type: "if",
-    		source: "(340:9) {#if column.label != null && column.label != \\\"\\\"}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (334:5) {#each columnsOrdered as column}
+    // (375:5) {#each columnsOrdered as column}
     function create_each_block_2$1(ctx) {
     	let current_block_type_index;
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block_5$1, create_else_block_1$4];
+    	const if_block_creators = [create_if_block_6$1, create_else_block_1$4];
     	const if_blocks = [];
 
     	function select_block_type_2(ctx, dirty) {
-    		if (/*column*/ ctx[34].customProperties != null && /*column*/ ctx[34].customProperties["sortableBy"] != null) return 0;
+    		if (/*column*/ ctx[49].customProperties != null && /*column*/ ctx[49].customProperties["sortableBy"] != null) return 0;
     		return 1;
     	}
 
@@ -66291,14 +66313,14 @@
     		block,
     		id: create_each_block_2$1.name,
     		type: "each",
-    		source: "(334:5) {#each columnsOrdered as column}",
+    		source: "(375:5) {#each columnsOrdered as column}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (383:4) {#if map != null}
+    // (424:4) {#if map != null}
     function create_if_block_2$8(ctx) {
     	let each_1_anchor;
     	let current;
@@ -66331,7 +66353,7 @@
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*getRowCssClass, field, columnsOrdered, getField, app, form, parent, bulkActions, selectItem*/ 313615) {
+    			if (dirty[0] & /*getRowCssClass, field, columnsOrdered, getField, app, form, parent, bulkActions, selectItem*/ 2302223) {
     				each_value = /*field*/ ctx[0].data;
     				validate_each_argument(each_value);
     				let i;
@@ -66387,15 +66409,15 @@
     		block,
     		id: create_if_block_2$8.name,
     		type: "if",
-    		source: "(383:4) {#if map != null}",
+    		source: "(424:4) {#if map != null}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (386:7) {#if bulkActions.length > 0}
-    function create_if_block_4$3(ctx) {
+    // (427:7) {#if bulkActions.length > 0}
+    function create_if_block_5$1(ctx) {
     	let td;
     	let div;
     	let input;
@@ -66408,13 +66430,13 @@
     			td = element("td");
     			div = element("div");
     			input = element("input");
-    			input.disabled = input_disabled_value = /*row*/ ctx[31].actions == null || /*row*/ ctx[31].actions.actions == null || /*row*/ ctx[31].actions.actions.filter(/*func*/ ctx[21]).length === 0;
+    			input.disabled = input_disabled_value = /*row*/ ctx[46].actions == null || /*row*/ ctx[46].actions.actions == null || /*row*/ ctx[46].actions.actions.filter(/*func*/ ctx[26]).length === 0;
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "checkbox svelte-149cxl6");
-    			add_location(input, file$w, 388, 10, 10488);
+    			attr_dev(input, "class", "checkbox");
+    			add_location(input, file$w, 429, 10, 12489);
     			attr_dev(div, "class", "form-group form-check");
-    			add_location(div, file$w, 387, 9, 10441);
-    			add_location(td, file$w, 386, 8, 10426);
+    			add_location(div, file$w, 428, 9, 12442);
+    			add_location(td, file$w, 427, 8, 12427);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -66426,7 +66448,7 @@
     					input,
     					"change",
     					function () {
-    						if (is_function(/*selectItem*/ ctx[18](this, /*row*/ ctx[31]))) /*selectItem*/ ctx[18](this, /*row*/ ctx[31]).apply(this, arguments);
+    						if (is_function(/*selectItem*/ ctx[21](this, /*row*/ ctx[46]))) /*selectItem*/ ctx[21](this, /*row*/ ctx[46]).apply(this, arguments);
     					},
     					false,
     					false,
@@ -66439,7 +66461,7 @@
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*field, bulkActions*/ 257 && input_disabled_value !== (input_disabled_value = /*row*/ ctx[31].actions == null || /*row*/ ctx[31].actions.actions == null || /*row*/ ctx[31].actions.actions.filter(/*func*/ ctx[21]).length === 0)) {
+    			if (dirty[0] & /*field, bulkActions*/ 257 && input_disabled_value !== (input_disabled_value = /*row*/ ctx[46].actions == null || /*row*/ ctx[46].actions.actions == null || /*row*/ ctx[46].actions.actions.filter(/*func*/ ctx[26]).length === 0)) {
     				prop_dev(input, "disabled", input_disabled_value);
     			}
     		},
@@ -66452,23 +66474,23 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_4$3.name,
+    		id: create_if_block_5$1.name,
     		type: "if",
-    		source: "(386:7) {#if bulkActions.length > 0}",
+    		source: "(427:7) {#if bulkActions.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (401:9) {#if !(getField(row, column).metadata.getCustomProperty('hideIfNull') === true && getField(row, column).data === null)}
-    function create_if_block_3$4(ctx) {
+    // (445:9) {#if !(getField(row, column).data === null)}
+    function create_if_block_4$3(ctx) {
     	let formoutput;
     	let current;
 
     	formoutput = new Output({
     			props: {
-    				field: /*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]),
+    				field: /*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]),
     				app: /*app*/ ctx[1],
     				form: /*form*/ ctx[2],
     				parent: /*parent*/ ctx[3],
@@ -66487,7 +66509,7 @@
     		},
     		p: function update(ctx, dirty) {
     			const formoutput_changes = {};
-    			if (dirty[0] & /*field, columnsOrdered*/ 2049) formoutput_changes.field = /*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]);
+    			if (dirty[0] & /*field, columnsOrdered*/ 8193) formoutput_changes.field = /*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]);
     			if (dirty[0] & /*app*/ 2) formoutput_changes.app = /*app*/ ctx[1];
     			if (dirty[0] & /*form*/ 4) formoutput_changes.form = /*form*/ ctx[2];
     			if (dirty[0] & /*parent*/ 8) formoutput_changes.parent = /*parent*/ ctx[3];
@@ -66509,57 +66531,118 @@
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_3$4.name,
+    		id: create_if_block_4$3.name,
     		type: "if",
-    		source: "(401:9) {#if !(getField(row, column).metadata.getCustomProperty('hideIfNull') === true && getField(row, column).data === null)}",
+    		source: "(445:9) {#if !(getField(row, column).data === null)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (399:7) {#each columnsOrdered as column}
+    // (442:9) {#if getField(row, column).metadata === null}
+    function create_if_block_3$4(ctx) {
+    	let t_value = /*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]).data + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text(t_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*field, columnsOrdered*/ 8193 && t_value !== (t_value = /*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]).data + "")) set_data_dev(t, t_value);
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3$4.name,
+    		type: "if",
+    		source: "(442:9) {#if getField(row, column).metadata === null}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (440:7) {#each columnsOrdered as column}
     function create_each_block_1$3(ctx) {
     	let td;
-    	let show_if = !(/*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]).metadata.getCustomProperty("hideIfNull") === true && /*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]).data === null);
+    	let show_if;
+    	let show_if_1;
+    	let current_block_type_index;
+    	let if_block;
     	let current;
-    	let if_block = show_if && create_if_block_3$4(ctx);
+    	const if_block_creators = [create_if_block_3$4, create_if_block_4$3];
+    	const if_blocks = [];
+
+    	function select_block_type_5(ctx, dirty) {
+    		if (dirty[0] & /*field, columnsOrdered*/ 8193) show_if = !!(/*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]).metadata === null);
+    		if (show_if) return 0;
+    		if (dirty[0] & /*field, columnsOrdered*/ 8193) show_if_1 = !!!(/*getField*/ ctx[16](/*row*/ ctx[46], /*column*/ ctx[49]).data === null);
+    		if (show_if_1) return 1;
+    		return -1;
+    	}
+
+    	if (~(current_block_type_index = select_block_type_5(ctx, [-1]))) {
+    		if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	}
 
     	const block = {
     		c: function create() {
     			td = element("td");
     			if (if_block) if_block.c();
-    			add_location(td, file$w, 399, 8, 10896);
+    			add_location(td, file$w, 440, 8, 12897);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
-    			if (if_block) if_block.m(td, null);
+
+    			if (~current_block_type_index) {
+    				if_blocks[current_block_type_index].m(td, null);
+    			}
+
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*field, columnsOrdered*/ 2049) show_if = !(/*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]).metadata.getCustomProperty("hideIfNull") === true && /*getField*/ ctx[14](/*row*/ ctx[31], /*column*/ ctx[34]).data === null);
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type_5(ctx, dirty);
 
-    			if (show_if) {
+    			if (current_block_type_index === previous_block_index) {
+    				if (~current_block_type_index) {
+    					if_blocks[current_block_type_index].p(ctx, dirty);
+    				}
+    			} else {
     				if (if_block) {
-    					if_block.p(ctx, dirty);
+    					group_outros();
 
-    					if (dirty[0] & /*field, columnsOrdered*/ 2049) {
-    						transition_in(if_block, 1);
+    					transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    						if_blocks[previous_block_index] = null;
+    					});
+
+    					check_outros();
+    				}
+
+    				if (~current_block_type_index) {
+    					if_block = if_blocks[current_block_type_index];
+
+    					if (!if_block) {
+    						if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    						if_block.c();
     					}
-    				} else {
-    					if_block = create_if_block_3$4(ctx);
-    					if_block.c();
+
     					transition_in(if_block, 1);
     					if_block.m(td, null);
-    				}
-    			} else if (if_block) {
-    				group_outros();
-
-    				transition_out(if_block, 1, 1, () => {
+    				} else {
     					if_block = null;
-    				});
-
-    				check_outros();
+    				}
     			}
     		},
     		i: function intro(local) {
@@ -66573,7 +66656,10 @@
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(td);
-    			if (if_block) if_block.d();
+
+    			if (~current_block_type_index) {
+    				if_blocks[current_block_type_index].d();
+    			}
     		}
     	};
 
@@ -66581,22 +66667,22 @@
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(399:7) {#each columnsOrdered as column}",
+    		source: "(440:7) {#each columnsOrdered as column}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (384:5) {#each field.data as row}
+    // (425:5) {#each field.data as row}
     function create_each_block$8(ctx) {
     	let tr;
     	let t0;
     	let t1;
     	let tr_class_value;
     	let current;
-    	let if_block = /*bulkActions*/ ctx[8].length > 0 && create_if_block_4$3(ctx);
-    	let each_value_1 = /*columnsOrdered*/ ctx[11];
+    	let if_block = /*bulkActions*/ ctx[8].length > 0 && create_if_block_5$1(ctx);
+    	let each_value_1 = /*columnsOrdered*/ ctx[13];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -66619,8 +66705,8 @@
     			}
 
     			t1 = space();
-    			attr_dev(tr, "class", tr_class_value = "" + (null_to_empty(/*getRowCssClass*/ ctx[15](/*row*/ ctx[31])) + " svelte-149cxl6"));
-    			add_location(tr, file$w, 384, 6, 10347);
+    			attr_dev(tr, "class", tr_class_value = "" + (/*getRowCssClass*/ ctx[17](/*row*/ ctx[46]) + " table-light"));
+    			add_location(tr, file$w, 425, 6, 12334);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -66639,7 +66725,7 @@
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block_4$3(ctx);
+    					if_block = create_if_block_5$1(ctx);
     					if_block.c();
     					if_block.m(tr, t0);
     				}
@@ -66648,8 +66734,8 @@
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*getField, field, columnsOrdered, app, form, parent*/ 18447) {
-    				each_value_1 = /*columnsOrdered*/ ctx[11];
+    			if (dirty[0] & /*getField, field, columnsOrdered, app, form, parent*/ 73743) {
+    				each_value_1 = /*columnsOrdered*/ ctx[13];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -66676,7 +66762,7 @@
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*field*/ 1 && tr_class_value !== (tr_class_value = "" + (null_to_empty(/*getRowCssClass*/ ctx[15](/*row*/ ctx[31])) + " svelte-149cxl6"))) {
+    			if (!current || dirty[0] & /*field*/ 1 && tr_class_value !== (tr_class_value = "" + (/*getRowCssClass*/ ctx[17](/*row*/ ctx[46]) + " table-light"))) {
     				attr_dev(tr, "class", tr_class_value);
     			}
     		},
@@ -66709,14 +66795,14 @@
     		block,
     		id: create_each_block$8.name,
     		type: "each",
-    		source: "(384:5) {#each field.data as row}",
+    		source: "(425:5) {#each field.data as row}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (418:1) {#if bulkActions.length > 0}
+    // (463:1) {#if bulkActions.length > 0}
     function create_if_block_1$d(ctx) {
     	let input;
     	let t0;
@@ -66739,14 +66825,14 @@
     			div0 = element("div");
     			attr_dev(input, "type", "checkbox");
     			attr_dev(input, "class", "hidden");
-    			add_location(input, file$w, 418, 2, 11342);
+    			add_location(input, file$w, 463, 2, 13422);
     			attr_dev(span, "class", "close modal-close");
-    			add_location(span, file$w, 424, 4, 11483);
-    			add_location(div0, file$w, 425, 4, 11561);
+    			add_location(span, file$w, 469, 4, 13563);
+    			add_location(div0, file$w, 470, 4, 13647);
     			attr_dev(div1, "class", "card");
-    			add_location(div1, file$w, 423, 3, 11459);
+    			add_location(div1, file$w, 468, 3, 13539);
     			attr_dev(div2, "class", "modal");
-    			add_location(div2, file$w, 422, 2, 11435);
+    			add_location(div2, file$w, 467, 2, 13515);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -66757,12 +66843,12 @@
     			append_dev(div1, span);
     			append_dev(div1, t1);
     			append_dev(div1, div0);
-    			/*div0_binding*/ ctx[24](div0);
+    			/*div0_binding*/ ctx[30](div0);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "change", /*input_change_handler*/ ctx[23]),
-    					listen_dev(span, "click", /*closeBulkActionModal*/ ctx[17](null), false, false, false)
+    					listen_dev(input, "change", /*input_change_handler*/ ctx[28]),
+    					listen_dev(span, "click", /*click_handler*/ ctx[29], false, false, false)
     				];
 
     				mounted = true;
@@ -66777,7 +66863,7 @@
     			if (detaching) detach_dev(input);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div2);
-    			/*div0_binding*/ ctx[24](null);
+    			/*div0_binding*/ ctx[30](null);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -66787,7 +66873,7 @@
     		block,
     		id: create_if_block_1$d.name,
     		type: "if",
-    		source: "(418:1) {#if bulkActions.length > 0}",
+    		source: "(463:1) {#if bulkActions.length > 0}",
     		ctx
     	});
 
@@ -66799,11 +66885,11 @@
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block$p, create_else_block_3];
+    	const if_block_creators = [create_if_block$p, create_else_block_2$1];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*visible*/ ctx[13] && /*field*/ ctx[0].data != null && /*field*/ ctx[0].data.length > 0 && /*map*/ ctx[9] != null) return 0;
+    		if (/*visible*/ ctx[15] && /*field*/ ctx[0].data != null && /*field*/ ctx[0].data.length > 0 && /*map*/ ctx[10] != null) return 0;
     		return 1;
     	}
 
@@ -66893,20 +66979,17 @@
     	return promise;
     }
 
-    function enableBulkButton() {
-    }
-
     function instance$z($$self, $$props, $$invalidate) {
     	let $_;
     	validate_store(nn, "_");
-    	component_subscribe($$self, nn, $$value => $$invalidate(12, $_ = $$value));
+    	component_subscribe($$self, nn, $$value => $$invalidate(14, $_ = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Table", slots, []);
     	let { field } = $$props;
     	let { app } = $$props;
     	let { form } = $$props;
     	let { parent } = $$props;
-    	let isBulkActionModalOpen = true;
+    	let isBulkActionModalOpen = false;
     	let bulkActionContainer;
     	let currentBulkActionForm = null;
     	let table;
@@ -66914,7 +66997,9 @@
     	let visible = true;
     	let bulkActions = [];
     	let rowCssClass = null;
+    	let nodata = "no data found.";
     	let map = null;
+    	let selectAllCheckbox;
 
     	const __this = {
     		closeBulkActionModal: response => closeBulkActionModal(response)
@@ -66952,22 +67037,53 @@
     		rowCssClass = (metadata.customProperties || {}).rowCssClass || {};
     		$$invalidate(8, bulkActions = (metadata.customProperties || {}).bulkAction || []);
 
+    		if (data == null || data.every(t => t.actions == null || t.actions.actions == null)) {
+    			$$invalidate(8, bulkActions = []);
+    		}
+
+    		if ((metadata.customProperties || {}).tableConfig) {
+    			$$invalidate(9, nodata = metadata.customProperties.tableConfig.noDataLabel);
+    		}
+
     		// Create map, with key being the lowercase version of the property name
     		// and value being the actual property name.
-    		$$invalidate(9, map = {});
+    		$$invalidate(10, map = {});
 
     		if (data.length > 0) {
     			const firstRow = data[0];
 
     			for (const property of Object.keys(firstRow)) {
-    				$$invalidate(9, map[property.toLowerCase()] = property, map);
+    				$$invalidate(10, map[property.toLowerCase()] = property, map);
     			}
     		}
     	});
 
     	function getField(row, column) {
-    		const value = row[map[column.id.toLowerCase()]];
-    		return { data: value, metadata: column };
+    		var col = column.id == null
+    		? column.toLowerCase()
+    		: column.id.toLowerCase();
+
+    		var metadata = column.id == null ? null : column;
+    		var data = row.hasOwnProperty(map[col]) ? row[map[col]] : null;
+
+    		if (!row.hasOwnProperty(map[col])) {
+    			for (let property in row) {
+    				if (row[property] != null && row[property].metadata != null) {
+    					var index = 0;
+
+    					for (var propertyMetadata of row[property].metadata) {
+    						if (propertyMetadata.id.toLowerCase() == col) {
+    							data = row[property].data[index];
+    							break;
+    						}
+
+    						index++;
+    					}
+    				}
+    			}
+    		}
+
+    		return { data, metadata };
     	}
 
     	function getRowCssClass(row) {
@@ -66986,6 +67102,10 @@
 
     	let selectedItemsCount = 0;
     	let columnsOrdered;
+
+    	function enableBulkButton() {
+    		$$invalidate(7, disabled = false);
+    	}
 
     	async function runBulkAction(action) {
     		$$invalidate(7, disabled = true);
@@ -67006,6 +67126,7 @@
     				onActionRun(formInstance.metadata.id, response, action);
     				enableBulkButton();
     			} catch(e) {
+    				enableBulkButton();
     			}
     		} else {
     			$$invalidate(4, isBulkActionModalOpen = true);
@@ -67020,7 +67141,7 @@
     					}
     				});
 
-    			f.init();
+    			f.init(f);
 
     			f.$on("form:responseHandled", e => {
     				closeBulkActionModal(e.detail.response);
@@ -67033,9 +67154,20 @@
 
     	async function onActionRun(formId, response) {
     		const parentForm = parent;
-    		const app = parentForm.app;
 
-    		if (response.metadata.handler !== "redirect" && response.metadata.handler !== "reload") {
+    		var isRedirectResponse = response.metadata.functionsToRun != null
+    		? response.metadata.functionsToRun.filter(a => a.id == "redirect").length > 0
+    			? true
+    			: false
+    		: false;
+
+    		var isReloadResponse = response.metadata.functionsToRun != null
+    		? response.metadata.functionsToRun.filter(a => a.id == "reload").length > 0
+    			? true
+    			: false
+    		: false;
+
+    		if (!isRedirectResponse && !isReloadResponse) {
     			// If asked to redirect to another form, then we redirect
     			// and do not reload parent form, as that would be a wasted effort.
     			await parentForm.submit(null, true);
@@ -67046,9 +67178,10 @@
     	}
 
     	async function closeBulkActionModal(response) {
+    		enableBulkButton();
     		$$invalidate(4, isBulkActionModalOpen = false);
-    		currentBulkActionForm = null;
     		currentBulkActionForm.$destroy();
+    		currentBulkActionForm = null;
     		const parentFormComponent = parent;
 
     		if (response != null && response.metadata.handler !== "redirect" && response.metadata.handler !== "reload") {
@@ -67064,6 +67197,10 @@
     		return row.actions == null || row.actions.actions == null || row.actions.actions.filter(t => bulkActions.some(r => r.formId === t.form)).length === 0;
     	}
 
+    	function isBulkActionVisible(action) {
+    		return field.data.filter(t => t.actions != null && t.actions.actions != null && t.actions.actions.some(f => f.form === action.formId)).length > 0;
+    	}
+
     	function selectItem(checkboxElement, row) {
     		// eslint-disable-next-line no-underscore-dangle, no-param-reassign
     		row.__selected = checkboxElement.checked;
@@ -67071,14 +67208,14 @@
     		// eslint-disable-next-line no-underscore-dangle
     		const selectedItems = field.data.filter(t => t.__selected === true);
 
-    		$$invalidate(10, selectedItemsCount = selectedItems.length);
+    		$$invalidate(12, selectedItemsCount = selectedItems.length);
     	}
 
-    	function selectAllItems(checkboxElement) {
+    	function selectAllItems() {
     		for (const row of field.data) {
     			if (!isDisabled(row)) {
     				// eslint-disable-next-line no-underscore-dangle, no-param-reassign
-    				row.__selected = checkboxElement.checked;
+    				row.__selected = selectAllCheckbox.checked;
     			}
     		}
 
@@ -67086,14 +67223,14 @@
 
     		for (const checkbox of checkboxes) {
     			if (!checkbox.disabled) {
-    				checkbox.checked = checkboxElement.checked;
+    				checkbox.checked = selectAllCheckbox.checked;
     			}
     		}
 
     		// eslint-disable-next-line no-underscore-dangle
     		const selectedItems = field.data.filter(t => t.__selected === true);
 
-    		$$invalidate(10, selectedItemsCount = selectedItems.length);
+    		$$invalidate(12, selectedItemsCount = selectedItems.length);
     	}
 
     	function sortData(column, columns) {
@@ -67128,6 +67265,14 @@
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Table> was created with unknown prop '${key}'`);
     	});
 
+    	function input_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			selectAllCheckbox = $$value;
+    			$$invalidate(11, selectAllCheckbox);
+    		});
+    	}
+
+    	const change_handler = () => selectAllItems();
     	const func = t => bulkActions.some(r => r.formId === t.form);
 
     	function table_1_binding($$value) {
@@ -67141,6 +67286,8 @@
     		isBulkActionModalOpen = this.checked;
     		$$invalidate(4, isBulkActionModalOpen);
     	}
+
+    	const click_handler = () => closeBulkActionModal(null);
 
     	function div0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -67160,6 +67307,7 @@
     		FormComponent: Form,
     		FormOutput: Output,
     		Tooltip,
+    		umf,
     		ActionListEventArguments,
     		onMount,
     		_: nn,
@@ -67175,7 +67323,9 @@
     		visible,
     		bulkActions,
     		rowCssClass,
+    		nodata,
     		map,
+    		selectAllCheckbox,
     		buildFilter: buildFilter$1,
     		__this,
     		modals,
@@ -67183,11 +67333,20 @@
     		getRowCssClass,
     		selectedItemsCount,
     		columnsOrdered,
+    		allColumns,
+    		dynamicTable,
+    		columns,
+    		output,
+    		data,
+    		property,
+    		col,
+    		sortedColumns,
     		enableBulkButton,
     		runBulkAction,
     		onActionRun,
     		closeBulkActionModal,
     		isDisabled,
+    		isBulkActionVisible,
     		selectItem,
     		selectAllItems,
     		sortData,
@@ -67204,12 +67363,22 @@
     		if ("currentBulkActionForm" in $$props) currentBulkActionForm = $$props.currentBulkActionForm;
     		if ("table" in $$props) $$invalidate(6, table = $$props.table);
     		if ("disabled" in $$props) $$invalidate(7, disabled = $$props.disabled);
-    		if ("visible" in $$props) $$invalidate(13, visible = $$props.visible);
+    		if ("visible" in $$props) $$invalidate(15, visible = $$props.visible);
     		if ("bulkActions" in $$props) $$invalidate(8, bulkActions = $$props.bulkActions);
     		if ("rowCssClass" in $$props) rowCssClass = $$props.rowCssClass;
-    		if ("map" in $$props) $$invalidate(9, map = $$props.map);
-    		if ("selectedItemsCount" in $$props) $$invalidate(10, selectedItemsCount = $$props.selectedItemsCount);
-    		if ("columnsOrdered" in $$props) $$invalidate(11, columnsOrdered = $$props.columnsOrdered);
+    		if ("nodata" in $$props) $$invalidate(9, nodata = $$props.nodata);
+    		if ("map" in $$props) $$invalidate(10, map = $$props.map);
+    		if ("selectAllCheckbox" in $$props) $$invalidate(11, selectAllCheckbox = $$props.selectAllCheckbox);
+    		if ("selectedItemsCount" in $$props) $$invalidate(12, selectedItemsCount = $$props.selectedItemsCount);
+    		if ("columnsOrdered" in $$props) $$invalidate(13, columnsOrdered = $$props.columnsOrdered);
+    		if ("allColumns" in $$props) $$invalidate(35, allColumns = $$props.allColumns);
+    		if ("dynamicTable" in $$props) $$invalidate(36, dynamicTable = $$props.dynamicTable);
+    		if ("columns" in $$props) $$invalidate(37, columns = $$props.columns);
+    		if ("output" in $$props) $$invalidate(38, output = $$props.output);
+    		if ("data" in $$props) $$invalidate(39, data = $$props.data);
+    		if ("property" in $$props) $$invalidate(40, property = $$props.property);
+    		if ("col" in $$props) $$invalidate(41, col = $$props.col);
+    		if ("sortedColumns" in $$props) $$invalidate(42, sortedColumns = $$props.sortedColumns);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -67219,7 +67388,39 @@
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty[0] & /*field*/ 1) {
     			 {
-    				$$invalidate(11, columnsOrdered = field.metadata.customProperties.columns.filter(b => !b.hidden).sort((a, b) => a.orderIndex - b.orderIndex));
+    				var allColumns = field.metadata.customProperties.columns.filter(b => !b.hidden);
+    				var dynamicTable = allColumns.filter(b => b.type == "dynamic-table");
+    				var columns = allColumns.filter(b => b.type != "dynamic-table" && b.id != "cssClass");
+
+    				for (var output of dynamicTable) {
+    					if (field.data.length > 0) {
+    						var data = field.data[0];
+    						let column = null;
+
+    						for (var property in data) {
+    							if (property.toLowerCase() == output.id.toLowerCase()) {
+    								column = data[property];
+    								break;
+    							}
+    						}
+
+    						if (column != null) {
+    							for (var col of column.metadata) {
+    								columns.push(new OutputFieldMetadata(col));
+    							}
+    						}
+    					}
+    				}
+
+    				var sortedColumns = columns.sort((a, b) => a.orderIndex - b.orderIndex);
+
+    				if (columns == null || columns.length == 0) {
+    					if (field.data != null && field.data.length > 0) {
+    						$$invalidate(13, columnsOrdered = Object.keys(field.data[0]));
+    					}
+    				} else {
+    					$$invalidate(13, columnsOrdered = sortedColumns);
+    				}
     			}
     		}
     	};
@@ -67234,7 +67435,9 @@
     		table,
     		disabled,
     		bulkActions,
+    		nodata,
     		map,
+    		selectAllCheckbox,
     		selectedItemsCount,
     		columnsOrdered,
     		$_,
@@ -67243,12 +67446,16 @@
     		getRowCssClass,
     		runBulkAction,
     		closeBulkActionModal,
+    		isBulkActionVisible,
     		selectItem,
     		selectAllItems,
     		sortData,
+    		input_binding,
+    		change_handler,
     		func,
     		table_1_binding,
     		input_change_handler,
+    		click_handler,
     		div0_binding
     	];
     }
@@ -67389,27 +67596,27 @@
     			t11 = text("\r\n\t\titems");
     			option0.__value = "10";
     			option0.value = option0.__value;
-    			add_location(option0, file$x, 189, 3, 4766);
+    			add_location(option0, file$x, 189, 3, 4754);
     			option1.__value = "20";
     			option1.value = option1.__value;
-    			add_location(option1, file$x, 190, 3, 4801);
+    			add_location(option1, file$x, 190, 3, 4789);
     			option2.__value = "50";
     			option2.value = option2.__value;
-    			add_location(option2, file$x, 191, 3, 4836);
+    			add_location(option2, file$x, 191, 3, 4824);
     			option3.__value = "100";
     			option3.value = option3.__value;
-    			add_location(option3, file$x, 192, 3, 4871);
+    			add_location(option3, file$x, 192, 3, 4859);
     			option4.__value = "100";
     			option4.value = option4.__value;
-    			add_location(option4, file$x, 193, 3, 4908);
+    			add_location(option4, file$x, 193, 3, 4896);
     			attr_dev(select, "class", "pagination-size input-sm");
     			if (/*pageSize*/ ctx[6] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[9].call(select));
-    			add_location(select, file$x, 185, 2, 4643);
+    			add_location(select, file$x, 185, 2, 4631);
     			attr_dev(ul, "class", "pagination pagination-sm");
-    			add_location(ul, file$x, 196, 2, 4959);
-    			add_location(div0, file$x, 183, 1, 4591);
+    			add_location(ul, file$x, 196, 2, 4947);
+    			add_location(div0, file$x, 183, 1, 4579);
     			attr_dev(div1, "class", "paginator-summary pagination-page-count");
-    			add_location(div1, file$x, 214, 1, 5456);
+    			add_location(div1, file$x, 214, 1, 5444);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -67515,9 +67722,9 @@
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(button, "class", "page-link");
-    			add_location(button, file$x, 206, 6, 5312);
+    			add_location(button, file$x, 206, 6, 5300);
     			attr_dev(li, "class", li_class_value = "page-item pagination-page " + /*page*/ ctx[12].cssClass);
-    			add_location(li, file$x, 205, 5, 5250);
+    			add_location(li, file$x, 205, 5, 5238);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -67584,9 +67791,9 @@
     			t1 = space();
     			attr_dev(a, "href", a_href_value = /*app*/ ctx[1].makeUrl(/*form*/ ctx[2].metadata.id, /*page*/ ctx[12].params));
     			attr_dev(a, "class", "page-link");
-    			add_location(a, file$x, 200, 6, 5116);
+    			add_location(a, file$x, 200, 6, 5104);
     			attr_dev(li, "class", li_class_value = "page-item pagination-page " + /*page*/ ctx[12].cssClass);
-    			add_location(li, file$x, 199, 5, 5054);
+    			add_location(li, file$x, 199, 5, 5042);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -67682,7 +67889,7 @@
     			if (if_block) if_block.c();
     			t = space();
     			div = element("div");
-    			add_location(div, file$x, 223, 0, 5615);
+    			add_location(div, file$x, 223, 0, 5603);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -67867,9 +68074,7 @@
     					const first = {
     						text: "First",
     						params: firstParams,
-    						cssClass: paginatorInput.value.pageIndex === 1
-    						? "btn disabled"
-    						: ""
+    						cssClass: paginatorInput.value.pageIndex === 1 ? " disabled" : ""
     					};
 
     					const prevParams = Object.assign({}, params);
@@ -67879,9 +68084,7 @@
     					const previous = {
     						text: "Prev",
     						params: prevParams,
-    						cssClass: paginatorInput.value.pageIndex === 1
-    						? "btn disabled"
-    						: ""
+    						cssClass: paginatorInput.value.pageIndex === 1 ? " disabled" : ""
     					};
 
     					const nextParams = Object.assign({}, params);
@@ -67892,7 +68095,7 @@
     						text: "Next",
     						params: nextParams,
     						cssClass: paginatorInput.value.pageIndex === pageCount
-    						? "btn disabled"
+    						? " disabled"
     						: ""
     					};
 
@@ -67904,7 +68107,7 @@
     						text: "Last",
     						params: lastParams,
     						cssClass: paginatorInput.value.pageIndex === pageCount
-    						? "btn disabled"
+    						? " disabled"
     						: ""
     					};
 
@@ -69413,7 +69616,7 @@
             return app.load().then(function (t) {
                 buildMenu(app);
                 if (form === "home") {
-                    return "#/home";
+                    return "#/form/dashboard";
                 }
                 return app.makeUrl(form, inputFieldValues);
             });

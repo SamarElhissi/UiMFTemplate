@@ -38,7 +38,7 @@
 		}
 
 		formElement.addEventListener("submit", (e) => {
-			if (field.metadata.required && a.getValue().length === 0) {
+			if (field.metadata.required && field.value.value == null) {
 				e.preventDefault();
 				alertify.error("The field " + field.metadata.label + " is required");
 			}

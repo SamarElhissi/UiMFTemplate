@@ -18,7 +18,6 @@ namespace UiMFTemplate.Conversations.Mappings
 		{
 			entity.ToTable("Conversation", this.schema);
 			entity.HasKey(t => t.Id);
-			entity.Property(t => t.Id).HasColumnName("Id").UseSqlServerIdentityColumn();
 			entity.Property(t => t.CreatedOn).HasColumnName("CreatedOn");
 			entity.Property(t => t.Key).HasColumnName("Key").HasMaxLength(Conversation<TAuthorKey, TComment>.KeyMaxLength).IsUnicode(false)
 				.IsRequired();

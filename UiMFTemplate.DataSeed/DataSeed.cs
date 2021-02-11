@@ -33,7 +33,7 @@ namespace UiMFTemplate.DataSeed
 			if (dynamicRoles.Any())
 			{
 				throw new BusinessException(
-					$"Cannot assign dynamic roles {dynamicRoles.Select(t => $"'{t.Name}'").Join()} to a user.");
+					$"Cannot assign dynamic roles {dynamicRoles.Select(t => $"'{t.Name}'").Join(",")} to a user.");
 			}
 
 			await this.userManager.CreateAsync(new ApplicationUser

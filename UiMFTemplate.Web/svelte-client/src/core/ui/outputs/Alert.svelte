@@ -20,11 +20,11 @@
 				{#if field.data.icon != null}
 					<span>{@html field.data.icon}</span>
 				{/if}
-				<strong>{field.data.heading}</strong>
+				<strong style="font-size:16px">{field.data.heading}</strong>
 			</div>
 		{/if}
 		{#if field.data.message != null}
-			<div class="body">
+			<div class="body" style="font-size:16px" >
 				{@html field.data.message}
 			</div>
 		{/if}

@@ -17,7 +17,7 @@ namespace UiMFTemplate.Infrastructure
 	using Microsoft.EntityFrameworkCore.Metadata;
 	using Microsoft.EntityFrameworkCore.Metadata.Builders;
 	using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
-	using MySql.Data.MySqlClient;
+	using MySqlConnector;
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
 	using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;

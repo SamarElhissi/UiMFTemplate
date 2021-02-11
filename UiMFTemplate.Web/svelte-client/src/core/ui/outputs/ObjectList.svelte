@@ -18,7 +18,7 @@
 		outputFields: columns,
 		inputFields: [],
 	});
-	let cssClass = formMetadata.getCustomProperty("cssClass") || "";
+	let cssClass = (field.metadata.getCustomProperty("objectListConfig") || {}).itemsStyle || "";
 
 	for (const item of field.data.items) {
 		items.push(
